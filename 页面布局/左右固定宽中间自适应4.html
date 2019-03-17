@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*父元素设置display:table  子元素设置display:table-cell*/
+        *{margin:0;padding:0;}
+        .art{display:table;width:100%;}
+        .left,.right,.center{
+            min-height:150px;
+            display:table-cell;
+        }
+        .center{background:yellow;}
+        .left{background:red;width:250px;}
+        .right{background:green;width:250px;}
+    </style>
+</head>
+<body>
+<section class="layout">
+    <article class="art">
+        <div class="left">left</div>
+        <div class="center">
+            <div>通过table实现</div>
+            <div>通过table实现</div>
+            <div>通过table实现</div>
+            <div>通过table实现</div>
+            <div>通过table实现</div>
+            <div>通过table实现</div>
+            <div>通过table实现</div>
+            <div>通过table实现</div>
+        </div>
+        <div class="right">
+            right
+        </div>
+    </article>
+</section>
+</body>
+</html>

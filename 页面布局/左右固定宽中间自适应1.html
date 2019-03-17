@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*左右浮动 center要放最下面*/
+        /*缺点是如果中间内容过多并且高度超过左右两边 会往左右两边渗透*/
+        *{margin:0;padding:0;}
+        .left,.right,.center{
+            min-height: 150px;
+        }
+        .center{background:yellow;}
+        .left{background:red;float:left;width:250px;}
+        .right{background:green;float:right;width:250px;}
+    </style>
+</head>
+<body>
+<section class="layout">
+    <article class="">
+        <div class="left">left</div>
+        <div class="right">right</div>
+        <div class="center">
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+            <div>通过浮动实现</div>
+        </div>
+    </article>
+</section>
+</body>
+</html>

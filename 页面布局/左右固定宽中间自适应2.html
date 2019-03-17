@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*左中右都绝对定位 center块可以放中间*/
+        /*缺点：如果中间内容过多左右两边无法自动撑开*/
+        *{margin:0;padding:0;}
+        .left,.right,.center{
+            min-height: 150px;
+            position:absolute;
+        }
+        .center{background:yellow;left:250px;right:250px;}
+        .left{background:red;width:250px;left:0;}
+        .right{background:green;width:250px;right:0;}
+    </style>
+</head>
+<body>
+<section class="layout">
+    <article class="art">
+        <div class="left">left</div>
+        <div class="center">
+            <div>通过定位实现</div>
+            <div>通过定位实现</div>
+            <div>通过定位实现</div>
+            <div>通过定位实现</div>
+            <div>通过定位实现</div>
+            <div>通过定位实现</div>
+            <div>通过定位实现</div>
+            <div>通过定位实现</div>
+            <div>通过定位实现</div>
+            <div>通过定位实现</div>
+            <div>通过定位实现</div>
+        </div>
+        <div class="right">right</div>
+    </article>
+</section>
+</body>
+</html>

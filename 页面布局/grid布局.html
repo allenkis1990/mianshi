@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;}
+        /*grid-template-columns是横向宽度  grid-template-rows是纵向的高度 需要div个数是 3*2个*/
+        .art {
+            display: grid;
+            width:100%;
+            grid-template-columns: 150px 150px 150px;
+            grid-template-rows:150px 150px;
+            grid-column-gap:10px;/*列间距*/
+            grid-row-gap:15px;/*行间距*/
+            justify-content:center;
+        }
+        div{background:red;}
+    </style>
+</head>
+<body>
+<section>
+    <article class="art">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </article>
+</section>
+</body>
+</html>
