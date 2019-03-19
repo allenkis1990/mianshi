@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html *{padding:0;margin:0;}
+    </style>
+</head>
+<body>
+<!--flex实现 不用设置父元素宽度-->
+<!--<section>
+    <style>
+        html,body{height:100%;}
+        section{height:100%;}
+        article{display:flex;height:100%;}
+        .left{width:300px;background:yellow;height:100%;}
+        .right{flex:1;background:green;height:100%;}
+    </style>
+    <article>
+        <div class="left"></div>
+        <div class="right"></div>
+    </article>
+</section>-->
+
+<!--浮动实现 你用设置父元素宽度-->
+<!--<section>
+    <style>
+        html,body{height:100%;}
+        section{height:100%;}
+        article{height:100%;zoom:1;overflow:hidden;}
+        .left{width:300px;background:yellow;height:100%;float:left;}
+        .right{background:green;height:100%;}
+    </style>
+    <article>
+        <div class="left"></div>
+        <div class="right"></div>
+    </article>
+</section>-->
+
+<!--定位实现 需要设置父元素高度-->
+<section>
+    <style>
+        html,body,section{width:100%;height:100%;}
+        article{position:relative;width:100%;height:100%;}
+        .left{width:300px;background:yellow;height:100%;position:absolute;}
+        .right{background:green;height:100%;position:absolute;left:300px;right:0}
+    </style>
+    <article>
+        <div class="left"></div>
+        <div class="right"></div>
+    </article>
+</section>
+
+<!--表格实现 只需要display:table的那个元素设置宽度-->
+<!--<section>
+    <style>
+        html,body{height:100%;}
+        section{height:100%;}
+        article{height:100%;display:table;width:100%;}
+        .left,.right{display:table-cell}
+        .left{width:300px;background:yellow;}
+        .right{background:green;}
+    </style>
+    <article>
+        <div class="left"></div>
+        <div class="right"></div>
+    </article>
+</section>-->
+</body>
+</html>
