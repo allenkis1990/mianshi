@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{width:300px;height:300px;background:red;}
+    </style>
+</head>
+<body>
+<div class="main">
+
+</div>
+<script>
+    //自定义事件 可带上一个参数 一定要用detail包裹
+    let eve = new CustomEvent('fuck',{detail:{
+        name:'allen'
+    }})
+    let dom = document.querySelector('.main')
+    dom.addEventListener('fuck',function(e){
+        console.log(e.detail);
+    })
+    setTimeout(function(){
+        dom.dispatchEvent(eve)
+    },3000)
+</script>
+</body>
+</html>

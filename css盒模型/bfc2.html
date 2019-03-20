@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html *{margin:0;padding:0}
+    </style>
+</head>
+<body>
+<!--给a标签的父元素li加了bfc解决边距重叠问题-->
+<section>
+    <style>
+        li > a{background:red;margin:5px auto 20px;color:#fff;display:block}
+    </style>
+    <article>
+        <ul>
+            <li><a href="#">1</a></li>
+            <li style="overflow:hidden"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+        </ul>
+    </article>
+</section>
+</body>
+</html>

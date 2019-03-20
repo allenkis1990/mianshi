@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html *{margin:0;padding:0}
+    </style>
+</head>
+<body>
+<!--bfc解决与浮动元素重叠问题-->
+<section>
+    <style>
+        .main{overflow:hidden}
+        .left{height:300px;width:300px;background:yellow;float:left;}
+        .right{height:400px;background:green;}
+    </style>
+    <article>
+       <div class="main">
+           <div class="left"></div>
+           <div class="right" style="overflow:hidden"></div>
+       </div>
+    </article>
+</section>
+</body>
+</html>

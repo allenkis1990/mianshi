@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{width:300px;height:300px;background:red;}
+    </style>
+</head>
+<body>
+<div class="main">
+
+</div>
+<script>
+    //1new 一个Event
+    //2在dom上addEventListener这个事件
+    //3在要触发的地方触发一下dom.dispatchEvent(eve)
+    let eve = new Event('fuck')
+    let dom = document.querySelector('.main')
+    dom.addEventListener('fuck',function(e){
+        console.log('happen');
+    })
+    setTimeout(function(){
+        dom.dispatchEvent(eve)
+    },3000)
+</script>
+</body>
+</html>

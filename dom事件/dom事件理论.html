@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{width:300px;height:300px;background:red;}
+        .parent{width:200px;height:200px;background:green;}
+        .child{width:100px;height:100px;background:yellow;}
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+</div>
+<script>
+    //dom事件级别
+    //1.dom0 => dom.onclick=function(){}
+    //2.dom2 => dom.addEventListener('click'function(){},true)//默认是false为冒泡 true为捕获
+    //3.dom3 => dom.addEventListener('keyup'function(){},true)//新增了一些事件类型
+
+
+    //dom事件模型 1捕获 2冒泡
+    //dom事件流 事件从捕获阶段到达目标阶段 再从目标阶段上传到window
+    //dom事件流捕获的具体流程：window-document-html-body-xxx
+    //dom事件流冒泡的具体流程：xxx-body-html-document-window
+
+    //常用Event对象常见的应用
+    //1.event.preventDefault() //阻止元素的默认事件
+    //2.event.stopPropagation() //阻止冒泡
+    //3.event.stopImmediatePropagation() //如果注册两个事件那么只会执行第一个
+    //4.event.target //点击的那个dom
+    //5.event.currentTarget //触发事件的那个dom
+
+    document.querySelector('.child').addEventListener('click',function(e){
+        e.stopPropagation();
+//        e.stopImmediatePropagation();
+        console.log('child');
+    },false)
+//    document.querySelector('.child').addEventListener('click',function(e){
+//        e.stopPropagation();
+//        console.log('child2');
+//    },false)
+    document.querySelector('.parent').addEventListener('click',function(e){
+        e.stopPropagation();
+        console.log('parent');
+    },false)
+    document.querySelector('.main').addEventListener('click',function(e){
+        e.stopPropagation();
+        console.log('main');
+    },false)
+
+
+</script>
+</body>
+</html>
