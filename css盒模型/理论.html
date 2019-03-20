@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /**{box-sizing:content-box;}*/
+        #div{width:300px;height:300px;background:red;padding:5px;border:1px solid green;}
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    //css盒模型：margin padding border content
+    //标准盒模型的宽高是等于content的宽和高
+    //ie盒模型的宽高等于padding+border+content的宽高
+    //css如何设置两种盒模型：box-sizing:content-box(标准/默认) border-box(带上padding和border)
+    //js获取宽和高
+    //1.dom.style.width/height (只能获取元素上的内联的width和height)
+    //2.dom.currentStyle.width/height (获取渲染后的宽和高 只支持IE)
+    //3.window.getComputedStyle(dom).width/height (获取渲染后的宽和高 支持性好)
+    //4.dom.getBoundingClientRect().width/height
+</script>
+</body>
+</html>
