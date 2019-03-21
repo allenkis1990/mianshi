@@ -22,7 +22,8 @@
     //3.dom3 => dom.addEventListener('keyup'function(){},true)//新增了一些事件类型
 
 
-    //dom事件模型 1捕获 2冒泡
+    //dom0事件模型：dom.onclick =function(){} 新定义的事件会覆盖原有的事件dom.onclick =null来清空事件
+    //dom2事件模型 1捕获 2冒泡 可以注册多个事件 removeEventListenr来移除目标事件
     //dom事件流 事件从捕获阶段到达目标阶段 再从目标阶段上传到window
     //dom事件流捕获的具体流程：window-document-html-body-xxx
     //dom事件流冒泡的具体流程：xxx-body-html-document-window

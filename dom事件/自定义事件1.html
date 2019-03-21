@@ -18,7 +18,10 @@
     let eve = new Event('fuck')
     let dom = document.querySelector('.main')
     dom.addEventListener('fuck',function(e){
-        console.log('happen');
+        console.log('happen1');
+    })
+    dom.addEventListener('fuck',function(e){
+        console.log('happen2');
     })
     setTimeout(function(){
         dom.dispatchEvent(eve)
