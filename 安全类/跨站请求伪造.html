@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //跨站请求伪造
+    //前提是用户在网站A处于登录状态 在B网站点击了www.b.com/pay?money=1000类似有BUG的接口
+
+    //解决办法：
+    //1.随机发送一个hash到服务端验证
+    //2.带上referer  服务端检验只有referer为本站的才能验证通过
+    //3.发送验证码
+    //4.通过头部自定义字段发送一个token给服务端
+</script>
+</body>
+</html>
