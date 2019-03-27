@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.html会通过html-parser转成DOM tree,styleSheets会通过css-parser转成CSS rules
+    //2.Dom tree和CSS rules会整合到一起变成renderTree(渲染树)
+    //3.renderTree会通过layout计算各元素的具体位置 宽高之类的
+    //4.然后进行painting画图
+    //5.最后display显示出来
+
+
+
+    //重排reflow 浏览器根据各种样式来计算元素该出现在他该出现的位置
+    //repaint 重新绘图显示
+
+    //什么情况下会触发reflow或者repaint
+    //1.新增，删除，修改DOM
+    //2.动态改变DOM的样式
+    //3.页面reisze的时候可能会
+    //4.修改网页默认字体
+    //5.移动DOM的时候
+
+    //如何尽可能少的触发reflow或者repaint
+    //不要一个一个节点的插入或者修改，可以把要修改的元素统一做操作然后一次性插入到一个DOM里去
+</script>
+</body>
+</html>
