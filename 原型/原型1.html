@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function A(name){
+        this.name = name;
+        this.a = 'a';
+        this.b = 'b';
+    }
+    A.prototype.fuck='fuck'
+    //instanceof用来判断是不是XX的后代
+    //constructor用来判断直属构造函数
+    var a = new A('a')
+    console.log(a instanceof A);//true
+    console.log(a instanceof Object);//true
+    console.log(a.constructor===A);//A是对象a的直属构造函数
+    console.log(A.prototype.constructor===A);
+    console.log(A.prototype.__proto__.constructor===Object);
+    console.log(Object.__proto__.constructor===Function);
+
+    console.log(A.constructor===Function);
+
+    var haha = {name:'allen'}
+    console.log(haha.constructor===Object)//haha的构造函数是Object
+
+</script>
+</body>
+</html>

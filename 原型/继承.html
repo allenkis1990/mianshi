@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Parent(){
+        this.name = 'Parent'
+    }
+    Parent.prototype.say=function(){
+        console.log('hello parent!')
+    }
+
+    function Child(){
+        Parent.call(this)
+    }
+    function Temp(){
+
+    }
+    Temp.prototype = Parent.prototype
+    Child.prototype = new Temp()
+    Child.prototype.constructor = Child //手动设置constructor
+    var obj = new Child()
+    console.log(obj.constructor===Child); //true
+
+
+</script>
+</body>
+</html>
