@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--非引入文件使用defer不会最后执行-->
+    <!--<script defer>
+        console.log('head')
+    </script>-->
+    <!--script引入js的时候 如果有defer会等到html元素全部都执行完毕后再执行-->
+    <!--加上defer的script标签按引入顺序执行-->
+    <script src="js/defer1.js" defer></script>
+    <script src="js/defer2.js" defer></script>
+</head>
+<body>
+<script>
+    for(var i=0;i<51;i++){
+        console.log(i);
+    }
+</script>
+</body>
+</html>

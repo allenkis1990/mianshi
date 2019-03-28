@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //缓存
+    //1.强缓存 HTTP相应头 expires(绝对日期)，cache-control(相对秒数)
+
+    //协商缓存
+
+    //Last-Modified和If-Modified-Since对比相同就拿缓存 不同就拿重新请求
+
+    //etag和If-None-Match 对比相同就拿缓存 不同就拿重新请求
+
+
+
+
+//    Last-Modified/If-Modified-Since规则
+//
+//    Last-Modified：
+//服务器在响应请求时，告诉浏览器资源的最后修改时间。
+//
+//If-Modified-Since：
+//再次请求服务器时，通过此字段通知服务器上次请求时，服务器返回的资源最后修改时间。
+//服务器收到请求后发现有头If-Modified-Since 则与被请求资源的最后修改时间进行比对。
+//若资源的最后修改时间大于If-Modified-Since，说明资源又被改动过，则响应整片资源内容，返回状态码200；
+//若资源的最后修改时间小于或等于If-Modified-Since，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用所保存的cache。
+
+
+
+//    Etag：
+//服务器资源的唯一标识符, 浏览器可以根据ETag值缓存数据, 节省带宽. 如果资源已经改变, etag可以帮助防止同步更新资源的相互覆盖. ETag 优先级比 Last-Modified 高.
+//
+//        If-None-Match：
+//再次请求服务器时，通过此字段通知服务器客户段缓存数据的唯一标识。
+//服务器收到请求后发现有头If-None-Match 则与被请求资源的唯一标识进行比对，
+//不同，说明资源又被改动过，则响应整片资源内容，返回状态码200；
+//相同，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用所保存的cache。
+//
+//看到这里，你也许会问，既然已经有了 Last-Modified 已经能够知道本地缓存是否是最新的了，为什么还需要 Etag 呢？
+//主要是基于以下几个原因：Last-Modified 标注的最后修改时间只能精确到秒，如果有些资源在一秒之内被多次修改的话，他就不能准确标注文件的新鲜度了如果某些资源会被定期生成，当内容没有变化，但 Last-Modified 却改变了，导致文件没使用缓存有可能存在服务器没有准确获取资源修改时间，或者与代理服务器时间不一致的情形。
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--非引入文件使用async不会最后执行-->
+    <!--<script async>
+        console.log('head')
+    </script>-->
+    <!--script引入js的时候 如果有async会等到html元素全部都执行完毕后再执行-->
+    <!--加上async的script标签按文件加载的速度来决定谁先执行-->
+    <script src="js/async1.js" async></script>
+    <script src="js/async2.js" async></script>
+</head>
+<body>
+<script>
+    for(var i=0;i<51;i++){
+        console.log(i);
+    }
+</script>
+</body>
+</html>
