@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<iframe id="iWindow" src="http://localhost:63342/mianshi/%E9%80%9A%E4%BF%A1/postMessageIframe.html?_ijt=8fcv8dn9bugilgg00nf5roojsq"></iframe>
+<script>
+    //利用postmessage实现跨域
+    var iWindow = document.getElementById('iWindow').contentWindow;
+    iWindow.onload=function(){
+        iWindow.postMessage('hahahdata','http://localhost:63342/mianshi/%E9%80%9A%E4%BF%A1/postMessageIframe.html?_ijt=8fcv8dn9bugilgg00nf5roojsq')
+    }
+
+</script>
+</body>
+</html>
