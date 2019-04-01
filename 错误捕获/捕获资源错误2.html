@@ -6,7 +6,17 @@
 </head>
 <body>
 <script>
-    let Img = new i
+    function errHandle(e){
+        console.log(e,123);
+        var IMG = new Image();
+        IMG.src = `http://aa.com/sendError?errorEsg=${e.message?e.message:'scriptErr'}`
+        //阻止浏览器控制台输出
+        e.preventDefault()
+    }
+    window.addEventListener('error',errHandle,true)
+
+    console.log(a.name);
 </script>
+<script src="hahaaa.js"></script>
 </body>
 </html>
