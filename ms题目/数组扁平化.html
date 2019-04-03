@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr = ['a',['b','c'],'d',['e',['f','g']]]
+
+    //递归的方法
+    function getStr(arr){
+        var result = [];
+        function fn(arr){
+            arr.forEach((item)=>{
+                var type = Object.prototype.toString.call(item);
+                if(type!=='[object Array]'){
+                    result.push(item);
+                }else {
+                    fn(item);
+                }
+            })
+        }
+        fn(arr);
+        return result.join(',');
+    }
+    var str = getStr(arr);
+    console.log(str);
+
+
+
+    function getStr2(arr){
+        let toString = Array.prototype.toString
+        Array.prototype.toString = function(){
+            return this.join('#')
+        }
+        //类型转换的时候默认会调用valueOf()如果没有被改写才调toString(),如果先改写了valueOf就直接调用valueOf
+        //这里会触发toString()
+        let str = arr+''
+        Array.prototype.toString = toString;
+        return str
+    }
+    let str2 = getStr2(arr);
+    console.log(str2);
+</script>
+</body>
+</html>

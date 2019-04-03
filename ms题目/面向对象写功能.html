@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html *{margin:0;padding:0;}
+        li{list-style-type:none;}
+        .list{margin-bottom:100px;}
+
+        .list li {
+            height: 40px;
+            width: 400px;
+            margin-bottom: 10px;
+            background: deepskyblue;
+            line-height: 40px;
+            text-align:right;
+        }
+        .list li span{color:#fff;font-size:30px;margin-right:10px;cursor:pointer;}
+    </style>
+</head>
+<body>
+<div class="main">
+    <ul class="list">
+        <li>
+            1
+            <span class="del">x</span>
+        </li>
+        <li>
+            2
+            <span class="del">x</span>
+        </li>
+        <li>
+            3
+            <span class="del">x</span>
+        </li>
+        <li>
+            4
+            <span class="del">x</span>
+        </li>
+    </ul>
+    <ul class="list">
+        <li>
+            1
+            <span class="del">x</span>
+        </li>
+        <li>
+            2
+            <span class="del">x</span>
+        </li>
+        <li>
+            3
+            <span class="del">x</span>
+        </li>
+        <li>
+            4
+            <span class="del">x</span>
+        </li>
+    </ul>
+</div>
+<script>
+    function Component(mainClass){
+        this.doms = Array.from(document.querySelectorAll(mainClass))
+        this.doms.forEach((dom)=>{
+            dom.addEventListener('click',(e)=>{
+                if(e.target.className==='del'){
+                    this.removeNode(e.target);
+                }
+            })
+        })
+    }
+    Component.prototype.removeNode = function(target){
+        let _this = this
+        //向上找只有找到.list节点才去删除li如果找到li还要继续递归向上找
+        let findParent = function(targetNode){
+            let parentNode = targetNode.parentNode;
+            let curListBox = _this.doms.find((dom)=>{
+                return dom === parentNode;
+            })
+            if(curListBox){
+                curListBox.removeChild(targetNode);
+            } else {
+                findParent(parentNode);
+            }
+        }
+        findParent(target);
+
+
+//        console.log(target.parentNode);
+    }
+
+    window.addEventListener('DOMContentLoaded',function(){
+        new Component('.list');
+    })
+</script>
+</body>
+</html>
