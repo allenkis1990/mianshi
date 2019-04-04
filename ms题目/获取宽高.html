@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html *{margin:0;padding:0;}
+        .box{width:200px;height:200px;padding:20px;border:1px solid red;margin:50px;overflow:auto}
+    </style>
+</head>
+<body>
+<div class="box">
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+</div>
+<script src="../错误捕获/js/jquery-1.9.1.min.js"></script>
+<script>
+    /*//宽高
+    console.log($('.box').width())
+    console.log($('.box').height())
+
+    //宽高+内边距
+    console.log($('.box').innerHeight());
+    console.log($('.box').innerWidth());
+
+    //宽高+内边距+边框
+    console.log($('.box').outerHeight());
+    console.log($('.box').outerWidth());
+
+    //宽高+内边距+边框+外边距
+    console.log($('.box').outerHeight(true));
+    console.log($('.box').outerWidth(true));*/
+
+    let box = document.querySelector('.box')
+
+    //宽高str px
+    console.log(window.getComputedStyle(box).width)
+    console.log(window.getComputedStyle(box).height)
+
+    //宽高+内边距
+    console.log(box.clientWidth)
+    console.log(box.clientHeight)
+
+    //宽高+内边距+边框
+    console.log(box.offsetWidth)
+    console.log(box.offsetHeight)
+
+    //离左上边的距离
+    console.log(box.offsetLeft)
+    console.log(box.offsetTop)
+
+
+    //离左上边框的距离(边框的长度)
+    console.log(box.clientLeft)
+    console.log(box.clientTop)
+
+    //包括滚动的宽高
+    console.log('滚动宽度：'+box.scrollWidth)
+    console.log(box.scrollHeight)
+
+    //左上的滚动距离
+    console.log(box.scrollLeft)
+    console.log(box.scrollTop)
+
+</script>
+</body>
+</html>

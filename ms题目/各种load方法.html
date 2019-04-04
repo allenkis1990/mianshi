@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="fn()">
+<script>
+//    1解析HTML结构。
+//2加载外部脚本和样式表文件。
+//3解析并执行脚本代码。
+//4DOM树构建完成。//DOMContentLoaded
+//    5加载图片等外部文件。
+//6页面加载完毕。//load
+
+
+
+//body的onload也要等到图片加载完成 并且不能和window.onload并存
+function  fn() {
+    console.log('bodyLoad');
+}
+
+    //DOMContentLoaded会在dom树构建完成后就执行
+    document.addEventListener('DOMContentLoaded',function(){
+        console.log('DOMLoad');
+    })
+
+
+//load会在图片等外部资源加载完才执行
+    window.onload=function(){
+        console.log('windowLoad');
+    }
+//ready会在dom树构建完成后就执行
+    $(function(){
+        console.log('ready');
+    })
+
+</script>
+</body>
+</html>
