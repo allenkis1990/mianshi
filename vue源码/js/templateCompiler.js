@@ -8,6 +8,11 @@ class TemplateCompiler{
     compile(node,vm){
         var fragment = this.appChildIntoFragment(node);
         var childNodes = fragment.childNodes;
+        this.eachChildNodes(vm,childNodes);
+        node.appendChild(fragment)
+    }
+
+    eachChildNodes(vm,childNodes){
         Array.from(childNodes).forEach((childNode)=>{
             // console.log(childNode);
             if(this.isElementType(childNode)){
@@ -24,19 +29,19 @@ class TemplateCompiler{
                 var reg = /\{\{(.+?)\}\}/ig
                 var matchs= childNode.textContent.match(reg);
                 if(matchs){
-                    console.log(matchs);
+                    //console.log(matchs);
                     //去除前后空格后的表达式
                     matchs.forEach((match)=>{
-                        var expr = match.replace(/^\s+/,'').replace(/\s+$/,'')
-                        match = match.replace(/\{/ig,'\\{')
-                        match = match.replace(/\}/ig,'\\}')
-                        console.log(match);
-                        updaterUtils['text']&&updaterUtils['text'](childNode,vm,expr,new RegExp(match));
+                        var expr = match.replace('{{','').replace('}}','').replace(/^\s+/,'').replace(/\s+$/,'')
+                        //console.log(match);
+                        updaterUtils['text']&&updaterUtils['text'](childNode,vm,expr,match);
                     })
                 }
             }
+            if(childNode.childNodes.length){
+                this.eachChildNodes(vm,childNode.childNodes);
+            }
         })
-        node.appendChild(fragment)
     }
 
     /**
@@ -59,9 +64,9 @@ class TemplateCompiler{
 }
 var updaterUtils = {
     //解析v-text
-    text(node,vm,expr,reg){
-        if(reg){
-            node.textContent = node.textContent.replace(reg,vm.data[expr])
+    text(node,vm,expr,match){
+        if(match){
+            node.textContent = node.textContent.replace(match,vm.data[expr])
         }else{
             node.innerText = vm.data[expr];
         }

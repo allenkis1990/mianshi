@@ -7,9 +7,10 @@
 <body>
 <div id="app">
     hello lwh!<br>
+    <div><span>{{fuck}}</span></div>
     <span v-text="message" class="lwh"></span><br>
     <input type="text" v-model="message"><br>
-    author:{{author}}{{message}}
+    author:{{  author }}{{  message}}
 </div>
 <script src="js/templateCompiler.js"></script>
 <script src="js/index.js"></script>
@@ -17,6 +18,7 @@
     new LwhVue({
         el:'#app',
         data:{
+            fuck:'fuckLiu',
             message:'LwhVue is good!',
             author:'lwh'
         }
