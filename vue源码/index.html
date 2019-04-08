@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    hello lwh!<br>
+    <span v-text="message" class="lwh"></span><br>
+    <input type="text" v-model="message"><br>
+    author:{{author}}{{message}}
+</div>
+<script src="js/templateCompiler.js"></script>
+<script src="js/index.js"></script>
+<script>
+    new LwhVue({
+        el:'#app',
+        data:{
+            message:'LwhVue is good!',
+            author:'lwh'
+        }
+    })
+</script>
+</body>
+</html>
