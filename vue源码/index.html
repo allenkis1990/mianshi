@@ -7,20 +7,30 @@
 <body>
 <div id="app">
     hello lwh!<br>
-    <div><span>{{fuck}}</span></div>
-    <span v-text="message" class="lwh"></span><br>
-    <input type="text" v-model="message"><br>
-    author:{{  author }}{{  message}}
+    <div>
+        <input type="text" v-model="fuck">
+        <span>{{fuck}}</span><br>
+        <div>
+            <span v-text="message" class="lwh"></span>
+        </div>
+        <input type="text" v-model="message"><br>
+        author:{{ author }} {{ price}}
+    </div>
+
 </div>
+
+<script src="js/observer.js"></script>
+<script src="js/watcher.js"></script>
 <script src="js/templateCompiler.js"></script>
 <script src="js/index.js"></script>
 <script>
-    new LwhVue({
+    var vm = new FuckLiu({
         el:'#app',
         data:{
             fuck:'fuckLiu',
             message:'LwhVue is good!',
-            author:'lwh'
+            author:'lwh',
+            price:'999'
         }
     })
 </script>
