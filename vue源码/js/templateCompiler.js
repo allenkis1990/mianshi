@@ -74,13 +74,13 @@ var updaterUtils = {
     //解析v-text
     text(node,vm,expr,match){
         if(match){
-            node.textContent = node.textContent.replace(match,vm.data[expr])
+            node.textContent = node.textContent.replace(match,eval('vm.data.'+expr))
             new Watcher(vm,expr,(nv)=>{
                 // console.log(3333,'{{}}');
                 node.textContent = nv;
             })
         }else{
-            node.innerText = vm.data[expr];
+            node.innerText = eval('vm.data.'+expr);
             new Watcher(vm,expr,(nv)=>{
                 // console.log(3333,'text');
                 node.innerText = nv;
@@ -89,13 +89,15 @@ var updaterUtils = {
     },
     //解析v-model
     model(node,vm,expr){
-        node.value = vm.data[expr];
+        node.value = eval('vm.data.'+expr);
         new Watcher(vm,expr,(nv)=>{
             // console.log(3333,'model');
             node.value = nv;
         })
         node.addEventListener('input',(e)=>{
-            vm.data[expr] = e.target.value;
+            eval('vm.data.'+expr+'="'+e.target.value+'"');
+            // console.log('vm.data.' + expr + '="' + e.target.value + '"');
+            // vm.data[expr] = e.target.value;
         })
     }
 }

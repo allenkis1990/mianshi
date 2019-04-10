@@ -5,11 +5,16 @@ class Observer{
     }
     observe(data){
         //如果data不是对象就什么事都不干
-        if(!data || Object.prototype.toString.call(data)!=='[object Object]'){
+        if (!data || !this.isRealObject(data)) {
             return false;
         }
+
         Object.keys(data).forEach((key)=>{
             this.defineProperty(data,key,data[key]);
+            //如果对象里面还是对象就要递归
+            if(this.isRealObject(data[key])){
+                this.observe(data[key])
+            }
         })
     }
     defineProperty(obj,key,value){
@@ -28,6 +33,10 @@ class Observer{
                 dep.notify();
             }
         })
+    }
+    //是否是对象
+    isRealObject(obj){
+        return Object.prototype.toString.call(obj)==='[object Object]';
     }
 }
 

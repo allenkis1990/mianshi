@@ -7,12 +7,12 @@ class Watcher{
     }
     get(){
         Dep.target = this;
-        var value = this.vm.data[this.expr];
+        var value = eval('this.vm.data.'+this.expr);
         Dep.target = null;
         return value;
     }
     update(){
-        var nv = this.vm.data[this.expr],ov = this.oldValue;
+        var nv = eval('this.vm.data.'+this.expr),ov = this.oldValue;
         if(ov!==nv){
             this.cb(nv);
         }

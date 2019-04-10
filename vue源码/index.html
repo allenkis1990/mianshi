@@ -13,8 +13,10 @@
         <div>
             <span v-text="message" class="lwh"></span>
         </div>
-        <input type="text" v-model="message"><br>
+        <input type="text" v-model="obj.obj.obj.name"><br>
         author:{{ author }} {{ price}}
+        <div>{{obj.obj.obj.name}}</div>
+        <!--<div>{{arr[0].name}}</div>-->
     </div>
 
 </div>
@@ -30,7 +32,9 @@
             fuck:'fuckLiu',
             message:'LwhVue is good!',
             author:'lwh',
-            price:'999'
+            price:'999',
+            arr:[{name:'arrItem'}],
+            obj:{obj:{obj:{name:'allen'}}}
         }
     })
 </script>
