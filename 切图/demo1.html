@@ -9,27 +9,34 @@
     <link rel="stylesheet" href="css/demo1.css">
 </head>
 <body>
+
+<!--
+<div style="width:0.54rem;height:0.47rem;background: url('images/ico-footer.png') 1.73rem 0;background-size: 4.25rem 1.05rem;"></div>
+-->
 <section class="header">
     <header>
         <h1>
             <span class="return"></span>
             <div>2017年度</div>
         </h1>
-        <nav>
-            <ul>
-                <li>全部</li>
-                <li>公需课</li>
-                <li>专业课</li>
-            </ul>
-            <div>学习时间
-                <span class="ico-up"></span>
-                <span class="ico-down"></span>
-            </div>
-        </nav>
     </header>
 </section>
 
-<section class="content">
+<section class="nav">
+    <nav>
+        <ul>
+            <li class="current">全部</li>
+            <li>公需课</li>
+            <li>专业课</li>
+        </ul>
+        <div class="study-time">学习时间
+            <span class="ico-up ico-up-down current"></span>
+            <span class="ico-down ico-up-down"></span>
+        </div>
+    </nav>
+</section>
+
+<section class="content" style="margin-top:10px;">
     <ul>
         <li>
             <div class="img-box">
@@ -91,5 +98,6 @@
 
 
 <script src="js/rem.js"></script>
+
 </body>
 </html>
