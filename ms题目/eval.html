@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    /**
+     * 1.eval运行效率低 主要消耗在编译代码的过程中 不要高频率使用eval
+     * 2.作用域直接使用eval 和 间接使用eval的区别
+     * 3.安全性 主要是对数据源的把控
+     * 4.内存消耗 减少没用到的变量
+     */
+
+    var a = 1;
+    function fn(){
+        var a = 'aa'
+        var e = eval;//把eval赋值给变量
+        e(`a = 'aaa'`)
+    }
+    console.log(a);//aaa
+
+</script>
+</body>
+</html>

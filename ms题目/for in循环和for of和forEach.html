@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**
+     * 1.for in可以循环对象可以循环数组
+     * 2.但是最好不要用for in循环数组 var arr = [1,2,3] Array.prototype.a = 1 这样会把a也循环出来
+     * 3.for in会循环出prototype里的值
+     */
+
+    /**
+     * 1.for of可以循环数组和被装饰器包装的 不能循环对象 可以使用return break continue
+     */
+    var arr  =[1,2,3]
+    for(let i of arr){
+        if(i===3){
+            break
+        }
+        console.log(i);
+    }
+
+    /**
+     * 1.forEach用来遍历数组但不可return break continue
+     */
+</script>
+</body>
+</html>
