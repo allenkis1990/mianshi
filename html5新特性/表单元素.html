@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{list-style-type: none;margin-bottom:8px;}
+        a:link    {color:red;}
+        a:visited {color:yellow;}
+        a:hover   {color:green;}
+        a:active  {color:blue;}
+    </style>
+</head>
+<body>
+<a href="http://www.baidu.com" target="_blank">1</a>
+<a href="http://www.guge.com" target="_blank">2</a>
+<a href="http://www.sougou.com" target="_blank">3</a>
+<form onsubmit="return false" oninput="a3.value=parseInt(a1.value)+parseInt(a2.value)">
+    <ul>
+        <li class="li">
+            颜色：<input type="color" class="color">
+        </li>
+        <li>
+            日期：<input type="date" class="date">
+        </li>
+        <li>
+            本地日期：<input type="datetime-local" class="datetime-local">
+        </li>
+        <li>
+            范围：<input type="range" class="range" max="10" min="0" value="0">
+        </li>
+        <li>
+            搜索：<input type="search" class="search">
+        </li>
+        <li>
+            时间：<input type="time" class="time">
+        </li>
+        <li>
+            电话：<input type="tel" class="tel" name="tel">
+        </li>
+        <li>
+            邮箱：<input type="email" class="email" name="email">
+        </li>
+        <li>
+            计算：<input type="number" class="a1" name="a1"> +
+            <input type="number" class="a2" name="a2"> =
+            <output name="a3" for="a1 a2"></output>
+        </li>
+        <li>
+            <button type="submit">提交</button>
+        </li>
+    </ul>
+</form>
+<script>
+    function uploadFile(file) {
+        var chunkSize = 1024 * 1024;   // 每片1M大小
+        var totalSize = file.size;
+        var chunkQuantity = Math.ceil(totalSize/chunkSize);  //分片总数
+        var offset = 0;  // 偏移量
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST","http://xxxx/upload?fileName="+file.name);
+            xhr.overrideMimeType("application/octet-stream");
+
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    ++offset;
+                    if(offset === chunkQuantity) {
+                        alert("上传完成");
+                    } else if(offset === chunkQuantity-1){
+                        blob = file.slice(offset*chunkSize, totalSize);   // 上传最后一片
+                        reader.readAsBinaryString(blob);
+                    } else {
+                        blob = file.slice(offset*chunkSize, (offset+1)*chunkSize);
+                        reader.readAsBinaryString(blob);
+                    }
+                }else {
+                    alert("上传出错");
+                }
+            }
+
+            if(xhr.sendAsBinary) {
+                xhr.sendAsBinary(e.target.result);   // e.target.result是此次读取的分片二进制数据
+            } else {
+                xhr.send(e.target.result);
+            }
+        }
+        var blob = file.slice(0, chunkSize);
+        reader.readAsBinaryString(blob);
+    }
+</script>
+</body>
+</html>

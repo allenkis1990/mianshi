@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="file">
+<button id="btn">获取文件blob地址</button>
+<script>
+
+    /**
+     * blob和FileReader相比
+     * 1.blob生成的url往往比较短 FileReader的是生成出来的是base64的url会比较长
+     * 2.blob的url只能在应用中使用，直接在浏览器url栏输入是无法正常显示的  FileReader可以
+     * 3.blob URL可以方便的使用ajax获取源数据  FileReader url不是所有浏览器都支持获取元数据
+     */
+
+
+    //生成blob url地址
+    function createBlobUrl(content,isFile){
+        var fnStr = isFile?content:'(' + content.toString() +')()';
+        console.log(fnStr);
+        var b = new Blob([fnStr]);
+        var url = window.URL.createObjectURL(b);
+        return url;
+    }
+    var scriptUrl = createBlobUrl(function(){
+        console.log('插入一个js文件');
+    });
+
+    //创建DOM并且插入
+    function createElement(ele,parent,url){
+        var ele = document.createElement(ele);
+        ele.src=url;
+        document.getElementsByTagName(parent)[0].appendChild(ele);
+
+        ele.addEventListener('load',function(){
+//            window.URL.revokeObjectURL(this.src);//生成完后释放掉
+        })
+    }
+
+
+    //创建一个可下载的a标签
+    function createLink(url,fileName){
+        var link = document.createElement('a');
+        link.href=url;
+        link.download = fileName;
+        link.textContent = '下载'+fileName;
+        document.getElementsByTagName('body')[0].appendChild(link);
+    }
+
+
+    createLink(scriptUrl,'a1.js');
+
+
+    //生成js文件
+    createElement('script','head',scriptUrl);
+
+
+
+
+
+
+
+    //生成图片
+    var btn = document.getElementById('btn');
+    btn.addEventListener('click',function(){
+        var file = document.getElementById('file').files[0];
+        var fileUrl = createBlobUrl(file,true);
+        createElement('img','body',fileUrl);
+    })
+</script>
+</body>
+</html>
