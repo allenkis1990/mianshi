@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //http://localhost:63342/mianshi/xmlHttpRequest/data.json
+
+    var formData = new FormData();
+    formData.append('name','allen')
+    formData.append('age','18')
+    $ajax({
+        method:'post',
+//        url:'http://localhost:63342/mianshi/xmlHttpRequest/data.json',
+        url:'/post',
+        headers:{
+            'Content-Type':'application/x-www-form-urlencoded',
+//            'Content-Type':'multipart/form-data',
+            'lwh':'1111'
+        },
+        success:function(res){
+            console.log(JSON.parse(res));
+            console.log(res);
+        },
+        error:function(code){
+            console.log(code);
+        },
+//        data:formData
+        data:'a=1&b=2'
+    })
+
+    function $ajax(options){
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState===4){
+                if(xhr.status===304||(xhr.status>=200&&xhr.status<300)){
+                    options.success && options.success(xhr.responseText);
+                }else{
+                    console.log('当前响应状态:'+xhr.status)
+                    options.error && options.error(xhr.status);
+                }
+            }
+        }
+        xhr.open(options.method,options.url,options.async===undefined?true:options.async);
+//    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        if(options.headers){
+            for(let headItem in options.headers){
+                xhr.setRequestHeader(headItem,options.headers[headItem]);
+            }
+        }
+        xhr.send(options.data?options.data:null);
+    }
+
+</script>
+</body>
+</html>
