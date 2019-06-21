@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding: 0}
+        html,body{
+            height:100%;
+        }
+        .main{height:100%;position:relative}
+    </style>
+</head>
+<body>
+<div class="main">
+    <button id="btn">点我</button>
+</div>
+<div style="height:140px;position:relative;margin-top:-140px;"></div>
+
+
+
+<script>
+    let btn = document.querySelector('#btn')
+    btn.addEventListener('click',function(){
+        alert(121212);
+//        console.log(this.triggerEve);
+    })
+    function initTrigger(eventName){
+        var triggerDom = document.querySelector('#btn');
+        triggerDom.triggerEve = function(eventName){
+            console.log(eventName,this);
+            let clickEve = new Event(eventName)
+            this.dispatchEvent(clickEve)
+        }
+        triggerDom.triggerEve(eventName)
+        triggerDom.triggerEve = null
+    }
+    initTrigger('click');
+</script>
+
+</body>
+</html>
