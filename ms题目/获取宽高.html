@@ -44,6 +44,24 @@
 </div>
 <script src="../错误捕获/js/jquery-1.9.1.min.js"></script>
 <script>
+
+
+    //获取真实元素离顶部高度
+    function offset(obj,direction){
+        //将top,left首字母大写,并拼接成offsetTop,offsetLeft
+        var offsetDir = 'offset'+ direction[0].toUpperCase()+direction.substring(1);
+
+        var realNum = obj[offsetDir];
+        var positionParent = obj.offsetParent;  //获取上一级定位元素对象
+
+        while(positionParent != null){
+            realNum += positionParent[offsetDir];
+            positionParent = positionParent.offsetParent;
+        }
+        return realNum;
+    }
+
+
     /*//宽高
     console.log($('.box').width())
     console.log($('.box').height())

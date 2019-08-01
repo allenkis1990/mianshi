@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function A (){}
+    A.prototype.name='A'
+
+
+    function B(){
+        this.haha = 'haha'
+    }
+    B.prototype = new A()
+    B.prototype.age = 18
+
+    var obj = new B()
+    //自己身上找不到就会向上一级指针__proto__上找 找不到再向上一级__proto__找以此类推
+    console.log(obj.haha);//obj上的
+    console.log(obj.age);//obj.__proto__上的
+    console.log(obj.name);//obj.__proto__.__proto__上的
+</script>
+</body>
+</html>

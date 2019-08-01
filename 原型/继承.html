@@ -7,24 +7,47 @@
 <body>
 <script>
     function Parent(){
-        this.name = 'Parent'
+        this.name = 'parent'
+        this.haha = 'haha'
+        this.ok = 'ok'
     }
-    Parent.prototype.say=function(){
-        console.log('hello parent!')
+    Parent.prototype.say = function(){
+        console.log('hello world!')
     }
 
-    function Child(){
-        Parent.call(this)
+    function extend(parent,cb){
+        function Child(){
+            parent.call(this)
+            cb&&cb(this)
+        }
+        function Temp(){}
+        Temp.prototype = parent.prototype
+        Child.prototype = new Temp()
+        Child.prototype.constructor = Child
+        return Child
     }
-    function Temp(){
 
+
+    var Child = extend(Parent,function(context){
+        context.name='child'
+    })
+    Child.prototype.fuck = function(){
+        console.log('fuck');
     }
-    Temp.prototype = Parent.prototype
-    Child.prototype = new Temp()
-    Child.prototype.constructor = Child //手动设置constructor
-    var obj = new Child()
-    console.log(obj.constructor===Child); //true
+    var p = new Parent()
+    var c = new Child()
+    console.log(p);
+    console.log(c);
+//p.say()
+//c.fuck()
 
+
+    var s = document.createElement('script')
+    s.src = '../a1.js'
+    s.onload = function(){
+        alert(1)
+    }
+    document.body.appendChild(s)
 
 </script>
 </body>

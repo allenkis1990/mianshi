@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;}
+        .main{width:200px;height:200px;background:green;}
+    </style>
+</head>
+<body>
+<div class="main"></div>
+<script>
+    var main = document.querySelector('.main')
+    var distant = 0
+    var animate = window.requestAnimationFrame(move)
+    function move(time){
+        distant+=5
+        main.style.marginLeft = distant+'px'
+        if(distant<400){
+            animate = window.requestAnimationFrame(move)
+        }else{
+            distant = 0
+            window.cancelAnimationFrame(animate)
+        }
+    }
+
+//    window.cancelAnimationFrame()
+
+
+</script>
+</body>
+</html>

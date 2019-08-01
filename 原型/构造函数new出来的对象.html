@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //var a = new A()做了些什么？
+    function A(){
+        this.name= 'allen'
+    }
+    A.prototype.haha = 'haha'
+    //1.新建一个空对象var a = {}
+    var a = {}
+    //2.把构造函数A的prototype指向a的指针  a.__proto__ = A.prototype
+    a.__proto__ = A.prototype;
+    //3.A call一下 a   A.call(a)
+    A.call(a)
+    console.log(a);
+</script>
+</body>
+</html>

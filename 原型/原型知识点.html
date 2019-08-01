@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.函数对象的constrctor指向的都是Function
+//    function A(){}
+//    console.log(A.constructor===Function)
+//    console.log(Object.constructor === Function)
+//    console.log(String.constructor === Function)
+//    console.log(Array.constructor === Function)
+
+
+    //2.函数对象的prototype.constructor指向的都是自己
+//    console.log(Object.prototype.constructor === Object);
+//    function A(){}
+//    console.log(A.prototype.constructor===A)
+
+    //3.对象的__proto__等于他的构造函数的prototype
+//    var a = {};
+//    console.log(a.__proto__ === Object.prototype);
+//
+//    function B(){}  var b = new B();
+//    console.log(b.__proto__ === B.prototype);
+
+//    instanceOf isPrototypeOf
+    //instanceOf和isPrototypeOf都会跨越多级不只是判断父亲  constructor只会判断父亲 但是有可能会被修改
+    var obj = {}
+    console.log(obj instanceof Object);
+    console.log(Object.prototype.isPrototypeOf(obj));
+</script>
+</body>
+</html>
