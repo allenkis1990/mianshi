@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    (function(window){
+        var obj = {name:'allen'}
+        if(typeof define ==='function'){
+            define(function(){
+                return obj
+            })
+        }else if(typeof module ==='object'&&module.export){
+            module.export = obj
+        }else{
+            window.obj = obj
+        }
+    })(window)
+
+    console.log(obj);
+</script>
+</body>
+</html>
