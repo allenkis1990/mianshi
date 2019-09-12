@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //应用内可直接打开
+    //手动打开也可以
+    //window.atob //base64解码成数据
+    //window.btoa //数据转码成base64编码
+
+
+    var str = 'alert(123)'
+    var BB  =new Blob([str],{type:'application/javascript'})
+
+    var reader = new FileReader()
+    reader.readAsDataURL(BB)
+    reader.addEventListener('load',function(e){
+
+        //代码从这开始
+        //先把base64去除data:xxx
+        //通过window.atob(base64) 把base64转普通字符串
+        //新建一个Uint8Array(str.len)
+        //循环str字符串 把每一项的charCodeAt(i)编码赋值给Uint8Array
+        //最后new File([u8arr],'文件名字',{type:'application/javascript'})
+        console.log(e.target.result);//base64数据
+        var baseStartReg = /^data:(.*?);base64,/ig
+        var base64Str = e.target.result.replace(baseStartReg,'')
+        var str = window.atob(base64Str)//alert(123)
+        var u8arr = new Uint8Array(str.length);
+        for(let i=0;i<str.length;i++){
+            console.log(str.charCodeAt(i));//编码数字 12 21 xx 11 xx
+            u8arr[i] = str.charCodeAt(i)
+        }
+        var b = new File([u8arr],'a.js',{type:'application/javascript'})
+        console.log(b);
+        //代码从这开始
+
+    })
+</script>
+</body>
+</html>

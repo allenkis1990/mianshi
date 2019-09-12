@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="file">
+<script>
+    //new 一个FileReader  使用readAsDataURL来获取文件的base64
+    var file = document.getElementById('file')
+    file.addEventListener('change',function(e){
+        var input = e.target
+        console.log(input.files[0]);
+        fileToBase64(input.files[0],function(res){
+            console.log(res.target.result);
+
+//            var reg = /^data:(.*?);base64,/ig
+//            var base64Str = res.target.result.replace(reg,'')
+//            var str = window.atob(base64Str)
+//            var u8Arr = new Uint8Array(str.length)
+//            for(let i = 0;i<str.length;i++){
+//                u8Arr[i] = str.charCodeAt(i)
+//            }
+//            var file = new File([u8Arr],'aa.png',{type:"image/png"})
+//            console.log(window.URL.createObjectURL(file),333);
+        })
+    })
+    function fileToBase64(file,cb){
+        var reader = new FileReader()
+        reader.addEventListener('load',function(e){
+            cb(e)
+        })
+        reader.readAsDataURL(file)
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="images/afei.jpg" id="img" />
+
+<script>
+    var img = document.getElementById('img')
+
+    fileToBase64(img,10,function(base64){
+        console.log(base64);
+    })
+    function fileToBase64(img,bili,cb){
+        var canvas = document.createElement('canvas')
+        var image = new Image()
+        image.src = img.src
+        image.addEventListener('load',function(e){
+            console.log(image.width,image.height);
+            var w = image.width/bili,
+                h = image.height/bili
+            canvas.width = w
+            canvas.height = h
+            var context = canvas.getContext('2d')
+            context.drawImage(img,0,0,w,h)
+            var base64 = canvas.toDataURL('image/jpeg')
+            cb(base64)
+
+            //canvas转blob可获取图片大小格式什么的
+//            canvas.toBlob(function(blob){
+//                console.log(blob);
+//            })
+        })
+    }
+</script>
+</body>
+</html>

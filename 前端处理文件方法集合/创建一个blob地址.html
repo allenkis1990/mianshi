@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //应用内可直接打开
+    //手动打开也可以
+    var str = 'alert(123)'
+//    var BB  =new Blob([str],{type:'text/plain'})
+    var BB  =new Blob([str],{type:'application/javascript'})
+    var blobUrl = window.URL.createObjectURL(BB)
+    console.log(window.URL.createObjectURL(BB));
+    var script = document.createElement('script')
+
+    script.setAttribute('src',blobUrl)
+    document.body.appendChild(script)
+
+</script>
+</body>
+</html>
