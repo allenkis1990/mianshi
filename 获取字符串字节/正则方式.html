@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //获取字节
+    /*function getByteLen(str){
+        var count = 0
+        var reg = /^[\u0000-\u00ff]$/  //匹配单字符,.这些
+        for(let i=0;i<str.length;i++){
+            if(reg.test(str.charAt(i))){
+                count+=1
+            }else{
+                count+=2
+            }
+        }
+        return count
+    }
+    var count = getByteLen('我我1')
+    console.log(count);*/
+
+
+    function getByteLen(str){
+        var byte2StrReg = /[^\x00-\xff]/ig //匹配占2个字节的
+        var s = str.replace(byte2StrReg,'--')
+        return s.length
+    }
+    var count = getByteLen('我啊1')
+    console.log(count);
+</script>
+</body>
+</html>
