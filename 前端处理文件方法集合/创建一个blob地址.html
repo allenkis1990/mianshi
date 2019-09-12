@@ -6,8 +6,7 @@
 </head>
 <body>
 <script>
-    //应用内可直接打开
-    //手动打开也可以
+    //blob的url只能在当前浏览器打开 换个浏览器就不行
     var str = 'alert(123)'
 //    var BB  =new Blob([str],{type:'text/plain'})
     var BB  =new Blob([str],{type:'application/javascript'})
