@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;box-sizing: border-box}
+        .table{display:table}
+        .table *{
+            text-align:center;
+        }
+        .td,.th{display:table-cell;border:1px solid green;vertical-align: middle;}
+        .tr{display:table-row}
+    </style>
+</head>
+<body>
+<!--跨行跨列无法做不像table有colspan和rowspan-->
+<div class="table" style="width:800px;border:1px solid red;height:500px;">
+    <div class="tr">
+        <div class="th">title</div>
+        <div class="td">1111</div>
+    </div>
+    <div class="tr">
+        <!--<div class="th">title2</div>-->
+        <div class="td"  colspan="2">11112</div>
+
+    </div>
+</div>
+
+<table style="width:300px;border:1px solid red;text-align:center">
+    <tr>
+        <td>1</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td colspan="2">1</td>
+
+    </tr>
+</table>
+
+</body>
+</html>
