@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0}
+        .main{width:200px;height:200px;border:1px solid red;margin:100px auto}
+
+    </style>
+</head>
+<body>
+<div class="main"></div>
+<script>
+    var main = document.querySelector('.main')
+    main.addEventListener('click',function(e){
+        console.log('clientX',e.clientX);//离可视窗口左边距离
+        console.log('offsetX',e.offsetX);//离父元素左边距离
+        console.log('pageX',e.pageX)//离左边文档距离
+        console.log('screenX',e.screenX)//离显示屏左边距离
+    })
+</script>
+</body>
+</html>
