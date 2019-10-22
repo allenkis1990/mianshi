@@ -11,8 +11,8 @@
 //服务端设置Access-Control-Allow-Origin就可以开启CORS。 该属性表示哪些域名可以访问资源，如果设置通配符则表示所有网站都可以访问资源。
 //app.all('*', function (req, res, next) {
 //    res.header("Access-Control-Allow-Origin", "*");
-//    res.header("Access-Control-Request-Headers", "X-Requested-With");
-//    res.header("Access-Control-Request-Method", "PUT,POST,GET,DELETE,OPTIONS");
+//    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//    res.header("Access-Control-Allow-Method", "PUT,POST,GET,DELETE,OPTIONS");
 //    next();
 //});
 // 如果跨域需要携带cookie 需要开启xhr.withCredentials
