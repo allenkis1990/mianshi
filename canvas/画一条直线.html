@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="cas" style="border:1px solid red"></canvas>
+<script>
+    var canvas = document.getElementById('cas')
+    var context = canvas.getContext('2d')
+    //开始画
+    context.beginPath()
+    //开始画的坐标
+    context.moveTo(50,50)
+    //结束点的坐标
+    context.lineTo(200,100)
+    //给直线上色
+    context.strokeStyle = 'blue'
+    //直线粗
+    context.lineWidth = 5
+    //线画结束
+    context.stroke()
+</script>
+</body>
+</html>
