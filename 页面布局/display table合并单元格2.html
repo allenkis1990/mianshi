@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;}
+        .main{width:800px;margin:100px auto}
+        .table{width:100%;border-collapse: collapse;display:table}
+        .tr{display:table-row}
+        .td{display:table-cell;}
+
+        .sub-table{display:table;border-collapse: collapse;width:100%;}
+        .sub-tr{display:table-row;}
+        .sub-td{display:table-cell;border:1px solid red;height:30px;vertical-align: middle;text-align:center;border-bottom:none}
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="table">
+        <div class="tr">
+            <div class="td">
+                <div class="sub-table">
+                    <div class="sub-tr">
+                        <div class="sub-td">1</div>
+                        <div class="sub-td">2</div>
+                        <div class="sub-td">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tr">
+            <div class="td">
+                <div class="sub-table">
+                    <div class="sub-tr">
+                        <div class="sub-td">1</div>
+                        <div class="sub-td">2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tr">
+            <div class="td">
+                <div class="sub-table">
+                    <div class="sub-tr">
+                        <div class="sub-td" style="width:33.3%;border:none;border-bottom:1px solid red">
+                            <div class="sub-table">
+                                <div class="sub-tr">
+                                    <div class="sub-td">1</div>
+                                </div>
+                                <div class="sub-tr">
+                                    <div class="sub-td">1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-td" style="width:33.3%;border:none;border-bottom:1px solid red">
+                            <div class="sub-table">
+                                <div class="sub-tr">
+                                    <div class="sub-td">1</div>
+                                </div>
+                                <div class="sub-tr">
+                                    <div class="sub-td">1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-td" style="border:none;border-bottom:1px solid red">
+                            <div class="sub-table">
+                                <div class="sub-tr">
+                                    <div class="sub-td">
+                                        1<br>2<br>3<br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
