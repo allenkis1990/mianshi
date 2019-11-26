@@ -74,12 +74,14 @@ var updaterUtils = {
     //解析v-text
     text(node,vm,expr,match){
         if(match){
+            //解析{{}}双括号
             node.textContent = node.textContent.replace(match,eval('vm.data.'+expr))
             new Watcher(vm,expr,(nv)=>{
                 // console.log(3333,'{{}}');
                 node.textContent = nv;
             })
         }else{
+            //解析v-text
             node.innerText = eval('vm.data.'+expr);
             new Watcher(vm,expr,(nv)=>{
                 // console.log(3333,'text');

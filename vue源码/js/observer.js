@@ -25,6 +25,7 @@ class Observer{
             enumerable:true,
             configurable:false,
             get(){
+                //Dep.target只会在解析模板的时候（text {{}}）存在又立即被清空 所以addSub只会执行一次就是在模板解析的时候
                 Dep.target && dep.addSub(Dep.target);
                 return value;
             },
