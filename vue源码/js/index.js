@@ -31,6 +31,9 @@ class FuckLiu{
             Object.defineProperty(_this.vm,key,{
                 get(){
                     return _this.data[key]
+                },
+                set(nv){
+                    this.data[key] = nv
                 }
             })
         }
