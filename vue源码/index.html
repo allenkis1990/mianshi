@@ -17,6 +17,9 @@
         author:{{ author }} {{ price}}
         <div>{{obj.obj.obj.name}}</div>
         <!--<div>{{arr[0].name}}</div>-->
+
+
+        {{getFuckName}}
     </div>
 
 </div>
@@ -35,6 +38,11 @@
             price:'999',
             arr:[{name:'arrItem'}],
             obj:{obj:{obj:{name:'allen'}}}
+        },
+        computed:{
+            getFuckName(){
+                return this.fuck+'66'
+            }
         }
     })
 </script>

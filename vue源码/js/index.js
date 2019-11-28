@@ -16,13 +16,19 @@ class FuckLiu{
         this.vm = this;
         this.data = options.data;
         this.el = options.el;
+        this.computed = options.computed
         if(this.el){
             //增加观察者
             new Observer(this.data);
-            //解析模板
-            new TemplateCompiler(this.el,this.vm);
+
             //把vm.data.a代理到vm.a上
             this.proxy()
+
+            this.bindComputedToData()
+
+            //解析模板
+            new TemplateCompiler(this.el,this.vm);
+
         }
     }
     proxy(){
@@ -34,6 +40,19 @@ class FuckLiu{
                 },
                 set(nv){
                     this.data[key] = nv
+                }
+            })
+        }
+    }
+
+    //把computed代理到vm.data上去
+    bindComputedToData(){
+        var _this = this
+        for(let key in this.computed){
+            Object.defineProperty(_this.data,key,{
+                get(){
+                    var fn = _this.computed[key]
+                    return fn.call(_this)
                 }
             })
         }
