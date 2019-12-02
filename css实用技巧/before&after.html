@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <style>
+        .a1{height:50px;background:red;}
+
+        /*解决边框重叠*/
+        .a1:before,.a1:after{
+            display:table;
+            content:''
+        }
+
+        /*清除浮动*/
+        .a2:after{
+            display:table;
+            content:'';
+            height:0;
+            visibility: hidden;
+            clear: both;
+        }
+        .a2{background:blue;margin-top:10px;}
+        .item{height:30px;float:left}
+    </style>
+</head>
+<body>
+
+<div class="a1">
+    <div class="a2">
+        <div class="item" style="width:100px;background: #000">1</div>
+        <div class="item" style="width:200px;background: green">2</div>
+        <div class="item" style="width:300px;background: pink">3</div>
+    </div>
+</div>
+
+</body>
+</html>

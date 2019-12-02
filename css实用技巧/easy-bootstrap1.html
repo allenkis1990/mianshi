@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/easy-bootstrap.css">
+    <style>
+        *{box-sizing: border-box}
+        .item{border:1px solid red;}
+    </style>
+</head>
+<body>
+<div class="container main">
+    <!--col-xs-offset-x:margin-left    col-xs-push-x:left   col-xs-pull-x:right-->
+    <div class="row">
+        <div class="col-xs-4 item">1</div>
+        <div class="col-xs-8 item">2</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 item col-xs-offset-4">3</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 item col-xs-push-4">3</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 item col-xs-pull-4">3</div>
+    </div>
+</div>
+</body>
+</html>
