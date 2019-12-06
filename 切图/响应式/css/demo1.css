@@ -1,3 +1,230 @@
-*{margin:0;padding:0}
-.boby-bg{background:url('../images/bodybg.jpg');background-size:100%;color:#fff;}
-li{list-style-type:none;}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    font-size: 14px;
+    color: #222;
+}
+
+.boby-bg {
+    background: url('../images/bodybg.jpg');
+    background-size: 100%;
+}
+
+button {
+    border: none;
+    outline: none
+}
+
+li {
+    list-style-type: none;
+}
+
+.title-logo {
+    margin: 0.5rem 0 0.5rem;
+}
+
+.logo {
+    text-align: center
+}
+
+.logo-year {
+    width: 3.15rem;
+    height: 1rem;
+    margin-bottom: 0.1rem;
+}
+
+.logo-str {
+    width: 8.6rem;
+    height: 0.55rem;
+    margin-bottom: 0.3rem;
+}
+
+.logo-bm {
+    width: 4.22rem;
+    height: 1rem;
+}
+
+.container {
+    margin: 0 auto
+}
+
+.box {
+    position: relative;
+}
+
+.innerBox {
+    border: 3px solid #222;
+    background: #fff;
+    border-radius: 0.2rem;
+    position: relative;
+}
+
+.dateBox .innerBox {
+    padding: 0.32rem 0;
+}
+
+.innerBox:before, .innerBox:after {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: #ffe868;
+    border-radius: 50%;
+    position: absolute;
+    border: 2px solid #222;
+    top: 0.15rem
+}
+
+.innerBox:before {
+    left: 0.2rem
+}
+
+.innerBox:after {
+    right: 0.2rem
+}
+
+.box:after {
+    content: '';
+    display: block;
+    z-index: -2;
+    height: 1rem;
+    background: #ffe868;
+    position: absolute;
+    border: 3px solid #222;
+    border-radius: 0.2rem;
+    width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    bottom: -0.1rem
+}
+
+.date {
+    line-height: 1.5;
+    text-align: center;
+}
+
+.content-cell {
+    position: relative;
+    border-bottom: 3px solid #222;
+}
+
+.content-cell .tit {
+    text-align: center;
+    font-size: 0.24rem;
+    font-weight: bold;
+    width: 3.2rem;
+    height: 0.66rem;
+    line-height: 0.66rem;
+    background-image: url('../images/tit-bg.png');
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    position: absolute;
+    left: 50%;
+    top: -3px;
+    margin-left: -1.6rem;
+}
+
+.descri {
+    line-height: 1.9;
+    padding: 0.9rem 0.45rem .35rem;
+    text-indent: 0.3rem
+}
+
+.bm-zhuyi {
+    margin-top: 0.78rem;
+    padding: 0 0.45rem 0.15rem 0.45rem
+}
+
+.bm-zhuyi button {
+    width: 77px;
+    height: 25px;
+    color: #fff;
+    text-align: center;
+    line-height: 25px;
+    background: #e43f4a;
+    border-radius: 12px;
+    margin: 0 5px 0;
+}
+
+.bm-zhuyiText, .bm-zhuyiText-box:after {
+    border: 1px solid #222;
+}
+
+.bm-zhuyiText-box{
+    width: 99.9%;
+    position:relative;
+}
+
+
+.bm-zhuyiText-box:after {
+    z-index:1;
+    width:100%;
+    background: #4fa4e5;
+    content: '';
+    display: block;
+    min-height:67px;
+    position: absolute;
+    left: 0.03rem;
+    top:0.03rem
+}
+
+.bm-zhuyiText {
+    padding:0.1rem 0.1rem 0.1rem 0.25rem;
+    z-index:2;
+    position: absolute;
+    min-height:67px;
+    /*padding: 0.11rem 0.15rem 0.1rem 0.25rem;*/
+    background: #cfe7fa;
+}
+
+.bm-zhuyiText:before {
+    border-top: 14px solid transparent;
+    border-right: 14px solid #4fa4e5;
+    width: 0;
+    height: 0;
+    content: '';
+    display: block;
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    background: #fff;
+}
+
+/*.bm-zhuyiText:after{
+    content:'';
+    display:block;
+    width:99%;
+    position:absolute;
+    background:red;
+    height:0.3rem;
+    left:0;
+    bottom:-3px;
+}*/
+
+.bm-zhuyi span {
+    font-weight: bold
+}
+
+.mt30 {
+    margin-top: 0.3rem
+}
+
+.pd45 {
+    padding: 0 0.45rem;
+}
+
+@media screen and (min-width: 900px) {
+    .container {
+        width: 9rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .container {
+        width: 95%;;
+    }
+}
