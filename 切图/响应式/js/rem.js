@@ -5,6 +5,7 @@
 // 如果设备宽度大于等于900全部都按html fontsize 100px来算rem
 // 如果设备小于900就按(winWidth / designWidth) * baseNum + 'px'来换算
 // 高度可以用rem  宽度尽量用百分比  太小的单位可以直接用px如边框
+// 设置body的通用字号14PX
 // 最后再用媒体查询修修补补
 let designWidth = 900;
 let baseNum = 100;
