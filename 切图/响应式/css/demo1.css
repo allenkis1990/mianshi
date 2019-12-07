@@ -1,3 +1,4 @@
+/*页面重置*/
 * {
     margin: 0;
     padding: 0;
@@ -9,18 +10,34 @@ body {
     color: #222;
 }
 
-.boby-bg {
-    background: url('../images/bodybg.jpg');
-    background-size: 100%;
-}
-
 button {
     border: none;
     outline: none
 }
 
+a{text-decoration:none;color:#5e81d2}
+a:hover{text-decoration:underline}
+
 li {
     list-style-type: none;
+}
+
+
+.mt30 {
+    margin-top: 0.3rem
+}
+
+.pd45 {
+    padding-left:0.45rem;
+    padding-right:0.45rem;
+}
+.overflow-a{overflow:auto}
+/*页面重置*/
+
+
+.boby-bg {
+    background: url('../images/bodybg.jpg');
+    background-size: 100%;
 }
 
 .title-logo {
@@ -67,6 +84,7 @@ li {
     padding: 0.32rem 0;
 }
 
+/*圆形图钉*/
 .innerBox:before, .innerBox:after {
     content: '';
     display: block;
@@ -87,6 +105,7 @@ li {
     right: 0.2rem
 }
 
+/*圆形图钉*/
 .box:after {
     content: '';
     display: block;
@@ -130,13 +149,49 @@ li {
 
 .descri {
     line-height: 1.9;
-    padding: 0.9rem 0.45rem .35rem;
+    padding: 0.9rem 0rem .35rem;
     text-indent: 0.3rem
 }
 
 .bm-zhuyi {
     margin-top: 0.78rem;
-    padding: 0 0.45rem 0.15rem 0.45rem
+    position: relative;
+}
+
+.bm-zhuyi .bm-zhuyi-main {
+    width:99.5%;
+    position: relative;
+    z-index: 2;
+    background: #cfe7fa;
+    border: 1px solid #222;
+    padding: 0.12rem 0.1rem 0.12rem 0.2rem;
+}
+
+.bm-zhuyi .bm-zhuyi-after {
+    z-index: 1;
+    position: absolute;
+    width: 99.5%;
+    height: 100%;
+    background: #4fa4e5;
+    left: 3px;
+    top: 3px;
+    border: 1px solid #222;
+}
+
+.bm-zhuyi .arrow {
+    border-top: 14px solid transparent;
+    border-right: 14px solid #4fa4e5;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    z-index:2;
+    background: #fff;
+}
+
+.bm-zhuyi span {
+    font-weight: bold
 }
 
 .bm-zhuyi button {
@@ -150,73 +205,49 @@ li {
     margin: 0 5px 0;
 }
 
-.bm-zhuyiText, .bm-zhuyiText-box:after {
-    border: 1px solid #222;
-}
-
-.bm-zhuyiText-box{
-    width: 99.9%;
-    position:relative;
-}
-
-
-.bm-zhuyiText-box:after {
-    z-index:1;
+.table {
+    display: table;
+    border-collapse: collapse;
     width:100%;
-    background: #4fa4e5;
-    content: '';
-    display: block;
-    min-height:67px;
-    position: absolute;
-    left: 0.03rem;
-    top:0.03rem
+    border:1px solid #ddd;
+    margin:0.1rem 0 0.15rem 0;
 }
 
-.bm-zhuyiText {
-    padding:0.1rem 0.1rem 0.1rem 0.25rem;
-    z-index:2;
-    position: absolute;
-    min-height:67px;
-    /*padding: 0.11rem 0.15rem 0.1rem 0.25rem;*/
-    background: #cfe7fa;
+.tr, .th {
+    border-bottom:1px solid #ddd;
+    display: table-row;
 }
 
-.bm-zhuyiText:before {
-    border-top: 14px solid transparent;
-    border-right: 14px solid #4fa4e5;
-    width: 0;
-    height: 0;
-    content: '';
-    display: block;
-    position: absolute;
-    left: -1px;
-    top: -1px;
-    background: #fff;
+.th {
+    font-weight: bold;
+    background:#f2f2f2;
 }
 
-/*.bm-zhuyiText:after{
-    content:'';
-    display:block;
-    width:99%;
-    position:absolute;
-    background:red;
-    height:0.3rem;
-    left:0;
-    bottom:-3px;
-}*/
-
-.bm-zhuyi span {
-    font-weight: bold
+.th .td{
+    padding: 0.17rem 5px;
 }
 
-.mt30 {
-    margin-top: 0.3rem
+.tr .td{
+    padding:0.13rem 5px;
 }
 
-.pd45 {
-    padding: 0 0.45rem;
-}
 
+.td {
+    vertical-align: middle;
+    text-align:center;
+    border-right:1px solid #ddd;
+    display: table-cell;
+}
+.content-cell:last-child{border-bottom: none}
+.bm-tip{margin-bottom:0.28rem;color:#e43f4a;text-align:center}
+.ewm-text{margin-top:0.9rem;}
+.ewm-text span{font-weight:bold;}
+.ewm{text-align:center;padding:0.25rem 0}
+
+.footer{color:#fff;text-align:center;padding:0.3rem 0;line-height:2;}
+
+
+/*媒体查询*/
 @media screen and (min-width: 900px) {
     .container {
         width: 9rem;
@@ -225,6 +256,11 @@ li {
 
 @media screen and (max-width: 900px) {
     .container {
-        width: 95%;;
+        width: 95%;
     }
+    .bm-zhuyi .arrow {
+        border-top: 10px solid transparent;
+        border-right: 10px solid #4fa4e5;
+    }
+    .table{margin-top:10px;}
 }
