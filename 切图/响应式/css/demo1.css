@@ -264,4 +264,7 @@ li {
         border-right: 10px solid #4fa4e5;
     }
     .table{margin-top:10px;}
+    .dateBox .innerBox {
+        padding: 0.32rem 36px;
+    }
 }
