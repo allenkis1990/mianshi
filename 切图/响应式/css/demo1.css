@@ -38,6 +38,7 @@ li {
 .boby-bg {
     background: url('../images/bodybg.jpg');
     background-size: 100%;
+    -webkit-background-size:100%;
 }
 
 .title-logo {
@@ -139,8 +140,8 @@ li {
     height: 0.66rem;
     line-height: 0.66rem;
     background-image: url('../images/tit-bg.png');
-    -webkit-background-size: 100%;
     background-size: 100%;
+    -webkit-background-size: 100%;
     position: absolute;
     left: 50%;
     top: -3px;
