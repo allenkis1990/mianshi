@@ -1,0 +1,283 @@
+/*页面重置*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    font-size: 14px;
+    color: #808080;
+}
+
+button {
+    border: none;
+    outline: none
+}
+
+a {
+    text-decoration: none;
+    color: #5e81d2
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+li {
+    list-style-type: none;
+}
+
+.overflow-a {
+    overflow: auto
+}
+
+.clear:after, .clear:before {
+    content: ' ';
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+}
+
+.ico {
+    background-image: url('../images/ico.png');
+    background-repeat: no-repeat;
+    background-size: 4rem 3.19rem;
+}
+
+/*页面重置*/
+
+.container-full {
+    width: 100%;
+}
+
+.bg-fff {
+    background: #fff;
+}
+
+.bg-f4f {
+    background: #f4f6ff;
+}
+
+/*banner*/
+.banner-box {
+    height: 5.94rem;
+    background: url('../images/banner1.jpg');
+    background-size: 100% 100%;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between
+}
+
+.banner-main .logo {
+    display: inline-block;
+    width: 124px;
+    height: 25px;
+    margin-top: 0.32rem;
+}
+
+.banner-main .logo img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-main .nav-list {
+    margin-top: 0.38rem;
+}
+
+.banner-main .nav-list a {
+    color: #fff;
+    float: left;
+    margin-right: 0.44rem;
+    font-size: 16px;
+}
+
+.banner-main .nav-list a:last-child {
+    margin-right: 0;
+}
+
+.banner-main .nav-list a.current {
+    color: #21cd90;
+}
+
+/*服务器数据*/
+.fwq-data-box {
+    padding: 0.2rem 0 0.5rem
+}
+
+.fwq-data-box p {
+    color: #313e77;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.fwq-data-list {
+    display: flex;
+    padding-bottom: 0.25rem;
+}
+
+.fwq-data-list li {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid #cdd1e5;
+}
+
+.fwq-data-list li:last-child {
+    border-right: none;
+}
+
+.fwq-data-list li .list-r {
+    margin-left: 0.2rem;
+}
+
+.fwq-data-list .num {
+    color: #0b50ff;
+    font-weight: bold;
+    font-size: 0.28rem;
+}
+
+.fwq-data-list .txt {
+    font-size: 0.14rem
+}
+
+.fwq-data-list span {
+    display: inline-block;
+    width: 0.42rem;
+    height: 0.48rem;
+}
+
+.fwq-data-list span.i-1 {
+
+}
+
+.fwq-data-list span.i-2 {
+    background-position: -0.52rem 0;
+}
+
+.fwq-data-list span.i-3 {
+    background-position: -1.02rem 0;
+}
+
+/*通用标题头和二级标题样式*/
+.produce-header {
+    text-align: center;
+    padding-top: 0.8rem;
+    padding-bottom: 0.6rem;
+}
+
+.produce-header .tit {
+    font-size: 0.3rem;
+    color: #484849;
+}
+
+.produce-header .sub-tit {
+    color: #666;
+    margin-top: 0.13rem;
+}
+
+/*核心产品*/
+.produce-list {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1.35rem;
+}
+
+.produce-list .tit {
+    font-size: 0.2rem;
+    color: #0034d9;
+    font-weight: bold;
+    padding: 0.5rem 0 0.47rem;
+}
+
+.produce-list li {
+    width: 23.5%;
+    padding: 0 0.25rem;
+    background: #fff;
+    text-align: center;
+    border-radius: 3%;
+}
+
+.produce-list li .ico-box {
+    height: 0.73rem;
+}
+
+.produce-list li .ico-box span {
+    display: inline-block;
+}
+
+.produce-list li .ico-box span.i-1 {
+    width: 0.66rem;
+    height: 0.56rem;
+    background-position: 0 -0.69rem;
+}
+
+.produce-list li .ico-box span.i-2 {
+    width: 0.62rem;
+    height: 0.72rem;
+    background-position: -0.74rem -0.62rem;
+}
+
+.produce-list li .ico-box span.i-3 {
+    width: 0.69rem;
+    height: 0.71rem;
+    background-position: -1.45rem -0.62rem;
+}
+
+.produce-list li .ico-box span.i-4 {
+    width: 0.72rem;
+    height: 0.56rem;
+    background-position: -2.23rem -0.65rem;
+}
+
+.produce-list li .txt {
+    padding-top: 0.3rem;
+    padding-bottom: 0.5rem;
+    color: #5c6ca1;
+    font-size: 13px;
+}
+
+/*解决方案*/
+.solution {
+    height: 5.6rem;
+    background-image: url(../images/solution-bg.jpg);
+    background-size: 100% 100%;
+}
+
+.solution .produce-header .tit {
+    color: #fff;
+}
+
+/*数据中心*/
+.dataCenter {
+    height: 8.19rem;
+    background-image: url(../images/dataCenter-bg.jpg);
+    background-size: 100% 100%;
+}
+.dataCenter .produce-header .tit,.dataCenter .produce-header .sub-tit {
+    color: #fff;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+/*媒体查询*/
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 12rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 100%;
+    }
+}
