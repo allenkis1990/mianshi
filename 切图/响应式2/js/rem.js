@@ -19,6 +19,7 @@ function setRootFontSize() {
         winWidth = 1200
     }
     let fontSize = ((winWidth / designWidth) * baseNum)>minFontSize?((winWidth / designWidth) * baseNum):minFontSize
+    // let fontSize = (winWidth / designWidth) * baseNum
     html.style.fontSize = fontSize + 'px';
     console.log(html.style.fontSize);
 }
