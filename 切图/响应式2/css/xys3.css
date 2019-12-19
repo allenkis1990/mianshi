@@ -845,7 +845,9 @@ li {
         border-right: none;
     }
 }
-
+@media screen and (min-width: 998px) {
+    .top .hideBtn{display:none}
+}
 @media screen and (min-width: 0px) and (max-width: 998px) {
     .banner-main .nav-list{display:none}
     .solution{font-size:12px;}
