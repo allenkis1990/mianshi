@@ -73,7 +73,8 @@ li {
 .banner-box {
     height: 5.94rem;
     background: url('../images/banner1.jpg');
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center center;
 }
 
 .top {
@@ -143,11 +144,12 @@ li {
 
 .fwq-data-list {
     display: flex;
+    justify-content: space-around;
     padding-bottom: 0.25rem;
 }
 
 .fwq-data-list li {
-    width: 33.33%;
+    padding-right:1.3rem;
     display: flex;
     justify-content: center;
     border-right: 1px solid #cdd1e5;
@@ -155,6 +157,7 @@ li {
 
 .fwq-data-list li:last-child {
     border-right: none;
+    padding-right:0;
 }
 
 .fwq-data-list li .list-r {
@@ -269,10 +272,11 @@ li {
 
 /*解决方案*/
 .solution {
-    height: 5.6rem;
     background-image: url(../images/solution-bg.jpg);
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center center;
     color: #fff;
+    padding-bottom: 0.35rem;
 }
 
 .solution-pd {
@@ -294,19 +298,13 @@ li {
 }
 
 .solution .tab-list li {
+    position: relative;
+    padding:0 0.35rem;
     padding-bottom: 0.18rem;
-    position: relative
+    margin-bottom: -2px;
 }
-
-.solution .tab-list li.current:before {
-    content: ' ';
-    height: 0;
-    border-top: 5px solid #0b50ff;
-    display: block;
-    width: 1.15rem;
-    position: absolute;
-    bottom: -0.03rem;
-    left: -0.36rem;
+.solution .tab-list li.current{
+    border-bottom:4px solid #0b50ff;
 }
 
 .solution .i-1 {
@@ -338,7 +336,7 @@ li {
 }
 
 .dataCenter {
-    height: 8.19rem;
+    min-height: 8.19rem;
     background-position: center center;
     background-image: url(../images/dataCenter-bg.jpg);
     background-size: cover;
@@ -664,7 +662,8 @@ li {
     height: 2.01rem;
     width: 100%;
     background: url('../images/adv-bg.jpg');
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position:center center;
 }
 
 /*底部*/
@@ -767,6 +766,8 @@ li {
     width: 0.36rem;
     height: 0.36rem;
     background: url('../images/qq.png');
+    background-size:cover;
+    background-position:center center;
     margin-left: 0.15rem
 }
 
@@ -774,6 +775,8 @@ li {
     width: 0.35rem;
     height: 0.35rem;
     background: url('../images/wx.png');
+    background-size:cover;
+    background-position:center center;
 }
 
 .friend-link {
@@ -828,12 +831,57 @@ li {
         width: 97%;
         margin:0 auto
     }
-    .dataCenter-pd {
-        padding: 0;
-    }
+    .dataCenter-pd{padding:0;}
     .dataCenter-list {
         justify-content: space-around;
         flex-wrap: wrap;
     }
+    .dataCenter-pd {
+        padding: 0;
+    }
+    .solution-pd{padding:0 3%;}
+    .fwq-data-list li {
+        padding-right:0;
+        border-right: none;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 998px) {
+    .banner-main .nav-list{display:none}
+    .solution{font-size:12px;}
+    .footer-flex{display:none}
+    .friend-link{display: none}
+    .footer .service ul{display:inherit}
+    .footer .service ul li{float:left;}
+    .other-yw{display:none}
+    .produce-list{flex-wrap: wrap;justify-content: space-around}
+    .produce-list li{width:48%;margin-bottom:10px;}
+    .ddos .img-box{height:auto;text-align:center}
+    .ddos img{position:inherit;}
+    .ddos img:nth-child(2){top: 0}
+    .ddos .tab-bd button{font-size:14px;}
+    .nlys .nlys-list{justify-content: space-around}
+    .nlys .nlys-list li{width:48%}
     .dataCenter-list li{margin-bottom:10px;}
+    .news .tab-list-box{display: none}
+    .news .news-content .news-img.fl{float:inherit}
+    .news .news-list{float:inherit}
+    .news .news-content .news-img{width:90%;height:auto;margin:0 auto}
+    .news .news-list{width:90%;margin:0 auto;margin-top:10px;}
+    .news .news-list li{justify-content: flex-start}
+    .news .news-list li .date-box{margin-right:10px;}
+    .news .news-list-main{flex:1}
+    .adv{height:1.5rem}
+    .footer .service ul li{width:50%;text-align:center;margin-bottom:8px;}
+    .footer .service ul li:last-child{width:100%;text-align:center}
+}
+
+@media screen and (min-width: 300px) and (max-width: 350px) {
+    .fwq-data-list li{border-right:none}
+    .ddos .tab-bd button{font-size:12px;}
+    .ddos img{position:inherit;width:95%}
+    .banner-box{height:5rem;}
+    .adv{height:1.3rem}
+    .news .news-list li .news-list-main .tit{font-size:13px;}
+    .fwq-data-box p{font-size:13px;}
 }
