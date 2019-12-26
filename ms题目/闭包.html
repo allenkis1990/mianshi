@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function a(){
+        var num = 0
+        return function(){
+            num++
+            return num
+        }
+    }
+    var haha = a()
+    console.log(haha());
+    console.log(haha());
+    console.log(haha());
+</script>
+</body>
+</html>
