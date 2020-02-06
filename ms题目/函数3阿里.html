@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function A(){
+        this.a = 1
+        this.b = 2
+        return this//这里return要是引用类型prototype就不生效了 this不算
+    }
+    A.prototype.haha = 111
+
+    var a = new A()
+    console.log(a);
+</script>
+</body>
+</html>
