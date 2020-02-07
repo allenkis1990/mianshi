@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str = 'lwhhaha'
+    var reg = /lw(h)/
+    str = str.replace(reg,'$1')//$1指的是h 把lwh替换成h=>hhaha
+    console.log(str);
+
+    var str2 = 'lwhhaha'
+    var reg2 = /lw(h)\1///再正则里\1指的是同(h)里的正则与$1类似
+    str2 = str2.replace(reg2,'fuck')//$1指的是h 把lwh替换成h=>hhaha
+    console.log(str2);// /lw(h)\1/ 匹配到了lwhh所以输出结果 =>aha
+
+</script>
+</body>
+</html>

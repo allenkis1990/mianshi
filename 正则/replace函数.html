@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str = 'lwhhaha'
+    var reg = /lw(h)/
+    str = str.replace(reg,function(a1,a2){
+        //a1为匹配到的lwh整个  a2为匹配到的括号里的h
+        return 'xxx'//把匹配到的替换成xxx
+    })
+</script>
+</body>
+</html>
