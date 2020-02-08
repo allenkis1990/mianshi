@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //数组扁平化
+    var arr = [1,[2,[3,[4]]]]
+
+    //es原生方法flat
+
+
+    //tostring
+    function fn1(arr){
+        let str = arr+''
+        let newArr = str.split(',')
+        newArr = newArr.map((item)=>{
+            return Number(item)
+        })
+        return newArr
+    }
+
+    //递归
+    function fn2(obj){
+        let result = []
+        function digui(obj){
+            if(Array.isArray(obj)){
+                obj.forEach((item)=>{
+                    digui(item)
+                })
+            }else{
+                result.push(obj)
+            }
+        }
+        digui(obj)
+        return result
+    }
+
+    function fn3(arr){
+        let result = arr//这里原则上需要深拷贝，本例不做处理
+        while(result.some((item)=>{
+            return Array.isArray(item)
+        })){
+            result = [].concat(...result)
+        }
+        return result
+
+    }
+
+
+    // console.log(arr.flat(Infinity))
+    // console.log(fn1(arr));
+    // console.log(fn2(arr));
+    //console.log(fn3(arr));
+
+</script>
+</body>
+</html>

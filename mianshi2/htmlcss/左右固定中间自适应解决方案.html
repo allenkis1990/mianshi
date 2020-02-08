@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{box-sizing:border-box}
+        .clear:before{content:'';display:table;}
+        .clear:after{
+            display:table;
+            height:0;
+            content:'';
+            clear: both;
+            visibility:hidden;
+        }
+        .main{
+            width:800px;margin:0 auto;min-height:500px;border:1px solid red;margin-top:10px;
+        }
+        .left,.right{width:100px;min-height:500px;background:red}
+        .center{background:yellow;min-height:500px;}
+
+
+        /*浮动*/
+        .main1{}
+        .main1 .left{
+            float:left;
+        }
+        .main1 .right{
+            float:right;
+        }
+        .main1 .center{
+            margin:0 100px;
+        }
+
+
+        /*定位*/
+        .main2{position:relative}
+        .main2 .left{
+            position:absolute;
+            left:0;
+        }
+        .main2 .right{
+            position:absolute;
+            right:0;
+        }
+        .main2 .center{
+            margin:0 100px;
+        }
+
+        /*table*/
+        .main3{display:table}
+        .main3 .left{
+           display:table-cell;
+        }
+        .main3 .right{
+            display:table-cell;
+        }
+        .main3 .center{
+            display:table-cell;
+        }
+
+
+        /*flex*/
+        .main4{display:flex}
+        .main4 .left{
+
+        }
+        .main4 .right{
+
+        }
+        .main4 .center{
+            flex:1;
+        }
+
+
+    </style>
+</head>
+<body>
+浮动
+<div class="main main1 clear">
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="center"></div>
+</div>
+
+定位
+<div class="main main2">
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="center"></div>
+</div>
+
+table
+<div class="main main3">
+    <div class="left"></div>
+    <div class="center"></div>
+    <div class="right"></div>
+</div>
+
+
+flex
+<div class="main main4">
+    <div class="left"></div>
+    <div class="center"></div>
+    <div class="right"></div>
+</div>
+<script>
+    function A(){
+        this.a = 1
+        this.b = 2
+        return this
+    }
+    A.prototype.haha = 111
+
+    var a = new A()
+
+
+    console.log(a);
+</script>
+</body>
+</html>

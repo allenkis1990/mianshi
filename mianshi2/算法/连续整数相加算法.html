@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //[ [1,2,3,4,5],[4,5,6],[7,8] ]  15
+    //正整数
+
+    function fn(num){
+        let result = []
+        //中间数向上取整
+        //假设num=15时候 中间数是8  8+next(9)一定大于15所以拿中间数来当最外层循环的次数
+        let middle = Math.ceil(num/2)
+        for(let i=1;i<middle;i++){
+            //当i=1的时候arr=[1] count=1
+            //当i=2的时候arr=[2] count=2
+            //当i=3的时候arr=[3] count=3
+            let arr = [i]
+            let arrCount = i
+            //j都是从1开始加
+            for(let j=1;;j++){
+                //[1,2,3,4,5]
+                //当i=1 j=1 下一个就是1+1=2
+                //当i=1 j=2 下一个就是1+2=3
+                //当i=1 j=3 下一个就是1+3=4
+                //当i=1 j=4 下一个就是1+4=5
+                let next = i+j
+                arr.push(next)
+                arrCount+=next
+                //当count===num的时候表示匹配加入数组并且跳出让i++
+                //当count>num的时候表示不匹配了跳出让i++
+                if(arrCount===num){
+                    result.push(arr)
+                    break
+                }else if(arrCount>num){
+                    break
+                }
+            }
+        }
+
+        return result
+    }
+
+    console.log(fn(15));
+</script>
+</body>
+</html>

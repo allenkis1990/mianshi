@@ -1,0 +1,4 @@
+1.什么是css盒子模型
+分为常规盒子模型和怪异模型：
+1box-sizing:content-box为常规模型 内容为宽高（会掉下来）
+2box-sizing: border-box|padding-box为怪异模型  内容为宽高+padding+margin+(border: padding-box没有)

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{width:300px;height:300px;border:1px solid red;margin-top:10px;}
+        .box{width:100px;height:50px;background:blue;}
+
+        /*table布局*/
+        .main1{display:table-cell;text-align:center;vertical-align: middle}
+        .main1 .box{
+            display:inline-block;
+        }
+
+
+        /*flex布局*/
+        .main2{display:flex;justify-content: center;align-items: center}
+        .main2 .box{}
+
+
+        /*常规*/
+        .main3{position:relative}
+        .main3 .box{
+            position:absolute;
+            left:50%;
+            top:50%;
+            margin-left:-50px;
+            margin-top:-25px;
+        }
+    </style>
+</head>
+<body>
+<div class="main main1">
+    <div class="box"></div>
+</div>
+
+
+<div class="main main2">
+    <div class="box"></div>
+</div>
+
+
+<div class="main main3">
+    <div class="box"></div>
+</div>
+</body>
+</html>

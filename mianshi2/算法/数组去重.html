@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //数组去重
+    let arr = [1,2,1,2,3,3,4,6,4]
+
+    //Set转
+    function fn1(arr){
+        let set = new Set(arr)
+        let newArr = Array.from(set)
+        return newArr
+    }
+
+    function fn2(arr){
+        let result = arr.reduce((pre,next)=>{
+            if(pre.indexOf(next)<=-1){
+                pre.push(next)
+            }
+            return pre
+        },[])
+        return result
+    }
+
+     console.log(fn1(arr));
+    console.log(fn2(arr));
+
+
+</script>
+</body>
+</html>

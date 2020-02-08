@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //[1,1,2,3,5,8,13,21,34,55]
+    //原来数组就有两项[1,1] 那么还要再创建idx-2+1个 因为idx是下标所以个数还要+1个
+    function fn(idx){
+        let count = 0
+        let start = 1,end = 1
+        let arr = [1,1]
+
+        function doTheNum(){
+            if(count<idx-2+1){
+                let newNum = start+end
+                arr.push(newNum)
+                start = end
+                end = newNum
+                count ++
+                doTheNum()
+            }else{
+                 console.log(count,idx);
+            }
+
+        }
+
+        if(idx<=1){
+            return 1
+        }else{
+            doTheNum()
+        }
+        return arr[idx]
+    }
+
+    let num = fn(8)
+    console.log(num);
+
+
+
+
+
+
+//    function fn(idx){
+//        if(idx<=1){
+//            return 1
+//        }
+//        let arr = [1,1]
+//        let i = idx-2+1
+//        while(i>0){
+//            let start = arr[arr.length-2]
+//            let end = arr[arr.length-1]
+//            arr.push(start+end)
+//            i--
+//        }
+//        return arr[idx]
+//    }
+//    var num = fn(9)
+//    console.log(num);
+
+
+</script>
+</body>
+</html>
