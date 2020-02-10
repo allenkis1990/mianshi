@@ -17,7 +17,12 @@
 //});
 // 如果跨域需要携带cookie 需要开启xhr.withCredentials
     //相应头设置Access-Control-Allow-Credentials为true
-
+var x = 3,
+    obj = {x:5}
+obj.fn = (function(){
+    // this.x *= ++x
+    console.log(this.x);
+})()
 </script>
 </body>
 </html>

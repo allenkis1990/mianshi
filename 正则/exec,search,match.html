@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    let exec
+    //    while(exec = reg.exec(str)){
+    //        if(exec){
+    //            console.log(exec);
+    //        }
+    //    }
+    let reg = /(l)w(h)/ig
+    let str = 'lwhaalwhaalwh'
+    for (let i = 0; ; i++) {
+        let exec = reg.exec(str)//['lwh','l','h',index:0,groups:xxx]
+        if (exec) {
+            console.log(exec);
+        } else {
+            break
+        }
+    }
+
+
+    console.log(str.search(reg));//查找匹配的出现再第几个index只能查找第一个
+    console.log(str.match(reg));//如果reg开启g那么就会匹配到所有的整成一个数组 //如果没有g那么结构是跟exec类似结构
+
+
+</script>
+</body>
+</html>
