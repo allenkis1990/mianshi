@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    window.test = 'fuck'
+
+    function fn(){
+        let obj = {}
+        if(window.test==='shit'){
+            obj.method = function(str){
+                console.log('shit===>'+str);
+            }
+        }else if(window.test==='fuck'){
+            obj.method = function(str){
+                console.log('fuck===>'+str);
+            }
+        }else{
+            obj.method = function(str){
+                console.log('heihei===>'+str);
+            }
+        }
+        return obj
+    }
+
+    //声明一次判断只执行一次存在闭包里
+    let emit = fn()
+
+    emit.method('lwh')
+    emit.method('zzm')
+    emit.method('xll')
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">click</button>
+<script>
+    Function.prototype.bind2 = function (context, ...outterArgs) {
+        //这里的this指的是Function.prototype也就是被bind的函数
+        let _this = this
+        return function (...innerArgs) {
+            //这里this看绑定给谁  如果是dom那就是dom
+            let args = [...outterArgs, ...innerArgs, this]
+            _this.call(context, ...args)
+        }
+    }
+
+
+    var obj = {
+        name: 'allen',
+        age: 18
+    }
+
+    //    fn.bind2(obj,1,2)(3)
+    //
+    //    function fn(a,b,c,innerContext){
+    //        console.log(this,a,b,c,innerContext)//obj,1,2,3
+    //    }
+
+
+    document.getElementById('btn').addEventListener('click',fn.bind2(obj, 1))
+    function fn(a1, e, dom) {
+        console.log(this, a1, e,dom)//
+    }
+
+
+</script>
+</body>
+</html>
