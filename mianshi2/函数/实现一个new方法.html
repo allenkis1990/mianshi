@@ -13,7 +13,7 @@
         console.log(this.name);
     }
 
-    function _new(fn,...args){//
+    function _new(fn,...args){
         //Object.create参数为原型对象，表示创建一个空对象，并且把Test的原型作为obj的原型
         let obj = Object.create(Test.prototype)
         let result = fn.call(obj,...args)
