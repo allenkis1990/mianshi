@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function fn1(x){
+        return x+5
+    }
+    function fn2(x){
+        return x*5
+    }
+    function fn3(x){
+        return x/5
+    }
+
+
+    function compose(...args){
+        return function(num){
+            let result = args.reduce(function(pre,next){
+                return next(pre)
+            },num)
+            return result
+        }
+    }
+    let result = compose(fn1,fn2,fn1,fn3)(5)
+    console.log(result);
+
+
+    /*function compose(...args){
+//        console.log(args);
+        return function(num){
+//            console.log(num);
+            let result = num
+            while (args.length>0){
+                result = args.shift()(result)
+            }
+//            console.log(result);
+            return result
+        }
+    }
+    let result = compose(fn1,fn2,fn1,fn3)(5)
+    let result2 = compose(fn1,fn1,fn1,fn3,fn2)(5)
+    console.log(result);
+    console.log(result2);*/
+
+</script>
+</body>
+</html>
