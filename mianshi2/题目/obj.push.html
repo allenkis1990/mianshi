@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //push方法做了：1.this[this.length] = x   2.this.length++
+    var obj = {
+        2:2,
+        3:3,
+        length:2,
+        push:Array.prototype.push
+    }
+    obj.push(66)
+    obj.push(77)
+    console.log(obj);//{2:66,3:77,length:4}
+</script>
+</body>
+</html>

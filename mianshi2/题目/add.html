@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //方法1：
+    /*function add(...outterArgs){
+        add = function(...innerArgs){
+            outterArgs = outterArgs.concat(innerArgs)
+//            console.log(outterArgs);
+            return add
+        }
+        add.getResult = function(){
+//            console.log(outterArgs);
+            let res = outterArgs.reduce((pre,next)=>{
+                return pre+next
+            })
+            return res
+        }
+        return add
+    }
+    let res = add(1,2)(1)
+    let result = res.getResult()
+    console.log(result);*/
+
+
+
+    //方法2：
+    function fn(reduceFn,maxLength){
+        return function add(...args){
+            //如果当前arg的个数超过指定的次数就直接返回reduce的值
+            if(args.length>=maxLength){
+                return reduceFn(...args) //reduceFn.bind(null,...args)(...args)
+            }
+            let length = maxLength-args.length//第一次函数有2个那下一次最大次数就等于原来的5减去2 = 3
+            return fn(reduceFn.bind(null,...args),length)//这里传进去的reduce函数是通过bind事先预设了两个参数了（reduceFn.bind(null,...args)）
+            //当args.length>=maxLength时调用 这个时候的reduceFn就等于之前传进来的reduceFn.bind(null,...args)
+            // 那再执行就变成了reduceFn.bind(null,...args)(...args)
+        }
+    }
+
+    let add = fn(function(...args){
+        return args.reduce((a,b)=>{return a+b})
+    },5)
+    console.log(add(1, 2)(3, 4)(5));
+
+</script>
+</body>
+</html>

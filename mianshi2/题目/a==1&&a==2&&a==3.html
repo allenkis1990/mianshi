@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //只有引用类型的toString可以被重写
+
+    //思路1：对象和数字比会先调用对象的toString()再比所以要重写toString
+//    var a = {
+//        i:0,
+//        toString(){
+//            return ++this.i
+//        }
+//    }
+
+    //思路2：使用Object.defineProperty
+//    var i = 0
+//    Object.defineProperty(window,'a',{
+//        get(){
+//            return ++i
+//        }
+//    })
+
+
+    if(a==1&&a==2&&a==3){
+        console.log('ok');
+    }
+</script>
+</body>
+</html>

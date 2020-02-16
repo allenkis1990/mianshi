@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    ~function a(){
+        Number.prototype.plus = function(num){
+            return this + num
+        }
+
+        Number.prototype.minus = function(num){
+            return this - num
+        }
+
+        let num = 5
+        let result = num.plus(5).minus(8)
+        console.log(result);
+    }()
+
+    function fn(){
+        this.name='lwh'
+        this.age = 18
+    }
+    fn.prototype = {
+        name:'123',
+        age:18,
+        fuck:'fuck'
+    }
+    var a = new fn()
+    console.log(a.name, a.age,a.fuck);
+
+
+</script>
+</body>
+</html>

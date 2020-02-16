@@ -1,12 +1,13 @@
-fn()
-function fn(){
-    console.log(1);
+function fn(maxLength){
+    return function add(...args){
+        if(args.length>=maxLength){
+            console.log('最后一次调用为===》', args);
+            return args
+        }
+        let len = maxLength-args.length
+        return fn(len)
+    }
 }
-fn()
-function fn(){
-    console.log(2);
-}
-fn()
-function fn(){
-    console.log(3);
-}
+let add = fn(5)
+let res = add(1,2,3)
+console.log(res);
