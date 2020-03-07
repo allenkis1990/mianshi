@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function A(){
+        this.name='A'
+    }
+
+
+    function Temp(){}
+    Temp.prototype = A.prototype
+    function B(){}
+    B.prototype = new Temp()//这种方法等价于B.prototype = Object.create(A.prototype)
+
+
+//    B.prototype.constructor = B
+    console.log(B.prototype===A);
+    var b = new B()
+    console.log(b);
+
+
+</script>
+</body>
+</html>

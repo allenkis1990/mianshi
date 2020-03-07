@@ -13,8 +13,11 @@ class Watcher{
     }
     update(){
         var nv = eval('this.vm.data.'+this.expr),ov = this.oldValue;
+        debugger
         if(ov!==nv){
             this.cb(nv);
+            //这里要手动更新一下oldValue
+            this.oldValue = nv
         }
     }
 }

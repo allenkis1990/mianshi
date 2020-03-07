@@ -35,23 +35,33 @@
     //4.event.target //点击的那个dom
     //5.event.currentTarget //触发事件的那个dom
 
-    document.querySelector('.child').addEventListener('click',function(e){
-        e.stopPropagation();
-//        e.stopImmediatePropagation();
-        console.log('child');
-    },false)
+//    document.querySelector('.child').addEventListener('click',function(e){
+//        e.stopPropagation();
+////        e.stopImmediatePropagation();
+//        console.log('child');
+//    },false)
 //    document.querySelector('.child').addEventListener('click',function(e){
 //        e.stopPropagation();
 //        console.log('child2');
 //    },false)
-    document.querySelector('.parent').addEventListener('click',function(e){
-        e.stopPropagation();
-        console.log('parent');
-    },false)
-    document.querySelector('.main').addEventListener('click',function(e){
-        e.stopPropagation();
-        console.log('main');
-    },false)
+//    document.querySelector('.parent').addEventListener('click',function(e){
+//        e.stopPropagation();
+//        console.log('parent');
+//    },false)
+//    document.querySelector('.main').addEventListener('click',function(e){
+//        e.stopPropagation();
+//        console.log('main');
+//    },false)
+
+        document.querySelector('.main').addEventListener('click',function(e){
+            console.log('main');
+        },true)
+        document.querySelector('.parent').addEventListener('click',function(e){
+            console.log('parent');
+        },true)
+        document.querySelector('.child').addEventListener('click',function(e){
+            console.log('child');
+        },true)
 
 
 </script>

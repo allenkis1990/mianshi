@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //原型继承缺点
+    //小b.__proto__.xx=xxx 修改了后以后再拿大B new一个新的c  这样c的__proto__上也会有xx
+    //通过大B.prototype.__proto__可以直接修改A prototype里的值
+    //会把父类私有的方法作为子类公有的方法
+    function A() {
+        this.name = 'A'
+    }
+
+    A.prototype.say = function () {
+        console.log(this.name);
+    }
+    function B(){}
+    B.prototype = new A()
+
+    var b = new B()
+//    b.__proto__.xx ='xx'//改了后以后所有B new出来的__proto__上都有xx
+//    b.__proto__.__proto__.xx = 'xx' //会修改A prototype上的方法
+//    console.dir(A);
+
+</script>
+</body>
+</html>

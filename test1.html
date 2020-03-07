@@ -5,13 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<button id="btn">btn</button>
+<div class="main">
+    <div class="haha">haha</div>
+</div>
 <script>
-    let btn = document.getElementById('btn')
-    function click(){
-        console.log(this);
-    }
-    btn.onclick = click.bind(window)
+    let main = document.querySelector('.main')
+    let haha = document.querySelector('.haha')
+    let div = document.createElement('div')
+    div.innerHTML = 'div'
+    main.insertBefore(div,haha)
 </script>
 </body>
 </html>

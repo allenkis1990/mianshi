@@ -8,9 +8,18 @@
 <img src="aa.jpg">
 <script>
     //设置事件为捕获类型可以 捕获资源加载错误
+    //捕获放最上面
+    //捕获不了ajax
     window.addEventListener('error',function(e){
+        e.preventDefault()
         console.log(e);
     },true)
+
+//    let xhr = new XMLHttpRequest()
+//    xhr.open('get','/haha',true)
+//    xhr.send(null)
+
+    console.log(aaa)
 </script>
 <!-- 资源不存在-->
 <script src="hahah.js"></script>

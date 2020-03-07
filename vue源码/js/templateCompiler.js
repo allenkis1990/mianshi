@@ -73,16 +73,21 @@ class TemplateCompiler{
 var updaterUtils = {
     //解析v-text
     text(node,vm,expr,match){
+        var exprData = eval('vm.data.'+expr)
+        // console.log(exprData,2222);
+        //这里只处理了只要是typeof对象就JSON.stringify否则不变
+        exprData = !(typeof exprData==='object'&&exprData!==null)?exprData:JSON.stringify(exprData)
+        console.log(exprData);
         if(match){
             //解析{{}}双括号
-            node.textContent = node.textContent.replace(match,eval('vm.data.'+expr))
+            node.textContent = node.textContent.replace(match,exprData)
             new Watcher(vm,expr,(nv)=>{
                 // console.log(3333,'{{}}');
                 node.textContent = nv;
             })
         }else{
             //解析v-text
-            node.innerText = eval('vm.data.'+expr);
+            node.innerText = exprData;
             new Watcher(vm,expr,(nv)=>{
                 // console.log(3333,'text');
                 node.innerText = nv;

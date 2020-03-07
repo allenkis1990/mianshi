@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //call继承可以继承A的私有方法
+    function A(){
+        this.name='A'
+    }
+    function B(){
+        A.call(this)
+    }
+    var b = new B()
+    console.log(b.name);
+</script>
+</body>
+</html>

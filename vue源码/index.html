@@ -16,6 +16,8 @@
         <input type="text" v-model="obj.obj.obj.name"><br>
         author:{{ author }} {{ price}}
         <div>{{obj.obj.obj.name}}</div>
+        {{arr}}
+        {{lwhObj}}
         <!--<div>{{arr[0].name}}</div>-->
 
 
@@ -37,7 +39,8 @@
             author:'lwh',
             price:'999',
             arr:[{name:'arrItem'}],
-            obj:{obj:{obj:{name:'allen'}}}
+            obj:{obj:{obj:{name:'allen'}}},
+            lwhObj:{name:'lwh'}
         },
         computed:{
             getFuckName(){

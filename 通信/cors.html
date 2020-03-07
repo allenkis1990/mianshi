@@ -17,6 +17,7 @@
 //});
 // 如果跨域需要携带cookie 需要开启xhr.withCredentials
     //相应头设置Access-Control-Allow-Credentials为true
+//然后res.header("Access-Control-Allow-Origin", "xxxx");就不能是*了要是具体网址
 var x = 3,
     obj = {x:5}
 obj.fn = (function(){

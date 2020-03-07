@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    let arr = [49,38,65,97,76,13,27,88,99,101,66,55,44,33,56,67,98,55]
+    let arr = [49,38,65,97,76,13]//[38,13] 49 [65,97,76]
+//[13] 38    49    65 [97,76]
+    function fastSort(dataArr){
+        var res = []
+        var fastSort = function(dataArr){
+            function fn(dataArr){
+                let arr = JSON.parse(JSON.stringify(dataArr))
+                let baseNum = arr.shift()
+                let leftArr = []
+                let rightArr = []
+                let result = [baseNum]
+                for(let i=0;i<arr.length;i++){
+                    let item = arr[i]
+                    if(item<=baseNum){
+                        leftArr.push(item)
+                    }else{
+                        rightArr.push(item)
+                    }
+                }
+                leftArr.length?result.unshift(leftArr):null
+                rightArr.length?result.push(rightArr):null
+//            console.log(baseNum,result);
+                return result
+            }
+            let arr = fn(dataArr)
+
+            for(let i=0;i<arr.length;i++){
+                let item = arr[i]
+                if(typeof item==='number' || Array.isArray(item) && item.length<=1){
+                    res.push(item)
+                    console.log(res);
+                }else{
+                    fastSort(item)
+                }
+            }
+        }
+        fastSort(dataArr)
+        return (res+'').split(',').map((item)=>{return Number(item)})
+    }
+
+    let a = fastSort(arr)
+    console.log(a,5);
+    //    console.log(arr);
+
+</script>
+</body>
+</html>
