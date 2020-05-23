@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<audio controls id="audio"></audio>
+<video controls id="video"></video>
+<script>
+    let con = {
+        audio:true,
+//        video:true//没有video设备的话会报错
+    }
+    navigator.mediaDevices.getUserMedia(con).then((stream)=>{
+        let audio = document.querySelector('#audio')
+        let video = document.querySelector('#video')
+        audio.srcObject = stream
+        video.srcObject = stream
+    })
+</script>
+</body>
+</html>

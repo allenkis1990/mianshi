@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .none{
+            filter:none
+        }
+        /*模糊*/
+        .blur{
+            filter:blur(3px)
+        }
+        /*灰度*/
+        .grayscale{
+            filter:grayscale(1)
+        }
+        /*反色*/
+        .invert{
+            filter:invert(1)
+        }
+        /*褐色*/
+        .sepia{
+            filter:sepia(1)
+        }
+        /*透明度*/
+        .opacity{
+            filter:opacity(0.5)
+        }
+        /*对比度*/
+        .contrast{
+            filter:contrast(1.2)
+        }
+        /*亮度*/
+        .brightness{
+            filter:brightness(0.5)
+        }
+    </style>
+</head>
+<body>
+<video controls
+       src="./videos/jay.mp4"
+       id="video"></video>
+<ul>
+    <li>
+        <button onclick="changeFilter('none')">none</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('blur')">blur</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('grayscale')">grayscale</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('invert')">invert</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('sepia')">sepia</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('opacity')">opacity</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('contrast')">contrast</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('brightness')">brightness</button>
+    </li>
+</ul>
+<script>
+    function changeFilter(filter){
+        let video = document.querySelector('#video')
+        video.setAttribute('class',filter)
+    }
+</script>
+</body>
+</html>

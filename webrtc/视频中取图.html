@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .none{
+            filter:none
+        }
+        /*模糊*/
+        .blur{
+            filter:blur(3px)
+        }
+        /*灰度*/
+        .grayscale{
+            filter:grayscale(1)
+        }
+        /*反色*/
+        .invert{
+            filter:invert(1)
+        }
+        /*褐色*/
+        .sepia{
+            filter:sepia(1)
+        }
+        /*透明度*/
+        .opacity{
+            filter:opacity(0.5)
+        }
+        /*对比度*/
+        .contrast{
+            filter:contrast(1.2)
+        }
+        /*亮度*/
+        .brightness{
+            filter:brightness(0.5)
+        }
+    </style>
+</head>
+<body>
+<video controls
+       src="./videos/jay.mp4"
+       id="video"></video>
+<div>
+    <button onclick="paizhao()">拍照</button>
+    <canvas id="can"
+            style="width: 300px;height: 300px;display: none"></canvas>
+</div>
+<ul>
+    <li>
+        <button onclick="changeFilter('none')">none</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('blur')">blur</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('grayscale')">grayscale</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('invert')">invert</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('sepia')">sepia</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('opacity')">opacity</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('contrast')">contrast</button>
+    </li>
+    <li>
+        <button onclick="changeFilter('brightness')">brightness</button>
+    </li>
+</ul>
+<script>
+    window.filter = 'none'
+    function paizhao(){
+        let video = document.querySelector('#video')
+        let can = document.querySelector('#can')
+        let ctx = can.getContext('2d')
+        can.style.display = 'block'
+        can.setAttribute('class',window.filter)
+        ctx.drawImage(video,0,0,300,300)
+    }
+
+
+    function changeFilter(filter){
+        let video = document.querySelector('#video')
+        window.filter = filter
+        video.setAttribute('class',filter)
+    }
+</script>
+</body>
+</html>

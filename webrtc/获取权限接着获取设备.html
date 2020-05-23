@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let con = {
+        audio:true,
+//        video:true//没有video设备的话会报错
+    }
+    //获取权限
+    function getUserMedia(stream){
+        return navigator.mediaDevices.enumerateDevices()
+    }
+
+    //获取设备
+    function getMediaDevices(devices){
+        console.log(devices);
+    }
+
+
+
+    navigator.mediaDevices.getUserMedia(con)
+        .then(getUserMedia)
+        .then(getMediaDevices)
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    navigator.mediaDevices.enumerateDevices().then((data)=>{
+        console.log(data);
+        //kind为audioinput为麦克风  kind为audiooutput为播放设备   kind为videoinput为视频设备
+    })
+</script>
+</body>
+</html>

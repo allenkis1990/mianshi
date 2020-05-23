@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let con = {
+        audio:true,
+//        video:true//没有video设备的话会报错
+    }
+    //获取权限
+    function getUserMedia(stream){
+        let tracks = stream.getAudioTracks()//获取所有音频轨
+        console.log(tracks[0].getSettings());//获取指定轨的设置
+        console.log(tracks);
+    }
+
+
+
+
+
+    navigator.mediaDevices.getUserMedia(con)
+        .then(getUserMedia)
+
+
+</script>
+</body>
+</html>
