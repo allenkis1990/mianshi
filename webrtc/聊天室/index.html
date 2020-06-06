@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="before">
+    <div>
+        房间号：<input type="text" id="roomNum">
+    </div>
+    <div>
+        昵称：<input type="text" id="nickName">
+    </div>
+    <div>
+        <button id="goRoom">进入房间</button>
+    </div>
+</div>
+
+<div id="after" style="display: none">
+    <div id="curNum">当前房间号：<span></span></div>
+    <div id="online">当前房间人数：<span></span></div>
+    <div id="nickNameBox">我的名字：<span></span></div>
+    <button id="leaveRoom">离开房间</button>
+</div>
+<script src="/socket.io.js"></script>
+<script>
+
+    let before = document.querySelector('#before')
+    let after = document.querySelector('#after')
+    let online = document.querySelector('#online')
+    let roomNum = document.querySelector('#roomNum')
+    let curNum = document.querySelector('#curNum')
+    let goRoom = document.querySelector('#goRoom')
+    let leaveRoom = document.querySelector('#leaveRoom')
+    let nickNameBox = document.querySelector('#nickNameBox')
+    let nickName = document.querySelector('#nickName')
+    let socket
+    goRoom.addEventListener('click',()=>{
+        let room = roomNum.value
+        let nick = nickName.value
+        if(!room){
+            alert('请输入房间号')
+            return
+        }
+        if(!nick){
+            alert('请输入昵称')
+            return
+        }
+        socket = io.connect('http://localhost:7777')
+        //这里和服务端的on('join')对应，自己取名
+        socket.emit('join',room,nick)
+        socket.on('joined',(dataRoom,dataNick)=>{
+            alert('欢迎'+dataNick+'进入房间'+dataRoom)
+            if(dataNick===nick){
+                joinRoomDo(room)
+            }
+        })
+
+        socket.on('leaved',(dataRoom,dataNick)=>{
+            alert(dataNick+'离开房间'+dataRoom)
+            if(dataNick===nick){
+                leaveRoomDo(room)
+            }
+        })
+
+        socket.on('userCount',(data)=>{
+            online.querySelector('span').innerText = data
+        })
+    })
+
+    leaveRoom.addEventListener('click',()=>{
+        socket.emit('leave',roomNum.value,nickName.value)
+    })
+
+    //进入房间后的操作
+    function joinRoomDo(room){
+        before.style.display = 'none'
+        curNum.querySelector('span').innerText = room
+        let nick = nickName.value
+        nickNameBox.querySelector('span').innerText = nick
+        after.style.display = 'block'
+    }
+
+    //离开房间后的操作
+    function leaveRoomDo(room){
+        before.style.display = 'block'
+        after.style.display = 'none'
+        roomNum.value = ''
+        nickName.value = ''
+        curNum.querySelector('span').innerText = ''
+        nickNameBox.querySelector('span').innerText = ''
+    }
+</script>
+</body>
+</html>

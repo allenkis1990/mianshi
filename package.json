@@ -1,0 +1,23 @@
+{
+  "name": "mianshi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allenkis1990/mianshi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allenkis1990/mianshi/issues"
+  },
+  "homepage": "https://github.com/allenkis1990/mianshi#readme",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}

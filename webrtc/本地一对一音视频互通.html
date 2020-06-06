@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <button id="start">start</button>
+    <button id="call">call</button>
+    <button id="hungup">hungup</button>
+</div>
+<div>
+    <video src="" autoplay id="origin" width="300"></video>
+    <video src="" autoplay id="remote" width="300"></video>
+</div>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script>
+    let start = document.querySelector('#start')
+    let call = document.querySelector('#call')
+    let hungup = document.querySelector('#hungup')
+    let origin = document.querySelector('#origin')
+    let remote = document.querySelector('#remote')
+    let pc1 = null,pc2 = null
+    let localStream = null
+    start.addEventListener('click',()=>{
+        let con = {
+            audio:false,
+            video:true//没有video设备的话会报错
+        }
+        navigator.mediaDevices.getUserMedia(con).then((stream)=>{
+            origin.srcObject = stream
+            localStream = stream
+        })
+    })
+
+
+    call.addEventListener('click',()=>{
+        pc1 = new RTCPeerConnection()//新建发送方RTCPeerConnection
+        pc2 = new RTCPeerConnection()//新建接收方RTCPeerConnection
+        //交换候选者列表
+        //pc1获取候选者列表，并且添加到pc2去
+        pc1.onicecandidate = (e)=>{
+            pc2.addIceCandidate(e.candidate)
+        }
+        //pc2获取候选者列表，并且添加到pc1去
+        pc2.onicecandidate = (e)=>{
+            pc1.addIceCandidate(e.candidate)
+        }
+
+        //pc2收到流后放到remote video上
+        pc2.ontrack = (e)=>{
+            remote.srcObject = e.streams[0]
+        }
+
+        //获取多媒体轨，并且装载到pc1里，一会发送给pc2
+        localStream.getTracks().forEach((track)=>{
+            pc1.addTrack(track,localStream)
+        })
+
+        let offerOptions = {
+            offerToRecieveAudio:0,
+            offerToRecieveVideo:0
+        }
+        //步骤
+        //1.pc1创建offer
+        //2.pc1设置本地des
+        //3.pc2设置remote des
+        //4.pc2创建回答
+        //5.pc2创建本地des
+        //6.pc1设置remote des
+        pc1.createOffer(offerOptions).then((des)=>{
+            pc1.setLocalDescription(des)
+            pc2.setRemoteDescription(des)
+            pc2.createAnswer().then((des)=>{
+                pc2.setLocalDescription(des)
+                pc1.setRemoteDescription(des)
+            }).catch((e)=>{
+
+            })
+        }).catch((e)=>{
+
+        })
+
+    })
+
+
+    hungup.addEventListener('click',()=>{
+        pc1.close()
+        pc2.close()
+        pc1 = null
+        pc2 = null
+    })
+</script>
+</body>
+</html>

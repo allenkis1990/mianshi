@@ -5,17 +5,19 @@
     <title>Title</title>
 </head>
 <body>
-<audio controls id="audio"></audio>
-<video controls id="video"></video>
+<!--<audio controls id="audio" autoplay></audio>-->
+<video controls
+       id="video"
+       autoplay></video>
 <script>
     let con = {
-        audio:true,
-//        video:true//没有video设备的话会报错
+//        audio:true,
+        video:true//没有video设备的话会报错
     }
     navigator.mediaDevices.getUserMedia(con).then((stream)=>{
-        let audio = document.querySelector('#audio')
+//        let audio = document.querySelector('#audio')
         let video = document.querySelector('#video')
-        audio.srcObject = stream
+//        audio.srcObject = stream
         video.srcObject = stream
     })
 </script>
