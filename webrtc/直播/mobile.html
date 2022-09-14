@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+    <style>
+        *{
+            margin:0;padding:0;box-sizing: border-box;
+        }
+        html,body{
+            width: 100vw;height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<!--<button class="qiehuan">qiehuan</button>-->
+
+
+<video id="video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{}' style='width: 90%;height: 90%'>
+    <source id="source" src="http://193.168.251.251:8082/live/hello/index.m3u8" type="application/x-mpegURL"></source>
+</video>
+
+
+
+
+
+<script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.15.0/videojs-contrib-hls.min.js"></script>
+<script>
+  // videojs 简单使用
+  var myVideo = videojs('video', {
+    bigPlayButton: true,
+    textTrackDisplay: false,
+    posterImage: false,
+    errorDisplay: false,
+  })
+  myVideo.play()
+  /*var changeVideo = function (vdoSrc) {
+    if (/\.m3u8$/.test(vdoSrc)) { //判断视频源是否是m3u8的格式
+      myVideo.src({
+        src: vdoSrc,
+        type: 'application/x-mpegURL' //在重新添加视频源的时候需要给新的type的值
+      })
+    } else {
+      myVideo.src(vdoSrc)
+    }
+    myVideo.load();
+    myVideo.play();
+  }
+  var src = 'http://193.168.251.251:8082/live/hello/index.m3u8';
+  document.querySelector('.qiehuan').addEventListener('click', function () {
+    changeVideo(src);
+  })*/
+
+</script>
+</body>
+</html>
+
+
+
+
+

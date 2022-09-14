@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin:0;padding:0;box-sizing: border-box;
+        }
+        html,body{
+            width: 100vw;height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<video controls
+       style="width: 90%;height: 90%"
+       autoplay
+       id="video">
+<!--    <source src="rtmp://localhost:1935/live/hello" id="s" type='rtmp/flv'>-->
+<!--    <source src="http://localhost:8082/live/hello.flv" id="s" type='video/flv'>-->
+</video>
+
+<script src="https://cdn.bootcss.com/flv.js/1.4.0/flv.min.js"></script>
+<script>
+  if (flvjs.isSupported()) {
+    var video = document.getElementById('video');
+    var flvPlayer = flvjs.createPlayer({
+      type: 'flv',
+      url: 'http://193.168.251.251:8082/live/hello.flv'
+    });
+    flvPlayer.attachMediaElement(video);
+    flvPlayer.load();
+    flvPlayer.play();
+  }
+</script>
+</body>
+</html>
+
+
+
+
+
