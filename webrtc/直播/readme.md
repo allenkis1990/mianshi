@@ -5,5 +5,5 @@
 ## pc端：flv.js
 ## 移动端：video.js  videojs-contrib-hls.js  ffmpeg
 
-参考文章：https://blog.csdn.net/yun_bao_2144899870/article/details/107918103
-node-media-server NPM：https://www.npmjs.com/package/node-media-server
+## 参考文章：https://blog.csdn.net/yun_bao_2144899870/article/details/107918103
+## node-media-server NPM：https://www.npmjs.com/package/node-media-server
