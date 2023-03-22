@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function createWorker(f) {
+    var blob = new Blob(['(' + f.toString() +')()']);
+    var url = window.URL.createObjectURL(blob);
+    var worker = new Worker(url);
+    return worker;
+  }
+
+
+  let worker = createWorker(function(){
+    addEventListener('message', function (e) {
+      let arrBuffer = e.data.arrBuffer
+      let blob = new Blob([arrBuffer])
+      blob.text().then((res)=>{
+        console.log(res);
+      })
+    }, false);
+  })
+
+
+  let blob = new Blob(['wahaha'])
+  var reader = new FileReader()
+  reader.readAsArrayBuffer(blob)
+  reader.addEventListener('load',(e)=>{
+    let arrBuffer = e.target.result
+    console.log(arrBuffer,'发送之前');
+    // transferList数组类型必须为 ArrayBuffer, MessagePort and ImageBitmap
+    worker.postMessage({
+      name:'haha',
+      arrBuffer
+    },[arrBuffer])
+    console.log(arrBuffer,'发送之后');
+  })
+
+
+
+  worker.onmessage = function (e) {
+
+  };
+</script>
+</body>
+</html>

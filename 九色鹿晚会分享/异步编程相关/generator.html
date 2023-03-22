@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //next后找下一个yield
+    //遇到yield就会输出
+    // next传参会当作上一个yield的返回值
+
+    // function* a(){
+    //   let a1 = yield 1;
+    //   yield 2 + a1;
+    //   return yield 3;
+    // }
+    // let obj = a()
+    // let a1 = obj.next()
+    // let a2 = obj.next(0)
+    // let a3 = obj.next()
+    // let a4 = obj.next(7)
+    // console.log(a1);
+    // console.log(a2);
+    // console.log(a3);
+    // console.log(a4);
+
+
+    function* a(){
+      let a1 = 2 + (yield 1);
+      let a2 = yield 2 * a1;
+      return a2
+      // yield a2
+    }
+    let obj = a()
+    let a1 = obj.next() //1
+    let a2 = obj.next(0)//4
+    let a3 = obj.next(666)
+
+    console.log(a1);
+    console.log(a2);
+    console.log(a3);
+
+
+
+</script>
+</body>
+</html>

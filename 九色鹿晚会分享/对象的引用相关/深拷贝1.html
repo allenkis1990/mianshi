@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    /*var obj = {name:'allen',age:18,o:{name:'o'}}
+    var objStr = JSON.stringify(obj)
+    console.log(objStr);
+    var objNew = JSON.parse(objStr)
+
+    objNew.age = 28
+    objNew.o.name = 'ooo'
+    console.log(obj);
+    console.log(objNew);*/
+
+
+
+    //function类型的转换会消失
+    /*var obj = {name:'allen',age:18,o:{name:'o'},fn:function(){alert(1)}}
+    var objStr = JSON.stringify(obj)
+    console.log(objStr);
+    var objNew = JSON.parse(objStr)
+
+    console.log(obj);
+    console.log(objNew);*/
+
+
+
+
+
+    var obj = {name:'allen',age:18,o:{name:'o'},fn:function(){alert(1)}}
+    var objStr = JSON.stringify(obj,function(key, val){
+      // console.log(key,123);
+      if(typeof val === 'function'){
+        val = val + ''
+      }
+      return val
+    })
+    console.log(objStr);
+    var objNew = JSON.parse(objStr,function(key,val){
+      // console.log(val,123);
+      if(val.indexOf && val.indexOf('function') > -1){
+        return eval(`(function(){return ${val} })()`)
+      }
+      return val;
+    })
+
+    console.log(obj);
+    console.log(objNew);
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var obj = {name:'allen',age:18}
+    var objNew = obj
+    objNew.haha = 'haha'
+    objNew.age = 28
+    console.log(obj,'obj');
+    console.log(objNew,'objNew');*/
+
+
+
+
+    //浅拷贝
+    /*var obj = {name:'allen',age:18,o:{name:'o'}}
+    var objNew = Object.assign({},obj)
+    objNew.haha = 'haha'
+    objNew.age = 28
+    //只改一层不影响
+    // objNew.o = {name:'ooo'}
+    objNew.o.name = 'ooo'
+    console.log(obj,'obj');
+    console.log(objNew,'objNew');*/
+
+
+
+
+    //函数对象
+    /*var fn = function(){}
+    var fnNew = fn
+    fnNew.haha = 'haha'
+    console.log(fn.haha);
+    console.log(fnNew.haha);*/
+
+
+
+
+    /*var arr = [
+        {num:10},
+        {num:20},
+        {num:30},
+        {num:40},
+        {num:50}
+    ]
+    var arrNew = []
+    arr.forEach((item)=>{
+      arrNew.push(item)
+    })
+    arrNew[0].num = 11
+
+    //不影响
+    // arrNew[0] = {num:11}
+    // arrNew.push({num:999})
+    //不影响
+    console.log(arr);
+    console.log(arrNew);*/
+
+
+
+
+
+    /*var arr = [
+      {num:10},
+      {num:20},
+      {num:30},
+      {num:40},
+      {num:50}
+    ]
+    var arrNew = arr.filter((item)=>{
+      return item.num < 40
+    })
+    arrNew[0].num = 11
+    console.log(arr);
+    console.log(arrNew);*/
+
+
+
+
+    /*//以下基本类型不影响
+
+    /!*var num = 1
+    var numNew = num
+    numNew = 2
+    console.log(num);
+    console.log(numNew);*!/
+
+
+    var arr = [10,20,30,40,50,60,70,80]
+    var arrNew = []
+    arr.forEach((item)=>{
+      arrNew.push(item)
+    })
+    arr[0] = 11
+    // arrNew = []
+    console.log(arr);
+    console.log(arrNew);*/
+
+</script>
+</body>
+</html>

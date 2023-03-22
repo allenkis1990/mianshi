@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--type="app/worker"-->
+<script>
+  //直接地址引入，不能是本地的只能是网络资源并且要是同源策略
+  var worker = new Worker('http://127.0.0.1:8888/script/testWorker.js');
+  worker.postMessage('init')
+  worker.onmessage = function (e) {
+    console.log(e.data);
+  };
+</script>
+</body>
+</html>

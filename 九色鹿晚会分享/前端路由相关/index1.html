@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <a href="javascript:void(0)" onclick="goRouter('/a')">去a页面</a>
+    <a href="javascript:void(0)" onclick="goRouter('/b')">去b页面</a>
+</div>
+<div class="routerView">
+
+</div>
+<script>
+  console.log(location);
+  let routerConfig = {
+    // mode:'hash',
+    mode:'history',
+    routerList:[
+      {path:'/a',content:'我是a的内容'},
+      {path:'/b',content:'我是b的内容'}
+    ]
+  }
+  createRouter()
+  function createRouter(){
+    let {mode,routerList} = routerConfig
+    let {hash,pathname} = location
+    let routerPath = ''
+    if(mode === 'hash'){
+      routerPath = hash.replace('#','')
+    }else{
+      routerPath = pathname
+    }
+    let curRouter = routerList.find((item)=>{
+      return item.path === routerPath
+    })
+    if(curRouter){
+      // console.log(curRouter.content);
+      document.querySelector('.routerView').innerHTML = curRouter.content
+    }
+  }
+
+  function goRouter(path){
+    let url = ''
+    if(routerConfig.mode === 'hash'){
+      url = `${location.origin}/#${path}`
+      location.href = url
+    }else{
+      history.pushState({path:`当前路径：${path}`}, '标题', path);
+      createRouter()
+    }
+  }
+
+  if(routerConfig.mode === 'hash'){
+    window.addEventListener('hashchange',()=>{
+      alert(1)
+      createRouter()
+    })
+  }
+
+
+
+</script>
+</body>
+</html>

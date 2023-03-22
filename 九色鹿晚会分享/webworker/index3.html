@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function createWorker(f) {
+    var blob = new Blob(['(' + f.toString() +')()']);
+    var url = window.URL.createObjectURL(blob);
+    var worker = new Worker(url);
+    return worker;
+  }
+  let worker = createWorker(function(){
+    setInterval(()=>{
+      importScripts('http://127.0.0.1:8888/script/axios.min.js');
+      axios({
+        method:'get',
+        url:'http://127.0.0.1:8888/getData'
+      }).then((res)=>{
+        let data = res.data
+        if(data.count == 6){
+          postMessage('done')
+          //worker内部关闭
+          // close()
+        }
+      })
+
+    },1000)
+  })
+
+
+  worker.onmessage = function (e) {
+    console.log(e.data);
+    if(e.data === 'done'){
+      worker.terminate()
+    }
+  };
+
+</script>
+</body>
+</html>

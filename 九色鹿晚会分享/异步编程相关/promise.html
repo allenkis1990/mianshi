@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function fn(bol){
+      return new Promise((resolve,reject)=>{
+        // fetch('xxx',function(d){
+        //   resolve(d)
+        // })
+        setTimeout(()=>{
+          if(bol){
+            resolve('resolve!!!!!!')
+          }else{
+            reject('reject!!!!!!')
+          }
+        },2000)
+      })
+    }
+
+
+    // fn(true).finally(()=>{
+    //   console.log(1);
+    // })
+
+
+    fn(true).
+    then((data)=>{
+      console.log(data,1);
+      console.log(111);
+    }).
+    then((data)=>{
+      console.log(data);
+    })
+
+    // fn(false).finally((data)=>{
+    //   console.log(data);
+    // })
+</script>
+</body>
+</html>
