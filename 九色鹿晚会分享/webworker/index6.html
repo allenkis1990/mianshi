@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function createWorker(f) {
+    var blob = new Blob(['(' + f.toString() +')()']);
+    var url = window.URL.createObjectURL(blob);
+    var worker = new Worker(url);
+    return worker;
+  }
+
+  function buff2str(ab){
+    return String.fromCharCode.apply(null,new Uint8Array(ab))
+  }
+
+  let worker = createWorker(function(){
+    addEventListener('message', function (e) {
+      let shareBuff = e.data.shareBuff
+      let buffView = new Uint8Array(shareBuff)
+      buffView[0] = 78
+    }, false);
+  })
+
+  let str = 'wahaha'
+  let shareBuff = new SharedArrayBuffer(str.length * 2)
+  let shareBufView = new Uint8Array(shareBuff)
+  for(var i=0;i<str.length;i++){
+    shareBufView[i] = str.charCodeAt(i)
+  }
+
+  console.log(buff2str(shareBuff),'改前');
+  setTimeout(()=>{
+    console.log(buff2str(shareBuff),'改后');
+  },2000)
+
+  worker.postMessage({
+    name:'haha',
+    shareBuff
+  })
+</script>
+</body>
+</html>

@@ -23,6 +23,7 @@ setRouter('/index2')
 setRouter('/index3')
 setRouter('/index4')
 setRouter('/index5')
+setRouter('/index6')
 
 
 
