@@ -6,20 +6,21 @@
 </head>
 <body>
 <!--type="app/worker"-->
-<script id="worker">
+<!--<script id="worker">
   addEventListener('message', function (e) {
     postMessage('worker发送消息给父亲22222222222222');
   }, false);
-</script>
+</script>-->
 <script>
 
   //读取script标签内容
-  var blob = new Blob([document.querySelector('#worker').textContent]);
-  var url = window.URL.createObjectURL(blob);
-  var worker = new Worker(url);
+  // var blob = new Blob([document.querySelector('#worker').textContent]);
+  // var url = window.URL.createObjectURL(blob);
+  // console.log(url);
+  // var worker = new Worker(url);
 
   //创建函数方式
-  /*function createWorker(f) {
+  function createWorker(f) {
     var blob = new Blob(['(' + f.toString() +')()']);
     var url = window.URL.createObjectURL(blob);
     var worker = new Worker(url);
@@ -29,7 +30,7 @@
     addEventListener('message', function (e) {
       postMessage('worker发送消息给父亲2222222222222');
     }, false);
-  })*/
+  })
 
 
 

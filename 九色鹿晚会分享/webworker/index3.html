@@ -13,8 +13,8 @@
     return worker;
   }
   let worker = createWorker(function(){
+    importScripts('http://127.0.0.1:8888/script/axios.min.js');
     setInterval(()=>{
-      importScripts('http://127.0.0.1:8888/script/axios.min.js');
       axios({
         method:'get',
         url:'http://127.0.0.1:8888/getData'
@@ -32,8 +32,8 @@
 
 
   worker.onmessage = function (e) {
-    console.log(e.data);
     if(e.data === 'done'){
+      console.log(e.data);
       worker.terminate()
     }
   };
