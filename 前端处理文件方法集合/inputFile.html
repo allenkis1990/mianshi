@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="file" multiple>
+<!--<script src="../jquery-1.9.1.min.js"></script>-->
+<script src="https://cdn.1717youxue.com/static/lib/bootstrap/js/jquery-3.4.1.min.js"></script>
+<script>
+  var xhr_provider = function(onprogress) {
+    return function(){
+      var xhr = $.ajaxSettings.xhr();
+      if(onprogress && xhr.upload) {
+        xhr.upload.addEventListener('progress', onprogress, false);
+      }
+      return xhr;
+    }
+  };
+  let file = document.getElementById('file')
+  file.addEventListener('change',function(e){
+    console.log(e.target.files);
+    if(e.target.files.length > 5){
+      alert('每次最多只能传5张图片')
+      file.value = ''
+      return
+    }
+
+    let f = e.target.files[0]
+    let formData = new FormData()
+    formData.append('file',f)
+
+    $.ajax({
+      url:'http://localhost:8888/upload',
+      type: 'post',
+      processData:false,//(让jQuery不去处理发送的数据)
+      contentType: false,//（让jQuery不去设置Content-Type请求头）
+      data:formData,
+      xhr:xhr_provider(function(e){
+        alert(2)
+      }),
+      // success(data){
+      //   console.log(data);
+      // },
+      // xhr:xhrOnProgress(function(e){
+      //   debugger
+      //   var percent=e.loaded / e.total;//计算百分比
+      // })
+    })
+
+
+
+    // setTimeout(()=>{
+    //   file.value = ''
+    // },1000)
+  })
+</script>
+</body>
+</html>

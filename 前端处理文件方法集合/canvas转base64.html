@@ -34,6 +34,29 @@
 //            })
         })
     }
+
+
+    // 参数解释
+    /*let userAnswerBigImgObj = this.userAnswerBigImgObj
+    var image = new Image()
+    image.src = userAnswerBigImgObj.url
+    image.crossOrigin = '*'
+    image.addEventListener('load',function(e){
+      var canvas = document.createElement('canvas')
+      canvas.width = w
+      canvas.height = h
+      var context = canvas.getContext('2d')
+      //drawImage参数：1.图片对象 2.从图片上X开始 3.从图片上Y开始  4.截取的宽 5.截取的高 6.对应canvas的X 7.对应canvas的Y 8.截取canvas的宽 9.截取canvas的高
+      context.drawImage(image,x,y,w,h,0,0,w,h)
+      var base64 = canvas.toDataURL('image/png')
+      cb(base64)
+      //解决图片跨域canvas报错
+      // imgDom.setAttribute('crossOrigin','*')
+      // imgDom.src = userAnswerBigImgObj.url
+      // imgDom.width = userAnswerBigImgObj.width
+      // imgDom.height = userAnswerBigImgObj.height
+
+    })*/
 </script>
 </body>
 </html>

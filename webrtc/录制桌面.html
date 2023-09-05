@@ -43,7 +43,8 @@
             video:true//没有video设备的话会报错
         }
         navigator.mediaDevices.getDisplayMedia(con).then((s)=>{
-            let originVideo = document.querySelector('#originVideo')
+          console.log(s);
+          let originVideo = document.querySelector('#originVideo')
             stream = s
             originVideo.srcObject = s
         })
@@ -101,7 +102,9 @@
         let blob = new Blob(buf,{type:'video/webm'})
         let recordVideo = document.querySelector('#recordVideo')
         let preview = document.querySelector('.preview')
-        recordVideo.src = window.URL.createObjectURL(blob)
+      let u = window.URL.createObjectURL(blob)
+        recordVideo.src = u
+      console.log(u);
         recordVideo.autoplay = true
         recordVideo.controls = true
         preview.style.display = 'block'

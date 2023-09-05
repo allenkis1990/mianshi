@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  //基础用法
+  /*class Fn{
+    constructor(name) {
+      this.name = name
+      this.age = 18
+    }
+    med(){
+      alert(1)
+    }
+  }
+
+  let obj = new Fn('allen')
+  obj.med()
+  console.log(obj);*/
+
+
+  //类的继承
+  class Parent{
+    static st = 123
+    constructor() {
+      this.name = 'parent'
+      this.age = 58
+    }
+    say(){
+      console.log('parent');
+    }
+  }
+  class Child extends Parent{
+    static st = 99
+    constructor() {
+      super();
+      // this.name = 'child'
+      // this.age = 28
+    }
+    // say(){
+    //   console.log('child');
+    // }
+    static fn(){
+
+    }
+    a = 1;
+    med(){
+      console.log(1);
+    }
+  }
+
+  Child.fn()
+
+
+  console.log(Parent.st,'Parent st');
+  console.log(Child.st,'child st');
+
+  let c = new Child()
+  console.log(c);
+  c.say()
+
+
+  let p = new Parent()
+  console.log(p);
+  p.say()
+</script>
+</body>
+</html>

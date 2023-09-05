@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{box-sizing: border-box;padding:0;margin:0}
+        .left {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .white {
+            width: 136px;
+            height: 136px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 10;
+            background-color: #fff;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+<div class="left" id="box">
+    <div class="white"></div>
+    <canvas id="canvas"></canvas>
+</div>
+<script>
+  var arr =  [
+    {
+      color: '#7999FE',
+      num: '20',
+      flownum: '20',
+    },
+    {
+      color: '#6BDE9D',
+      num: '2',
+      flownum: '2',
+    },
+    {
+      color: '#C775E4',
+      num: '1',
+      flownum: '1',
+    },
+    {
+      color: '#FF7E6A',
+      num: '1',
+      flownum: '1',
+    },
+    {
+      color: '#D85050',
+      num: '1',
+      flownum: '1',
+    }
+  ]
+
+  var canvas = document.getElementById('canvas')
+  var ctx = canvas.getContext('2d')
+  var box = document.getElementById('box')
+  // 设置圆点 x  y   中心点
+  // 和canvas的宽高对应
+  var w = box.clientWidth
+  var h = box.clientHeight
+  canvas.width = w
+  canvas.height = h
+  console.log(w, h,3333);
+  let num = {
+    x: Math.floor(w/2),
+    y: Math.floor(h/2)
+  };
+  // 获取数据 各类项的个数
+  let termarr = [];
+  for (let t = 0; t < arr.length; t++) {
+    // flownum
+    let thisterm = Number(arr[t].flownum)
+    let thiscolor = arr[t].color
+    termarr.push({
+      data: thisterm,
+      color: thiscolor
+    })
+  }
+  console.log(termarr)
+  // 设置总数
+  let sign = 0;
+  for (var s = 0; s < termarr.length; s++) {
+    sign += termarr[s].data
+  }
+  //设置半径
+  //半径控制圆的大小
+  // let radius = w/2;
+  let radius = Math.floor(w/2);
+  for (var i = 0; i < termarr.length; i++) {
+    var start = 0;
+    // 开始绘制
+    ctx.beginPath()
+    if (i > 0) {
+      for (var j = 0; j < i; j++) {
+        //从上一个多少度开始
+        start += termarr[j].data / sign * 2 * Math.PI
+      }
+    }
+    var end = start + termarr[i].data / sign * 2 * Math.PI
+    ctx.arc(num.x, num.y, radius, start, end);
+    ctx.lineWidth = 2
+    ctx.lineTo(num.x, num.y);
+    ctx.strokeStyle = '#fff'
+    ctx.fillStyle = termarr[i].color
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  }
+</script>
+</body>
+</html>

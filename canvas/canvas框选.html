@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas width="500" height="500" id="ca" style="background: red"></canvas>
+<script src="../jquery-1.9.1.min.js"></script>
+<script>
+  function setPTZZoom(c,type){
+    if(type==='zoom_part'){
+      console.log('放大');
+    }else if (type==='goto_point'){
+      console.log('双击')
+    }else{
+      console.log('缩小');
+    }
+  }
+  PaintDashRect('ca')
+  function PaintDashRect(id, child) {
+    var canvas = document.getElementById(id);
+    var ctx = canvas.getContext('2d');
+    var p1 = {};
+    var p2 = {};
+    var data = {}; //按10000*10000转换后的值
+    var cWidth = $("#"+id).width();
+    var cHeight = $("#"+id).height();
+    // 设置画布的宽高，不然百分比会对绘图效果造成影响 还有一种方式是直接在画布上设置宽高
+    canvas.width = cWidth;
+    canvas.height = cHeight;
+
+    console.log(cWidth,cHeight)
+    var _handelFun = {
+      init: function()
+      {
+        canvas.addEventListener("dblclick", _handelFun.dblclickFun,false);
+        canvas.addEventListener("mousedown", _handelFun.mousedownFun,false);
+        document.addEventListener("mouseup", _handelFun.mouseupFun,false); // 鼠标移出canvas外也监听抬起事件
+      },
+      dblclickFun: function(e) {
+        // console.log("双击")
+        console.log(data)
+        setPTZZoom(child,"goto_point",data);
+      },
+      mousedownFun: function(e) {
+        p1.x = e.offsetX;
+        p1.y = e.offsetY;
+        p1.width = 0;
+        p1.height = 0;
+        // console.log('按下')
+        canvas.addEventListener("mousemove",_handelFun.myDrect);
+      },
+      mouseupFun: function(e) {
+        // console.log('抬起')
+        data.x = parseInt((10000*p1.x)/cWidth);
+        data.y = parseInt((10000*p1.y)/cHeight);
+        data.width = parseInt((10000*p1.width)/cWidth);
+        data.height = parseInt((10000*p1.height)/cHeight);
+
+        if (p1.width == 0 || p1.height == 0)
+        {
+          ctx.clearRect(0,0,cWidth,cHeight);
+          canvas.removeEventListener("mousemove",_handelFun.myDrect);
+          return;
+        }
+        if (p2.x > p1.x && p2.y > p1.y) {
+          // console.log("框选放大",data)
+          setPTZZoom(child,"zoom_part",data);
+        }else
+        {
+          // console.log("框选缩小",data)
+          setPTZZoom(child,"zoom_whole",data);
+        }
+        ctx.clearRect(0,0,cWidth,cHeight);
+        canvas.removeEventListener("mousemove",_handelFun.myDrect);
+      },
+      myDrect: function(e) {
+        ctx.clearRect(0,0,cWidth,cHeight);
+        ctx.beginPath();
+        p2.x = e.offsetX;
+        p2.y = e.offsetY;
+        p1.width = Math.abs(p1.x-p2.x);
+        p1.height = Math.abs(p1.y-p2.y);
+        ctx.strokeStyle = '#eee';
+
+
+        if(p2.x>=p1.x){
+          if(p2.y>=p1.y){
+            ctx.rect(p1.x,p1.y,p1.width,p1.height);
+          }else{
+            ctx.rect(p1.x,p1.y,p1.width,-p1.height);
+          }
+        }else{
+          if(p2.y>=p1.y){
+            ctx.rect(p1.x,p1.y,-p1.width,p1.height);
+          }else{
+            ctx.rect(p1.x,p1.y,-p1.width,-p1.height);
+          }
+        }
+        ctx.setLineDash([5]);// 绘制虚线
+        ctx.stroke();
+        ctx.save();
+      }
+    }
+    _handelFun.init();
+  }
+</script>
+</body>
+</html>

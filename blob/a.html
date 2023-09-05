@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{background: red}
+        .loading{
+            width: 100px;
+            height: 100px;
+            background: url("./loading.gif") no-repeat center center;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">btn1</button>
+<button id="btn2">btn2</button>
+<div class="loading"></div>
+<script src="./amr.js"></script>
+<script>
+  let newBlob = null
+  var amr = new BenzAMRRecorder();
+  let url = 'https://dev-resource.thedeer.cn/pre/resource-testing/audio/722d7cb8c3c69693e564fa9511dfd010h7hmphkcwwl9x2kn.mp3'
+  /*fetch(url,{method:'GET'}).then((res)=>{
+    return res.arrayBuffer()
+  }).then((res)=>{
+    newBlob = new Blob([res],{type:'audio/amr'})
+    amr.initWithBlob(newBlob).then(function(res) {
+
+    });
+  })*/
+  amr.initWithUrl(url).then(function(res) {
+
+  });
+
+
+    document.getElementById('btn').addEventListener('click',function(){
+      // var amr = new BenzAMRRecorder();
+      // amr.setPosition(0);
+      amr.stop();
+      amr.play();
+    })
+
+  document.getElementById('btn2').addEventListener('click',function(){
+    // var amr = new BenzAMRRecorder();
+    amr.stop();
+  })
+  function a(){
+    return new Promise((resolve)=>{
+      setTimeout(()=>{
+        resolve('a')
+        console.log('a')
+      },3000)
+    })
+  }
+  function b(){
+    return new Promise((resolve)=>{
+      setTimeout(()=>{
+        resolve('b')
+        console.log('b')
+      },2000)
+    })
+  }
+  function c(){
+    return new Promise((resolve)=>{
+      setTimeout(()=>{
+        resolve('c')
+        console.log('c')
+      },1000)
+    })
+  }
+  let nd = new Date()
+  Promise.all([a(),b(),c()]).then((res)=>{
+    console.log(res);
+    console.log(new Date().getTime() - nd.getTime())
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;padding:0;
+        }
+        .box{width: 800px;height: 800px;background: red;position: relative;margin:40px auto;}
+        .kuang{position: absolute;border:1px solid #fff;}
+        button{
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+        button[disabled=true]{
+            cursor: not-allowed;
+        }
+        .control-group{
+            width: 800px;
+            margin:0 auto;
+        }
+        .moving .kuang{
+            cursor: move;
+        }
+        .closeBtn{
+            display: none;
+            position: absolute;
+            top:3px;
+            right:3px;
+            cursor: pointer;
+            font-size: 20px;
+            color:deepskyblue;
+        }
+        .stretchFour{
+            width: 15px;
+            height: 15px;
+            background: #666;
+            position: absolute;
+            display: none;
+            cursor: pointer;
+        }
+        .stretchLeftTop{
+            left:-7px;
+            top:-7px;
+        }
+        .stretchLeftBottom{
+            left:-7px;
+            bottom:-7px;
+        }
+        .stretchRightTop{
+            right:-7px;
+            top:-7px;
+        }
+        .stretchRightBottom{
+            right:-7px;
+            bottom:-7px;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box"></div>
+<div class="control-group">
+    <button id="draw">开始画</button>
+    <button id="move">开始移动</button>
+    <button id="delete">开始删除</button>
+    <button id="stretch">开始伸缩</button>
+</div>
+<script src="./jquery-1.9.1.min.js"></script>
+<script>
+  let parentBox = document.querySelector('.box')
+  let parentRect = {
+    x1:parentBox.offsetLeft,
+    y1:parentBox.offsetTop,
+    x2:parentBox.offsetLeft+parentBox.offsetWidth,
+    y2:parentBox.offsetTop+parentBox.offsetHeight
+  }
+  let boxMapper = {}
+  let controlObj = {
+    drawing:false,
+    moving:false,
+    deleting:false,
+    stretching:false
+  }
+  let drawBtn = document.getElementById('draw')
+  let moveBtn = document.getElementById('move')
+  let deleteBtn = document.getElementById('delete')
+  let stretchBtn = document.getElementById('stretch')
+  //画
+  drawBtn.addEventListener('click',function(e){
+    e.stopPropagation()
+    controlObj.drawing = !controlObj.drawing
+    if(controlObj.drawing){
+      drawBtn.innerText = '停止画'
+      moveBtn.setAttribute('disabled',true)
+      deleteBtn.setAttribute('disabled',true)
+      stretchBtn.setAttribute('disabled',true)
+    }else{
+      drawBtn.innerText = '开始画'
+      moveBtn.removeAttribute('disabled')
+      deleteBtn.removeAttribute('disabled')
+      stretchBtn.removeAttribute('disabled')
+    }
+  })
+
+  //移动
+  moveBtn.addEventListener('click',function(e){
+    e.stopPropagation()
+    controlObj.moving = !controlObj.moving
+    if(controlObj.moving){
+      $(parentBox).addClass('moving')
+      moveBtn.innerText = '停止移动'
+      drawBtn.setAttribute('disabled',true)
+      deleteBtn.setAttribute('disabled',true)
+      stretchBtn.setAttribute('disabled',true)
+    }else{
+      $(parentBox).removeClass('moving')
+      moveBtn.innerText = '开始移动'
+      drawBtn.removeAttribute('disabled')
+      deleteBtn.removeAttribute('disabled')
+      stretchBtn.removeAttribute('disabled')
+    }
+  })
+
+  //删除
+  deleteBtn.addEventListener('click',function(e){
+    e.stopPropagation()
+    controlObj.deleting = !controlObj.deleting
+    if(controlObj.deleting){
+      deleteBtn.innerText = '停止删除'
+      drawBtn.setAttribute('disabled',true)
+      moveBtn.setAttribute('disabled',true)
+      stretchBtn.setAttribute('disabled',true)
+      $('.closeBtn').show()
+    }else{
+      deleteBtn.innerText = '开始删除'
+      drawBtn.removeAttribute('disabled')
+      moveBtn.removeAttribute('disabled')
+      stretchBtn.removeAttribute('disabled')
+      $('.closeBtn').hide()
+    }
+  })
+
+  //伸缩
+  stretchBtn.addEventListener('click',function(e){
+    e.stopPropagation()
+    controlObj.stretching = !controlObj.stretching
+    if(controlObj.stretching){
+      stretchBtn.innerText = '停止伸缩'
+      drawBtn.setAttribute('disabled',true)
+      moveBtn.setAttribute('disabled',true)
+      deleteBtn.setAttribute('disabled',true)
+      $('.stretchFour').show()
+    }else{
+      stretchBtn.innerText = '开始伸缩'
+      drawBtn.removeAttribute('disabled')
+      moveBtn.removeAttribute('disabled')
+      deleteBtn.removeAttribute('disabled')
+      $('.stretchFour').hide()
+    }
+  })
+
+  class PaintRect {
+    constructor(className,rectObj,parentClassPath) {
+      this.className = className
+      this.parentClassPath = parentClassPath || ''
+      this.canvas = document.querySelector(`.${className}`);
+      this.closeBtn = this.canvas.querySelector('.closeBtn')
+      this.stretchFour = $(this.canvas).find('.stretchFour')
+      console.log(this.parentClassPath,33);
+      this.mouseMoveFn = null
+      this.mouseDownFn = null
+      this.mouseUpFn = null
+      this.closeFn = null
+      this.stretchWhich = ''
+      this.p1 = {}
+      this.p2 = {}
+      this.rectObj = rectObj
+      boxMapper[className] = boxMapper[className] || {}
+      boxMapper[className].rectObj = rectObj
+      boxMapper[className].parentClassPath = this.parentClassPath
+      boxMapper[className].canvas = this.canvas
+      this.isCrossLine = false
+      this.init()
+    }
+    init()
+    {
+      this.mouseDownFn = this.mousedownFun.bind(this)
+      this.mouseUpFn = this.mouseupFun.bind(this)
+
+      this.canvas.addEventListener("mousedown", this.mouseDownFn,false);
+
+      if(this.closeBtn){
+        this.closeFn = this.closeFun.bind(this)
+        this.closeBtn.addEventListener('click',this.closeFn,false)
+      }
+
+      if(this.stretchFour && this.stretchFour.length){
+        this.stretchFour.off('mousedown')
+        this.stretchFour.on('mousedown',this.stretchMousedown.bind(this))
+      }
+    }
+    move(distanceX,distanceY,curRect){
+      console.log(this.canvas,distanceX,distanceY,3333);
+      let styleLeft = parseInt(this.canvas.style.left)
+      let styleTop = parseInt(this.canvas.style.top)
+      this.canvas.style.left = styleLeft + distanceX + 'px'
+      this.canvas.style.top = styleTop + distanceY + 'px'
+      this.rectObj = curRect
+      boxMapper[this.className].rectObj = curRect
+    }
+    changeRectSize(width,height,left,top,curRect){
+      console.log(width, height,'hhh');
+      let div = this.canvas
+      let styleWidth = parseInt(div.style.width)
+      let styleHeight = parseInt(div.style.height)
+      let styleLeft = parseInt(div.style.left)
+      let styleTop = parseInt(div.style.top)
+
+
+      let divWidth = styleWidth + width
+      let divHeight = styleHeight + height
+
+      //最小只能缩到20宽高
+      if(divWidth >= 20 && divHeight >= 20){
+        div.style.width = divWidth + 'px';
+        div.style.height = divHeight + 'px';
+
+        div.style.left = styleLeft + left + 'px';
+        div.style.top = styleTop + top + 'px';
+        this.rectObj = curRect
+        boxMapper[this.className].rectObj = curRect
+      }else{
+        console.log('缩放到太小了');
+      }
+    }
+    rect(left,top,width,height){
+      // console.log(this.className,'className');
+      let div = document.createElement('div');
+      div.setAttribute('rectName',`${this.childClassName}`);
+      div.setAttribute('class',`kuang ${this.childClassName}`);
+      div.style.left = left + 'px';
+      div.style.top = top + 'px';
+      div.style.width = width + 'px';
+      div.style.height = height + 'px';
+
+      //删除矩形按钮
+      let closeBtn = document.createElement('div');
+      closeBtn.innerText = 'x'
+      closeBtn.setAttribute('class',`closeBtn`);
+      div.appendChild(closeBtn)
+
+
+
+      //伸缩矩形按钮(四个角)
+      let stretchLeftTop = document.createElement('div');
+      stretchLeftTop.setAttribute('class',`stretchFour stretchLeftTop`);
+      let stretchLeftBottom = document.createElement('div');
+      stretchLeftBottom.setAttribute('class',`stretchFour stretchLeftBottom`);
+      let stretchRightTop = document.createElement('div');
+      stretchRightTop.setAttribute('class',`stretchFour stretchRightTop`);
+      let stretchRightBottom = document.createElement('div');
+      stretchRightBottom.setAttribute('class',`stretchFour stretchRightBottom`);
+      div.appendChild(stretchLeftTop)
+      div.appendChild(stretchLeftBottom)
+      div.appendChild(stretchRightTop)
+      div.appendChild(stretchRightBottom)
+
+      // !(width < 10 || height < 10 || this.isCrossLine) && this.canvas.appendChild(div);
+      !(width < 10 || height < 10 || this.isCrossLine) && parentBox.appendChild(div);
+    }
+
+    closeFun(e){
+      e.stopPropagation()
+      let kuang = $(this.closeBtn).parent('.kuang')
+      let rectName = kuang.attr('rectName')
+      this.closeBtn.removeEventListener('click',this.closeFn)
+      //根据路劲找是否有需要删除的儿子
+      let needDeleteChilds = Object.keys(boxMapper).filter((key)=>{
+        let item = boxMapper[key]
+        return typeof item !== 'function' && item.parentClassPath.indexOf(rectName) > -1
+      })
+      console.log(needDeleteChilds,999999);
+      needDeleteChilds.forEach((key)=>{
+        deleteEleSome(key)
+      })
+
+
+
+      //移除被删除kuang以及其子孙的相关
+      function deleteEleSome(rectName){
+        console.log(rectName,'delete');
+        let kuangObj = boxMapper[rectName]
+        kuangObj.mouseMoveFn && parentBox.removeEventListener("mousemove",kuangObj.mouseMoveFn);
+        boxMapper[rectName].canvas.remove()
+        delete boxMapper[rectName]
+      }
+      deleteEleSome(rectName)
+      kuang.remove()
+    }
+
+    rmMouseMoveEvent(){
+      // this.canvas.removeEventListener("mousemove",this.mouseMoveFn);
+      parentBox.removeEventListener("mousemove",this.mouseMoveFn);
+      this.mouseMoveFn = null
+      boxMapper[this.className].mouseMoveFn = null
+    }
+    //画框事件
+    drawMousedown(e){
+      console.log(e,'ev');
+      clearAllMouseMoveFn()
+      let _this = this
+      let time = new Date().getTime()
+      this.childClassName = `kuang_${time}`
+
+      this.p1.x = e.clientX - parentBox.offsetLeft;
+      this.p1.y = e.clientY - parentBox.offsetTop;
+
+      this.p1.clientX = e.clientX;
+      this.p1.clientY = e.clientY;
+      // console.log(e,'mouseDown');
+      this.p1.width = 0;
+      this.p1.height = 0;
+
+      this.isCrossLine = false
+
+      // console.log('按下')
+      this.mouseMoveFn = this.mousemoveFun.bind(this)
+
+      // this.canvas.addEventListener("mousemove",this.mouseMoveFn);
+      parentBox.addEventListener("mousemove",this.mouseMoveFn);
+      boxMapper[_this.className].canvas = _this.canvas
+      boxMapper[_this.className].mouseMoveFn = _this.mouseMoveFn
+      boxMapper.mouseUpFn = _this.mouseUpFn
+    }
+    drawMouseup(e){
+      if (this.p1.width < 10 || this.p1.height < 10 || this.isCrossLine)
+      {
+        // this.canvas.removeEventListener("mousemove",this.mouseMoveFn);
+        this.rmMouseMoveEvent()
+        // console.log(this.p1.width, this.p1.height,9900);
+        return;
+      }
+      if (this.p2.clientX > this.p1.clientX && this.p2.clientY > this.p1.clientY) {
+        // console.log("框选放大",data)
+      }else
+      {
+        // console.log("框选缩小",data)
+      }
+      console.log(`x1:${this.p1.clientX}\n`, `y1:${this.p1.clientY}\n`,`x2:${this.p2.clientX}\n`,`y2:${this.p2.clientY}`);
+      //统一按照从左到右画，如果是右到左的也统一转成从左到右
+      let x1 = Math.min(this.p1.clientX,this.p2.clientX)
+      let x2 = Math.max(this.p1.clientX,this.p2.clientX)
+      let y1 = Math.min(this.p1.clientY,this.p2.clientY)
+      let y2 = Math.max(this.p1.clientY,this.p2.clientY)
+      let rectObj = {
+        x1,
+        y1,
+        x2,
+        y2
+      }
+      this.rmMouseMoveEvent()
+      new PaintRect(`${this.childClassName}`,rectObj,`${this.parentClassPath}${this.parentClassPath?"/":""}${this.className}`)
+      console.log(this.childClassName);
+    }
+    drawMousemove(e){
+      // console.log(e.currentTarget.className,'target');
+      let _this = this
+      let movingDiv = document.querySelector(`.${_this.childClassName}`)
+      movingDiv && movingDiv.remove()
+      _this.p2.x = e.clientX - parentBox.offsetLeft;
+      _this.p2.y = e.clientY - parentBox.offsetTop;
+
+      _this.p2.clientX = e.clientX;
+      _this.p2.clientY = e.clientY;
+      // console.log(`p1x:${_this.p1.x}\n`, `p1y:${_this.p1.y}\n`,`p2x:${_this.p2.x}\n`, `p2y:${_this.p2.y}`);
+      // _this.p1.width = Math.abs(_this.p1.x-_this.p2.x);
+      // _this.p1.height = Math.abs(_this.p1.y-_this.p2.y);
+
+      _this.p1.width = Math.abs(_this.p1.clientX-_this.p2.clientX);
+      _this.p1.height = Math.abs(_this.p1.clientY-_this.p2.clientY);
+
+      let x1 = Math.min(_this.p1.clientX,_this.p2.clientX)
+      let x2 = Math.max(_this.p1.clientX,_this.p2.clientX)
+      let y1 = Math.min(_this.p1.clientY,_this.p2.clientY)
+      let y2 = Math.max(_this.p1.clientY,_this.p2.clientY)
+
+      this.isCrossLine = this.isRectsCrossLine({
+        x1,
+        y1,
+        x2,
+        y2
+      })
+      console.log(this.isCrossLine,99999);
+
+
+      if(_this.p2.clientX>=_this.p1.clientX){
+        if(_this.p2.clientY>=_this.p1.clientY){
+          //右下
+          console.log('右下');
+          _this.rect(_this.p1.x,_this.p1.y,_this.p1.width,_this.p1.height)
+        }else{
+          //右上
+          console.log('右上');
+          _this.rect(_this.p1.x,_this.p1.y - _this.p1.height,_this.p1.width,_this.p1.height)
+        }
+      }else{
+        if(_this.p2.clientY>=_this.p1.clientY){
+          //左下
+          console.log('左下');
+          _this.rect(_this.p1.x - _this.p1.width,_this.p1.y,_this.p1.width,_this.p1.height)
+        }else{
+          //左上
+          console.log('左上');
+          _this.rect(_this.p1.x - _this.p1.width,_this.p1.y - _this.p1.height,_this.p1.width,_this.p1.height)
+        }
+      }
+    }
+
+
+    //移动事件
+    moveMousedown(e){
+      clearAllMouseMoveFn()
+      //因为box元素也被注册了Mousedown事件，但是拖动只需要小块生效，所以排除box元素
+      let className = e.target.className
+      if(className.indexOf('box') > -1){
+        return
+      }
+      let _this = this
+      // console.log(boxMapper,333);
+      this.p1.moveX = e.clientX;
+      this.p1.moveY = e.clientY;
+      //
+      this.mouseMoveFn = this.mousemoveFun.bind(this)
+      // this.canvas.addEventListener("mousemove",this.mouseMoveFn);
+      parentBox.addEventListener("mousemove",this.mouseMoveFn);
+      boxMapper[_this.className].canvas = _this.canvas
+      boxMapper[_this.className].mouseMoveFn = _this.mouseMoveFn
+      boxMapper.mouseUpFn = _this.mouseUpFn
+    }
+    moveMouseup(e){
+      //拖动的时候顶层box不需要被拖动
+      // let className = e.target.className
+      // if(className.indexOf('box') > -1){
+      //   return
+      // }
+
+      this.rmMouseMoveEvent()
+    }
+    moveMousemove(e){
+      //拖动的时候顶层box不需要被拖动
+      // let className = e.target.className
+      // if(className.indexOf('box') > -1){
+      //   return
+      // }
+      console.log(e,333333333);
+      let _this = this
+
+      _this.p2.moveX = e.clientX;
+      _this.p2.moveY = e.clientY;
+
+      let moveLeft = _this.p2.moveX-_this.p1.moveX
+      let moveTop = _this.p2.moveY-_this.p1.moveY
+      let moveSpeed = 30
+      let distanceX = parseInt(moveLeft/moveSpeed)
+      let distanceY = parseInt(moveTop/moveSpeed)
+      let curRect = {
+        x1:_this.rectObj.x1 + distanceX,
+        y1:_this.rectObj.y1 + distanceY,
+        x2:_this.rectObj.x2 + distanceX,
+        y2:_this.rectObj.y2 + distanceY
+      }
+      this.isCrossLine = this.isRectsCrossLine(curRect,this.className)
+      console.log(this.isCrossLine,'mmmmm');
+      !this.isCrossLine && this.move(distanceX,distanceY,curRect)
+    }
+
+
+    //伸缩
+    stretchMousedown(e){
+      e.stopPropagation()
+      e.preventDefault()
+      if(!controlObj.stretching){
+        return
+      }
+      $(document).off('mousemove')
+
+      this.p1.x = e.clientX - parentBox.offsetLeft;
+      this.p1.y = e.clientY - parentBox.offsetTop;
+
+      this.p1.clientX = e.clientX;
+      this.p1.clientY = e.clientY;
+
+      let $this = $(this)
+      this.mouseMoveFn = this.mousemoveFun.bind(this)
+      $(document).on('mousemove',this.mouseMoveFn)
+      boxMapper.mouseUpFn = this.mouseUpFn
+      // console.log(e.target.className,999999);
+      let stretchWhich = e.target.className.replace(/^stretchFour\s+/ig,'')
+      this.stretchWhich = stretchWhich
+    }
+    stretchMousemove(e){
+      e.preventDefault()
+      let _this = this
+      _this.p2.clientX = e.clientX;
+      _this.p2.clientY = e.clientY;
+      // console.log(this.p1.clientX, this.p1.clientY,'p1');
+      // console.log(this.p2.clientX, this.p2.clientY,'p2');
+      // console.log(Math.abs(_this.p1.clientX-_this.p2.clientX), Math.abs(_this.p1.clientY-_this.p2.clientY),'p1-p2');
+
+      _this.p2.x = e.clientX - parentBox.offsetLeft;
+      _this.p2.y = e.clientY - parentBox.offsetTop;
+
+      _this.p1.width = Math.abs(_this.p1.clientX-_this.p2.clientX);
+      _this.p1.height = Math.abs(_this.p1.clientY-_this.p2.clientY);
+
+      // let obj = {w:0,h:0,l:0,t:0,x1:0,y1:0,x2:0,y2:0}
+      let obj = this.getMoveDirectionObj(this.stretchWhich)
+      let speed = 30
+      let width = parseInt(_this.p1.width / speed)
+      let height = parseInt(_this.p1.height / speed)
+
+      let distanceWidth = obj.w * width
+      let distanceHeight = obj.h * height
+
+      let distanceLeft = parseInt(obj.l * width)
+      let distanceTop = parseInt(obj.t * height)
+      console.log(_this.rectObj,999000);
+      let curRect = {
+        x1:(_this.rectObj.x1 + obj.x1 * width),
+        y1:(_this.rectObj.y1 + obj.y1 * height),
+        x2:(_this.rectObj.x2 + obj.x2 * width),
+        y2:(_this.rectObj.y2 + obj.y2 * height)
+      }
+      console.log(obj.x1, obj.y1,obj.x2,obj.y2,width,height,9900);
+      console.log(this.rectObj,boxMapper,curRect,'rectObj');
+      this.isCrossLine = this.isRectsCrossLine(curRect,this.className)
+      console.log(boxMapper,this.className,obj.x2*width,obj.y2*height,33333);
+      console.log(this.isCrossLine,'mmmmm');
+      console.log(distanceLeft, distanceTop,888999);
+      !this.isCrossLine && this.changeRectSize(distanceWidth,distanceHeight,distanceLeft,distanceTop,curRect)
+    }
+    stretchMouseup(e){
+      e.preventDefault()
+      $(document).off('mousemove')
+      this.stretchWhich = ''
+      this.mouseMoveFn = null
+      boxMapper[this.className].mouseMoveFn = null
+    }
+
+    mousedownFun(e) {
+      //e.preventDefault() 消除默认行为，例如拖动两个元素重叠时会出现黑色禁止图标
+      e.preventDefault()
+      e.stopPropagation()
+      // console.log(boxMapper);
+      // console.log(e.target);
+      if(controlObj.drawing){
+        this.drawMousedown(e)
+      }
+      if(controlObj.moving){
+        this.moveMousedown(e)
+      }
+    }
+    mouseupFun(e) {
+      //e.preventDefault() 消除默认行为，例如拖动两个元素重叠时会出现黑色禁止图标
+      e.preventDefault()
+      e.stopPropagation()
+      if(controlObj.drawing){
+        this.drawMouseup(e)
+      }
+      if(controlObj.moving){
+        this.moveMouseup(e)
+      }
+      if(controlObj.stretching){
+        this.stretchMouseup(e)
+      }
+    }
+    mousemoveFun(e){
+      //e.preventDefault() 消除默认行为，例如拖动两个元素重叠时会出现黑色禁止图标
+      e.preventDefault()
+      e.stopPropagation()
+      if(controlObj.drawing){
+        this.drawMousemove(e)
+      }
+      if(controlObj.moving){
+        this.moveMousemove(e)
+      }
+      if(controlObj.stretching){
+        this.stretchMousemove(e)
+      }
+    }
+    isRectsCrossLine(rect,excludekey){
+      let isCrossLine = false
+      for(let key in boxMapper){
+        let val = boxMapper[key]
+        if(typeof val !=='function'){
+          if(excludekey){
+            if(key!== excludekey){
+              let rectObj = val.rectObj
+              isCrossLine = crossLine(rectObj,rect)
+              if(isCrossLine){
+                isCrossLine = true
+                break
+              }
+            }
+          }else{
+            let rectObj = val.rectObj
+            isCrossLine = crossLine(rectObj,rect)
+            if(isCrossLine){
+              isCrossLine = true
+              break
+            }
+          }
+        }
+      }
+      return isCrossLine
+    }
+    getMoveDirectionObj(stretchWhich){
+      let _this = this
+      let direction = ''
+      if(_this.p2.clientX>=_this.p1.clientX){
+        if(_this.p2.clientY>=_this.p1.clientY){
+          //右下
+          direction = 'rightBottom'
+        }else{
+          //右上
+          direction = 'rightTop'
+        }
+      }else{
+        if(_this.p2.clientY>=_this.p1.clientY){
+          //左下
+          direction = 'leftBottom'
+        }else{
+          //左上
+          direction = 'leftTop'
+        }
+      }
+      console.log(direction,'方向');
+      let obj = {
+        stretchLeftTop:{
+          rightBottom:{w:-1,h:-1,l:1,t:1,x1:1,y1:1,x2:0,y2:0},
+          rightTop:{w:-1,h:1,l:1,t:-1,x1:1,y1:-1,x2:0,y2:0},
+          leftBottom: {w:1,h:-1,l:-1,t:1,x1:-1,y1:1,x2:0,y2:0},
+          leftTop: {w:1,h:1,l:-1,t:-1,x1:-1,y1:-1,x2:0,y2:0}
+        },
+        stretchLeftBottom:{
+          rightBottom:{w:-1,h:1,l:1,t:0,x1:1,y1:0,x2:0,y2:1},
+          rightTop:{w:-1,h:-1,l:1,t:0,x1:1,y1:0,x2:0,y2:-1},
+          leftBottom:{w:1,h:1,l:-1,t:0,x1:-1,y1:0,x2:0,y2:1},
+          leftTop:{w:1,h:-1,l:-1,t:0,x1:-1,y1:0,x2:0,y2:-1}
+        },
+        stretchRightBottom:{
+          rightBottom:{w:1,h:1,l:0,t:0,x1:0,y1:0,x2:1,y2:1},
+          rightTop:{w:1,h:-1,l:0,t:0,x1:0,y1:0,x2:1,y2:-1},
+          leftBottom:{w:-1,h:1,l:0,t:0,x1:0,y1:0,x2:-1,y2:1},
+          leftTop:{w:-1,h:-1,l:0,t:0,x1:0,y1:0,x2:-1,y2:-1}
+        },
+        stretchRightTop:{
+          rightBottom:{w:1,h:-1,l:0,t:1,x1:0,y1:1,x2:1,y2:0},
+          rightTop:{w:1,h:1,l:0,t:-1,x1:0,y1:-1,x2:1,y2:0},
+          leftBottom:{w:-1,h:-1,l:0,t:1,x1:0,y1:1,x2:-1,y2:0},
+          leftTop:{w:-1,h:1,l:0,t:-1,x1:0,y1:-1,x2:-1,y2:0}
+        }
+      }
+      return {
+        w:obj[stretchWhich][direction].w,
+        h:obj[stretchWhich][direction].h,
+        l:obj[stretchWhich][direction].l,
+        t:obj[stretchWhich][direction].t,
+        x1:obj[stretchWhich][direction].x1,
+        x2:obj[stretchWhich][direction].x2,
+        y1:obj[stretchWhich][direction].y1,
+        y2:obj[stretchWhich][direction].y2
+      }
+    }
+  }
+  new PaintRect('box',parentRect)
+
+  document.addEventListener("mouseup", function(e){
+    e.preventDefault()
+    let target = e.target
+    $(document).off('mousemove')
+    if(target.className.indexOf('box')>-1 ||
+        target.className.indexOf('kuang') >-1 ||
+        target.className.indexOf('stretchFour') >-1 ||
+        target.nodeName === 'BODY' || target.nodeName === 'HTML'){
+      clearAllMouseMoveFn()
+      boxMapper.mouseUpFn && boxMapper.mouseUpFn(e)
+    }
+  },false);
+
+
+  function clearAllMouseMoveFn(){
+    Object.keys(boxMapper).forEach((key)=>{
+      let item = boxMapper[key]
+      if(item.mouseMoveFn){
+        parentBox.removeEventListener('mousemove',item.mouseMoveFn)
+        item.mouseMoveFn = null
+      }
+    })
+
+  }
+
+  function crossLine(rectA,rectB){
+    //rectA是外圈的矩形  rectB是内圈的矩形
+    //rectB是current
+    let bol
+    let lftp = [Math.max(rectA.x1, rectB.x1), Math.max(rectA.y1, rectB.y1)],
+        rgbt = [Math.min(rectA.x2, rectB.x2), Math.min(rectA.y2, rectB.y2)];
+
+    let rectAWdith = Math.abs(rectA.x1 - rectA.x2)
+    let rectAHeight = Math.abs(rectA.y1 - rectA.y2)
+    let rectBWdith = Math.abs(rectB.x1 - rectB.x2)
+    let rectBHeight = Math.abs(rectB.y1 - rectB.y2)
+
+
+    //是否相交，两个矩形包含也算
+    function isCrosslineFn(){
+      return lftp[0] <= rgbt[0] && lftp[1] <= rgbt[1]
+    }
+
+    //两个矩形包含
+    function isContainFn(rectA,rectB){
+      let isContain = (rectA.x1 < rectB.x1 && rectA.y1 < rectB.y1 && rectA.x2 > rectB.x2 && rectA.y2 > rectB.y2)
+      return isContain
+    }
+
+    let isContain = false
+    if(rectAWdith > rectBWdith && rectAHeight > rectBHeight){
+      isContain = isContainFn(rectA,rectB)
+    }else if(rectBWdith > rectAWdith && rectBHeight > rectAHeight){
+      isContain = isContainFn(rectB,rectA)
+    }else{
+      // console.log(`${rectAWdith}-${rectAHeight}-${rectBWdith}-${rectBHeight}`,'lwhlwh')
+      isContain = false
+    }
+
+
+    let isCrossline = isCrosslineFn()
+
+    console.log('相交:'+isCrossline,'包含:'+isContain);
+
+    if(isCrossline && !isContain){
+      bol = true;
+    }else{
+      bol = false;
+    }
+    return bol
+  }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>demo1-index2</h1>
+<button onclick="setCookie()">setCookie</button>
+<button onclick="removeCookie()">removeCookie</button>
+<script>
+    function setCookie(){
+      document.cookie = `a2=index2;expires=${new Date('2023-06-28').toGMTString()};path=/index2`
+    }
+
+    function removeCookie(){
+      document.cookie = `a2=;expires=${new Date().toGMTString()};path=/index2`
+    }
+</script>
+</body>
+</html>

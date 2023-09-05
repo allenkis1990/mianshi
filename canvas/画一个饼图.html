@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas{border:1px solid red;margin:50px auto;display:block}
+    </style>
+</head>
+<body>
+<canvas width="500" height="500" id="canvas"></canvas>
+<script>
+  function fn(a,b,color){
+    var canvas = document.getElementById('canvas')
+    var ctx = canvas.getContext('2d')
+    ctx.beginPath()
+    var w = canvas.width,h = canvas.height
+    ctx.fillStyle = color
+    //开始坐标X  开始坐标Y   半径   开始度数  结束度数
+    // 1PI = 180度
+    ctx.arc(w/2,h/2,50,a,b)
+
+    ctx.lineTo(w/2,h/2)
+    ctx.strokeStyle = '#fff'
+    ctx.lineWidth = 3
+
+    ctx.closePath();
+    ctx.stroke()
+    ctx.fill()
+  }
+
+
+  let start = 0;let end = (2*Math.PI)*(1/3)
+  fn(start,end,'orange')
+
+  start = (2*Math.PI)*(1/3); end = (2*Math.PI)*(2/3)
+  fn(start,end,'yellow')
+
+  start = (2*Math.PI)*(2/3); end = 2*Math.PI
+  fn(start,end,'blue')
+
+
+</script>
+</body>
+</html>

@@ -7,19 +7,26 @@ class TemplateCompiler{
         }
     }
     compile(node){
+        //观察放入fragment前的node
         var fragment = this.appChildIntoFragment(node);
         var childNodes = fragment.childNodes;
+        //观察放入fragment后的node
+        console.log(childNodes,'childNodes');
+        //处理fragment下的元素
         this.eachChildNodes(childNodes);
+        //把处理后的元素放回到#app
         node.appendChild(fragment)
     }
 
     //解析元素v-text v-model
     compileElement(node){
         var attrs = Array.from(node.attributes);
+        debugger
         attrs.forEach((attr)=>{
             if(attr.name.indexOf('v-')>=0){
                 var type = attr.name.replace('v-','');
                 var expr = attr.value;
+                console.log(expr,'expr');
                 updaterUtils[type]&&updaterUtils[type](node,this.vm,expr);
             }
         })
@@ -32,6 +39,7 @@ class TemplateCompiler{
             //去除前后空格后的表达式
             matchs.forEach((match)=>{
                 var expr = match.replace('{{','').replace('}}','').replace(/^\s+/,'').replace(/\s+$/,'')
+                console.log(expr,'expr2');
                 updaterUtils['text']&&updaterUtils['text'](node,this.vm,expr,match);
             })
         }
@@ -59,6 +67,7 @@ class TemplateCompiler{
         var fragment = document.createDocumentFragment(),
             firstChild;
         while(firstChild=node.firstChild){
+            console.log(firstChild,'firstChild');
             fragment.appendChild(firstChild)
         }
         return fragment;
@@ -74,20 +83,24 @@ var updaterUtils = {
     //解析v-text
     text(node,vm,expr,match){
         var exprData = eval('vm.data.'+expr)
-        // console.log(exprData,2222);
+        // console.log(exprData,
+        // 222);
         //这里只处理了只要是typeof对象就JSON.stringify否则不变
         exprData = !(typeof exprData==='object'&&exprData!==null)?exprData:JSON.stringify(exprData)
-        console.log(exprData);
         if(match){
             //解析{{}}双括号
             node.textContent = node.textContent.replace(match,exprData)
+
+
             new Watcher(vm,expr,(nv)=>{
                 // console.log(3333,'{{}}');
                 node.textContent = nv;
             })
         }else{
             //解析v-text
-            node.innerText = exprData;
+            node.textContent = exprData;
+
+
             new Watcher(vm,expr,(nv)=>{
                 // console.log(3333,'text');
                 node.innerText = nv;

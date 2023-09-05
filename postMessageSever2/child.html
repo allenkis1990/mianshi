@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+我是子页面
+<script>
+    window.addEventListener('message',function(e){
+      if(e.data === 'getObj'){
+        window.parent.postMessage(window.obj,'*')
+      }
+    })
+    window.obj = {name:'不同源'}
+</script>
+</body>
+</html>

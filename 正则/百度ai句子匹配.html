@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  /**
+   * 匹配句子错对流程
+   * 1.先把句子用单空格分割开
+   * 2.如果分割出来的item里带空字符串就当作是一个空格字符串 -> " "
+   * 3.如果匹配的是纯单词或者纯符号直接加入parseArr数组
+   * 4.如果匹配的是带有符号得单词（'除外）用正则把符号和单词分割成数组分别加入parseArr数组
+   * 5.单独处理带 '符号的匹配 如果是let's let'这两种类型直接加入parseArr数组
+   * 否则就是其他种类的带 ' 的用正则可分割成 let's let' 纯符号 纯字母这四种可能，然后再分别加入parseArr数组
+   */
+
+
+  var str = "111."
+//  var str = "Hello.I'm hahha p-u-r-p-l-e"
+//  var str = "basketball..Good.Simon"
+  //  var str = "Simon  says play basketball.Good.Simon says play tennis.Very good.Now play the guitar.Oh, dear, Stella.Come and stand next to Lenny."
+  let fuhaoRegGlobal = /(\.|。|\?|？|!|！|,|，|；|;|<|《|>|》|“|”|‘|’|"|'|-)/ig //匹配符号（全局）
+  let fuhaoOrWordReg = /([.。?？!！,，；;<《>》“”‘’"'-]+|[a-zA-Z0-9]+)/ig //匹配符号或者单词
+  let fuhaoRegSe = /^[.。?？!！,，；;<《>》“”‘’"'-]+$/ //从头到尾匹配符号
+  let letterReg = /[a-zA-Z]/ // 纯字母
+  let specfuhaoReg = /([a-zA-Z]+'([a-zA-Z]+)?|[.。?？!！,，；;<《>》“”‘’"'-]+|[a-zA-Z]+)/ig//匹配 says' says's 纯符号 纯字母
+  console.log(str);
+  //  let wordReg = /[a-zA-Z]+/ig //匹配纯单词
+  //  let fuhaoRegPlus = /[.。?？!！,，；;<《>》“”‘’"']+/ig //匹配符号(1个及以上)
+
+
+  //先用单空格分割
+  let originArr = str.split(/\s/)
+  console.log(originArr);
+
+  function getParseWordList() {
+    let parseArr = []
+    //是否是let's lets'这种类型
+    function isSpecReg(word){
+      let idx = word.indexOf(`'`)
+      let res = false
+      let onlyFuhaoArr = word.split('').filter((item)=>{
+        return fuhaoRegSe.test(item)
+      })
+      console.log(onlyFuhaoArr);
+      if(idx>-1){
+        let preLetter = word.charAt(idx - 1)
+        let nextLetter = word.charAt(idx + 1)
+        res = letterReg.test(preLetter) && (letterReg.test(nextLetter) || !nextLetter) && onlyFuhaoArr.length === 1
+      }else{
+        res = false
+      }
+      return res
+    }
+    originArr.forEach((item) => {
+      if (item === '') {
+        parseArr.push({
+          text: ' '
+        })
+      } else {
+        let match = item.match(fuhaoRegGlobal)
+        console.log(match,999191);
+        if (!match || fuhaoRegSe.test(item)) {
+          //纯单词
+          parseArr.push({
+            text: item
+          })
+        } else {
+          //带有符号得单词
+          let idx = item.indexOf(`'`)
+          if (idx > -1) {
+            //带'符号
+//            debugger
+            if(isSpecReg(item)){
+//              debugger
+              let temp = {text: item}
+              parseArr.push(temp)
+            }else{
+              let match = item.match(specfuhaoReg)
+              if(match && match.length){
+                match.forEach((w,i)=>{
+                  let temp = {text: w}
+                  /*if(isSpecReg(w)){
+                    //匹配says' let's
+                  }else if(fuhaoRegSe.test(w)){
+                    //匹配纯符号
+                  }else{
+                    //匹配纯字母
+                  }*/
+                  // [".'Simon.haha's", "says'."] 为了解决第一个 过渡到第二个时候 第二个的第一个也带非空格
+                  if(i!==0){
+                    temp.notSpace = true
+                  }
+                  parseArr.push(temp)
+                })
+              }
+            }
+          } else {
+            //匹配符号和单词 ['!!','haha','.','lwh','!']
+//          console.log(item.match(fuhaoRegGlobal), item);
+//          console.log(item.match(fuhaoOrWordReg));
+            debugger
+            let match = item.match(fuhaoOrWordReg)
+            if (match && match.length) {
+              match.forEach((w,i) => {
+                let temp = {text: w}
+                if(i!==0){
+                  temp.notSpace = true
+                }
+                parseArr.push(temp)
+              })
+            }
+          }
+        }
+      }
+    })
+    return parseArr
+  }
+
+  let parseArr = getParseWordList()
+  console.log(parseArr, 9);
+
+</script>
+</body>
+</html>

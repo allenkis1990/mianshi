@@ -10,16 +10,19 @@
 <body>
 <canvas width="500" height="500" id="canvas"></canvas>
 <script>
-    var canvas = document.getElementById('canvas')
-    var ctx = canvas.getContext('2d')
-    ctx.beginPath()
-    var w = canvas.width,h = canvas.height
-    ctx.lineWidth = 5
-    ctx.strokeStyle = 'blue'
-    ctx.fillStyle = 'red'
-    ctx.arc(w/2,h/2,50,0,2*Math.PI)
-    ctx.stroke()
-    ctx.fill()
+  var canvas = document.getElementById('canvas')
+  var ctx = canvas.getContext('2d')
+  ctx.beginPath()
+  var w = canvas.width,h = canvas.height
+  ctx.lineWidth = 5
+  ctx.strokeStyle = 'blue'
+  ctx.fillStyle = 'red'
+  //开始坐标X  开始坐标Y   半径   开始度数  结束度数
+  // 1PI = 180度
+  ctx.arc(w/2,h/2,50,0,2*Math.PI)
+  ctx.stroke()
+  ctx.fill()
+
 
 </script>
 </body>

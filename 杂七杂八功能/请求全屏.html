@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;}
+        .main{
+            width: 300px;
+            height: 300px;
+            background: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<div class="main"></div>
+<script>
+    let main = document.querySelector('.main')
+    document.addEventListener('dblclick',()=>{
+      let f = document.fullscreenElement
+      console.log(f);
+      if(!f){
+        main.requestFullscreen()
+      }else{
+        document.exitFullscreen()
+      }
+    })
+</script>
+</body>
+</html>

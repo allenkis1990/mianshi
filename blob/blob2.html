@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+let url  = 'https://pre-api.thedeer.cn/userapp/wx/js-api/get-media2?\n' +
+    'mediaId=gxwl_N23ZL_uYzcKMSR3tAXQxRk2jsi8OEVt6qzRqOPPibw9wL81_NniVgHvc8aL'
+  fetch(url,{
+    method:'GET',
+    // headers: {
+    //   'Content-Type': "application/octet-stream;charset=UTF-8",
+    // }
+  }).then((resData)=>{
+    console.log(resData.headers.get("content-disposition"),11);
+    return resData.arrayBuffer()
+  }).then((resData)=>{
+    let newBlob = new Blob([resData])
+    console.log(newBlob,'blob',{type:'audio/*'});
+    //生成base64数据
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      // self.audio_base64 = reader.result;
+      //小反馈
+    };
+    reader.readAsDataURL(newBlob);
+    let urlBlob = window.URL.createObjectURL(newBlob);
+    console.log(urlBlob);
+
+
+
+
+    /*const reader2 = new FileReader();
+    reader2.onload = (event) => {
+      alert(1)
+      console.log(reader2.result);
+    };
+    reader2.readAsDataURL(newBlob);*/
+
+
+
+
+    // console.log(self.urlBlob,'urlBlob');
+    //生成后端需要的数据
+    // let result = Object.assign({}, res);
+    // self.read_result_info = TMData(result);
+
+  }).catch((e)=>{
+    console.log(e,'fetch catcherr');
+  })
+</script>
+</body>
+</html>

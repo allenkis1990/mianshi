@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<canvas id="cas" style="border:1px solid red"></canvas>
+<canvas id="cas" style="border:1px solid red" width="1000" height="1000"></canvas>
 <script>
     var canvas = document.getElementById('cas')
     var context = canvas.getContext('2d')
@@ -15,7 +15,9 @@
     //空心矩形边框的颜色
     context.strokeStyle = 'green'
     //绘制空心矩形
-    context.strokeRect(50,50,100,100)
+    context.strokeRect(150,150,100,100)
+    // context.rect(50,50,100,100)
+    // context.stroke()
 </script>
 </body>
 </html>

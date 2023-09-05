@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<!--<script src="http://www.baidu.com/a.js"></script>-->
 <script>
     //jsonp跨域只能是get跨域
     //需要穿一个函数名
@@ -15,6 +16,24 @@
 //    script.onload=function(){
 //        alert(1)
 //    }
+    //http://www.baidu.com/a.js
+    /*$ajax({
+      url:"http://www.baidu.com/a.js"
+    })*/
+
+
+    function fn(data){
+      console.log(data);
+    }
+
+
+    var script = document.createElement('script')
+    script.src = 'http://www.baidu.com/a.js'
+    document.getElementsByTagName('head')[0].appendChild(script)
+
+
+
+
 </script>
 </body>
 </html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<iframe src="/index2.html" frameborder="0" id="ifr"></iframe>-->
+<iframe src="http://localhost:9901/child.html" frameborder="0" id="ifr"></iframe>
+<!--<iframe src="/child.html" frameborder="0" id="ifr"></iframe>-->
+<script>
+    let ifr = document.getElementById('ifr').contentWindow
+    setTimeout(()=>{
+      ifr.postMessage('getObj','*')
+      // console.log(ifr.obj);
+    },100)
+
+    window.addEventListener('message',function(e){
+      console.log(e.data,111111);
+    })
+</script>
+</body>
+</html>

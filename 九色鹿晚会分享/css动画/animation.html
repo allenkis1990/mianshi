@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @keyframes rotateDiv {
+            0%{
+                transform: rotateY(0deg);
+            }
+            100%{
+                transform: rotateY(720deg);
+            }
+        }
+
+
+        @keyframes moveDiv {
+            0%{
+                transform: translateY(0) scale(1);
+            }
+            50%{
+                /*animation-timing-function:cubic-bezier(.03,.93,.03,.92);*/
+                /*animation-timing-function:cubic-bezier(1,1.56,.04,.95);*/
+                animation-timing-function:cubic-bezier(1,-0.84,.04,.95);/*拉弓*/
+                /*animation-timing-function:cubic-bezier(1,-0.84,.15,2);*/
+                transform: translateY(80px) scale(0.6);
+                /*opacity: 1;*/
+            }
+            100%{
+                transform: translateY(20px) scale(0.2);
+                /*opacity: 0;*/
+            }
+        }
+
+
+        .main{
+            margin: 200px auto;
+            width: 150px;
+            height: 150px;
+            background: deepskyblue;
+            border-radius: 50%;
+
+        }
+        .ani1{
+            animation-duration: 1.5s;
+            animation-name: rotateDiv;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            /*animation: 1.5s rotate linear forwards;*/
+        }
+        .ani2{
+            animation-duration: 1.5s;
+            animation-name: moveDiv;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            /*animation: 1.5s ani forwards linear;*/
+        }
+    </style>
+</head>
+<body>
+<div class="main ani1 animationDiv"></div>
+<script src="../../jquery-1.9.1.min.js"></script>
+<script>
+  // var animationDiv = $("#animationDiv");
+  var animationDiv = $(".animationDiv");
+  animationDiv.bind("webkitAnimationEnd", function() {
+    animationDiv.removeClass("ani1");
+    animationDiv.addClass("ani2");
+  });
+</script>
+</body>
+</html>

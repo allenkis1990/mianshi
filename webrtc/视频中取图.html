@@ -39,12 +39,16 @@
 </head>
 <body>
 <video controls
+       width="720"
+       height="480"
        src="./videos/jay.mp4"
        id="video"></video>
 <div>
     <button onclick="paizhao()">拍照</button>
     <canvas id="can"
-            style="width: 300px;height: 300px;display: none"></canvas>
+            width="720"
+            height="480"
+            style="display: none"></canvas>
 </div>
 <ul>
     <li>
@@ -80,7 +84,7 @@
         let ctx = can.getContext('2d')
         can.style.display = 'block'
         can.setAttribute('class',window.filter)
-        ctx.drawImage(video,0,0,300,300)
+        ctx.drawImage(video,0,0,720,480)
     }
 
 

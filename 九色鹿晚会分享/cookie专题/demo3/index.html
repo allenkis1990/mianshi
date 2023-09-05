@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>demo3</h1>
+<button onclick="setServerCookie()">设置同源服务端cookie</button>
+
+<button onclick="setServerCookie2()">ajax设置跨站服务端cookie</button>
+
+
+
+<script src="./axios.min.js"></script>
+<script>
+  axios.defaults.withCredentials = true
+  function setServerCookie(){
+    axios({
+      method:'get',
+      url:'/a1'
+    }).then((res)=>{})
+  }
+
+
+  function setServerCookie2(){
+    axios({
+      method:'get',
+      url:'http://demo3.api.com:7202/a1'
+    }).then((res)=>{})
+  }
+</script>
+</body>
+</html>

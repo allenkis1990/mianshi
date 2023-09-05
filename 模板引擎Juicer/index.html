@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="js/juicer-min.js"></script>
+<!--<script type="text/template" id="tp2">
+    {@each list as item, index}
+        <div class="">{{item.name}},{{item.id}}</div>
+    {@/each}
+</script>-->
+<script>
+  juicer.set({
+    'tag::interpolateOpen': '{{',
+    'tag::interpolateClose': '}}',
+  });
+  //普通对象demo
+  let temp1 = `<div>我的名字叫{{name}},我的id是{{id}}</div>`
+  //循环demo+if判断
+  let temp2 = [
+      `{@each list as item, index}`,
+      `<div class="">`,
+          `{{item.name}},{{item.id}},`,
+          `{@if item.id==='lwh'}`,
+            `true`,
+            `{@else}false`,
+          `{@/if}`,
+      `</div>`,
+      `{@/each}`
+  ].join('')
+
+  //循环对象
+  let temp3 = [
+      `{@each obj as value, key}`,
+          `{{key}}-{{value}},`,
+      `{@/each}`
+  ].join('')
+
+
+  let res = {
+    name: 'Allen',
+    id: '001',
+    list:[
+      {name:'李文新',id:'lwx'},
+      {name:'刘伟恒',id:'lwh'}
+    ],
+    obj:{
+      name:'李文新',
+      id:'lwx',
+      age:18
+    }
+  }
+  let html1 = juicer(temp1,res);
+  let html2 = juicer(temp2,res);
+  let html3 = juicer(temp3,res);
+
+  console.log(html1);
+  console.log(html2);
+  console.log(html3);
+</script>
+</body>
+</html>

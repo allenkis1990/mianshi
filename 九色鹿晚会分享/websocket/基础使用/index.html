@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="before">
+    <div>
+        <button id="disconnect">断开连接</button>
+    </div>
+</div>
+
+
+<script src="/socket.io.js"></script>
+<script>
+    let disconnectBtn = document.querySelector('#disconnect')
+    let socket = io.connect('http://localhost:6969')
+    socket.emit('join', {name:'jack'})
+
+    socket.on('haha',(data)=>{
+      console.log(data);
+    })
+
+    disconnectBtn.addEventListener('click',function(){
+      socket.disconnect()
+    })
+
+</script>
+</body>
+</html>

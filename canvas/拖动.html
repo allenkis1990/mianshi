@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        *{margin:0;padding: 0;box-sizing: border-box;}
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            background: deepskyblue;
+            display: flex;
+            flex-direction: column;
+        }
+        h1{
+            font-size: 25px;
+            text-align: center;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .question-classify{
+            margin: 0 auto;
+            width: 9.5rem;
+            height: 100%;
+            position: relative;
+        }
+        .box{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .box-item{
+            width: 3.8rem;
+            height: 4.2rem;
+            border:1px solid red;
+        }
+        .main-block{
+            margin:0.1rem auto 0;
+            width: 1rem;
+            height: 1rem;
+            background: blue;
+        }
+        .main-append{
+            padding: 0 0.15rem;
+            height: 2.9rem;
+            margin-top: 0.15rem;
+            overflow: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: start;
+        }
+        .append-item{
+            width: 1.6rem;
+            height: 0.7rem;
+            background: green;
+            margin-bottom: 0.15rem;
+            text-align: center;
+            line-height: 0.7rem;
+            color:#fff;
+            font-size: 20px;
+            cursor: move;
+        }
+        .list{
+            /*height: 1.2rem;*/
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            bottom: 25px;
+            background: yellowgreen;
+            padding: 0.55rem 0.15rem;
+            overflow-x: auto;
+        }
+        .list-item{
+            width: 1.6rem;
+            height: 0.7rem;
+            background: green;
+            margin-right: 0.15rem;
+            flex-shrink: 0;
+            cursor: move;
+            text-align: center;
+            line-height: 0.7rem;
+            color:#fff;
+            font-size: 20px;
+        }
+        .list-item.drag{
+            border:1px dashed #ddd;
+        }
+        .append-item.drag{
+            border:1px dashed #ddd;
+        }
+        .moveDiv{
+            width: 1.6rem;
+            height: 0.7rem;
+            background: green;
+            position: fixed;
+            cursor: move;
+            text-align: center;
+            line-height: 0.7rem;
+            color:#fff;
+            font-size: 20px;
+        }
+        .content{
+            width: 100%;
+            flex: 1;
+        }
+        .header{
+            height: 60px;
+            width: 100%;
+            background: green;
+        }
+        .footer{
+            height: 60px;
+            width: 100%;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div class="header"></div>
+<div class="content">
+    <div class="question-classify">
+        <h1>分类题</h1>
+        <div class="box">
+            <div class="box-item">
+                <div class="main-block"></div>
+                <div class="main-append">
+                    <!--                <div class="append-item"></div>-->
+                </div>
+            </div>
+            <div class="box-item">
+                <div class="main-block"></div>
+                <div class="main-append"></div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="list-item">1</div>
+            <div class="list-item">2</div>
+            <div class="list-item">3</div>
+            <div class="list-item">4</div>
+            <div class="list-item">5</div>
+            <div class="list-item">6</div>
+            <div class="list-item">7</div>
+            <div class="list-item">8</div>
+            <div class="list-item">9</div>
+        </div>
+    </div>
+</div>
+<div class="footer"></div>
+<!--<script src="./jquery-1.9.1.min.js"></script>-->
+<script src="./mobile-detect.min.js"></script>
+<script src="./jquery.min.js"></script>
+<script>
+  console.log(window.navigator.userAgent);
+
+  function getDeviceEnv(){
+    function isIpad() {
+      var ua = window.navigator.userAgent
+      var IsIPad = false
+      if (/ipad/i.test(ua)) {
+        IsIPad = true
+      }
+      // iPad from IOS13
+      var macApp = ua.match(/Macintosh/i) != null
+      if (macApp) {
+        // need to distinguish between Macbook and iPad
+        var canvas = document.createElement('canvas')
+        if (canvas != null) {
+          var context =
+              canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+          if (context) {
+            var info = context.getExtension('WEBGL_debug_renderer_info')
+            if (info) {
+              var renderer = context.getParameter(info.UNMASKED_RENDERER_WEBGL)
+              if (renderer.indexOf('Apple') != -1) IsIPad = true
+            }
+          }
+        }
+      }
+      return IsIPad
+    }
+    let env = ''
+    let md= new MobileDetect(window.navigator.userAgent) //初始化mobile-detect
+    let os = md.os();//获取系统
+    if(os){
+      os = os.toLowerCase()
+    }
+    if(os === 'ios' || os === 'androidos' || isIpad()){
+      env = 'mobile'
+    }else{
+      env = 'pc'
+    }
+    return env
+  }
+
+  let env = getDeviceEnv()
+
+    //禁止ios10以上缩放页面
+    document.addEventListener('gesturestart', function (event) {
+      event.preventDefault()
+    })
+
+
+
+    //动态设置html的font-size ----start
+    let designWidth = 1200;
+    let baseNum = 100;
+
+    function setRootFontSize() {
+      let winWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      let winHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      winHeight = winHeight - 120
+      let html = document.getElementsByTagName('html')[0];
+      let frameBili = 4 / 3
+      let b = frameBili / (winWidth / winHeight)
+      let realW = parseInt(winWidth * b)
+      html.style.fontSize = (realW / designWidth) * baseNum + 'px';
+      console.log(html.style.fontSize);
+    }
+
+    setRootFontSize();
+    window.addEventListener('resize', (e) => {
+      setRootFontSize();
+    })
+    //动态设置html的font-size ----end
+
+
+
+
+    let p1 = {}
+    let p2 = {}
+    let listItem = null
+    let moveDiv = null
+    let timer = null
+    let mousedown = env === 'mobile' ? 'touchstart':'mousedown'
+    let mousemove = env === 'mobile' ? 'touchmove':'mousemove'
+    let mouseup = env === 'mobile' ? 'touchend':'mouseup'
+    let dragWay = ''
+    let flag = false
+    //设置一个死的滚动距离，保证能滚到底，目前够用
+    let scrollDistance = 3000
+    bindDragDomEvent($('.list-item'),'go')
+
+    function bindDragDomEvent(appendItem,way){
+      appendItem.on(mousedown,function(e){
+        if(moveDiv){
+          return
+        }
+        flag = false
+        dragWay = way
+        console.log(e);
+        e.stopPropagation()
+        e.preventDefault()
+        listItem = $(this)
+        listItem.addClass('drag')
+        p1.moveX = listItem.offset().left;
+        p1.moveY = listItem.offset().top - 30;
+        console.log(p1);
+        moveDiv = $(`<div class="moveDiv">${listItem.text()}</div>`)
+        moveDiv.css({left:`${p1.moveX}px`,top:`${p1.moveY}px`})
+        $('body').append(moveDiv)
+        $(document).on(mousemove,function(e2){
+          // e2.preventDefault()
+          e2.stopPropagation()
+          p2.moveX = e2.clientX || (e2.originalEvent.touches && e2.originalEvent.touches[0].clientX);
+          p2.moveY = e2.clientY || (e2.originalEvent.touches && e2.originalEvent.touches[0].clientY);
+          let curX = p2.moveX - moveDiv.width()/2
+          let curY = p2.moveY - moveDiv.height()/2
+          moveDiv.css({
+            left:curX + 'px',
+            top:curY + 'px'
+          })
+
+        })
+
+      })
+    }
+
+
+    function getSpecArr(){
+      let specArr = []
+      let moveDivLeft = moveDiv.offset().left
+      let moveDivLeftEnd = moveDivLeft + moveDiv.width()
+      let moveDivTop = moveDiv.offset().top
+      let moveDivTopEnd = moveDivTop + moveDiv.height()
+      $('.box-item').each((index,item)=>{
+        let boxItem = $(item)
+        let boxLeft = boxItem.offset().left
+        let boxLeftEnd = boxLeft + boxItem.width()
+        let boxTop = boxItem.offset().top
+        let boxTopEnd = boxTop + boxItem.height()
+
+        if(moveDivLeft > boxLeft && moveDivLeftEnd < boxLeftEnd && moveDivTop > boxTop && moveDivTopEnd < boxTopEnd){
+          specArr.push({
+            dom:boxItem
+          })
+        }
+      })
+      return specArr
+    }
+
+
+    function appendMoveDiv(options){
+      listItem.remove()
+      let appendItem = $(`<div class="${options.appendItemClassName}">${moveDiv.text()}</div>`)
+      appendItem.css({opacity:0})
+      options.targetList.append(appendItem)
+      options.targetList[options.scrollDirection](scrollDistance)
+      let appendLeft = appendItem.offset().left
+      let appendTop = appendItem.offset().top
+      //transitionend事件会执行2次，所以使用标记避免
+      moveDiv.css({
+        transition:'all 0.5s',
+        left:appendLeft,
+        top:appendTop
+      }).on('transitionend',function(){
+        if(!flag){
+          moveDiv.remove()
+          moveDiv.off('transitionend')
+          moveDiv = null
+          appendItem.css({opacity:1})
+          bindDragDomEvent(appendItem,options.op)
+        }
+        flag = true
+      })
+    }
+
+
+    $(document).on(mouseup,function(e){
+      // e.preventDefault()
+      if(dragWay === 'go'){
+        $(document).off(mousemove)
+        listItem && listItem.removeClass('drag')
+        if(moveDiv){
+          let specArr = getSpecArr()
+          if(specArr.length === 0){
+            //没进框内，回到原位
+            if(moveDiv){
+              moveDiv.remove()
+              moveDiv = null
+            }
+          }else{
+            let appendItemBox = specArr[0].dom
+            appendMoveDiv({
+              targetList:appendItemBox.find('.main-append'),
+              appendItemClassName:'append-item',
+              op:'back',
+              scrollDirection:'scrollTop'
+            })
+          }
+        }
+      }else if(dragWay === 'back'){
+        $(document).off(mousemove)
+        listItem && listItem.removeClass('drag')
+        if(moveDiv){
+          let specArr = getSpecArr()
+          //0说明都不在两个框内 1说明在其中一个框内
+          if(specArr.length === 0){
+            appendMoveDiv({
+              targetList:$('.list'),
+              appendItemClassName:'list-item',
+              op:'go',
+              scrollDirection:'scrollLeft'
+            })
+          }else{
+            let appendItemBox = specArr[0].dom
+            let curAppendItemBox = listItem.parents('.box-item')
+            if(appendItemBox.get(0) === curAppendItemBox.get(0)){
+              console.log('自己');
+              moveDiv.remove()
+              moveDiv = null
+              listItem && listItem.removeClass('drag')
+            }else{
+              console.log('不是自己');
+              appendMoveDiv({
+                targetList:appendItemBox.find('.main-append'),
+                appendItemClassName:'append-item',
+                op:'back',
+                scrollDirection:'scrollTop'
+              })
+              console.log('不是自己');
+            }
+          }
+
+          console.log(specArr.length);
+        }
+
+
+      }
+    })
+</script>
+</body>
+</html>

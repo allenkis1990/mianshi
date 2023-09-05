@@ -3,50 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .blue{
+            color:deepskyblue;font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
-    hello lwh!<br>
-    <div>
-        <input type="text" v-model="fuck">
-        <span>{{fuck}}</span><br>
-        <div>
-            <span v-text="message" class="lwh"></span>
-        </div>
-        <input type="text" v-model="obj.obj.obj.name"><br>
-        author:{{ author }} {{ price}}
-        <div>{{obj.obj.obj.name}}</div>
-        {{arr}}
-        {{lwhObj}}
-        <!--<div>{{arr[0].name}}</div>-->
-
-
-        {{getFuckName}}
+    <h1>{{str}}</h1>
+    <h1>{{str}}</h1>
+    <h1>{{str}}</h1>
+    <div v-text="styleStr">
+        <div>666777</div>
     </div>
+    <!--<div>
+        <div>
+            双括号: <span class="blue">{{ author }}</span><br>
+            v-text:<span class="blue" v-text="age"></span>
+        </div>
+        <div>
+            <input type="text" v-model="obj.obj.obj.name">
+        </div>
+        <div>{{obj.obj.obj.name}}</div>
+        <div>
+            {{arr}}
+        </div>
+
+
+
+
+
+        &lt;!&ndash;<div>{{arr[0].name}}</div>&ndash;&gt;
+&lt;!&ndash;        {{getFuckName}}&ndash;&gt;
+    </div>-->
 
 </div>
 
 <script src="js/observer.js"></script>
 <script src="js/watcher.js"></script>
 <script src="js/templateCompiler.js"></script>
+
 <script src="js/index.js"></script>
 <script>
-    var vm = new FuckLiu({
+    var vm = new LwhVue({
         el:'#app',
         data:{
-            fuck:'fuckLiu',
-            message:'LwhVue is good!',
+            str:'easy VUE DEMO',
             author:'lwh',
-            price:'999',
-            arr:[{name:'arrItem'}],
+            age:18,
+            arr:[{name:'arrItem'},{name:'arrItem2'}],
             obj:{obj:{obj:{name:'allen'}}},
-            lwhObj:{name:'lwh'}
+          styleStr:'<div style="color:yellow">123</div>'
         },
-        computed:{
-            getFuckName(){
-                return this.fuck+'66'
-            }
-        }
+        // computed:{
+        //     getFuckName(){
+        //         return this.fuck+'66'
+        //     }
+        // }
     })
 </script>
 </body>

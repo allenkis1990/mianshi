@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="file">
+<script>
+    let file = document.getElementById('file')
+    file.addEventListener('change',function(e){
+      let f = e.target.files[0]
+      let localUrl = window.URL.createObjectURL(f)
+      console.log(localUrl,33);
+      f.text().then(function(res){
+        console.log(res);
+      })
+      console.log(f,33);
+    })
+</script>
+</body>
+</html>

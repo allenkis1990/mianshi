@@ -20,7 +20,7 @@
     <video src="" autoplay id="origin" width="300"></video>
     <video src="" autoplay id="remote" width="300"></video>
 </div>
-<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+
 <script>
     let start = document.querySelector('#start')
     let call = document.querySelector('#call')
@@ -47,10 +47,12 @@
         //交换候选者列表
         //pc1获取候选者列表，并且添加到pc2去
         pc1.onicecandidate = (e)=>{
+            debugger
             pc2.addIceCandidate(e.candidate)
         }
         //pc2获取候选者列表，并且添加到pc1去
         pc2.onicecandidate = (e)=>{
+            debugger
             pc1.addIceCandidate(e.candidate)
         }
 
@@ -79,6 +81,7 @@
             pc1.setLocalDescription(des)
             pc2.setRemoteDescription(des)
             pc2.createAnswer().then((des)=>{
+                debugger
                 pc2.setLocalDescription(des)
                 pc1.setRemoteDescription(des)
             }).catch((e)=>{

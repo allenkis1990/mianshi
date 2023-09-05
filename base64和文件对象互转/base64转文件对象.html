@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="myFile">
+<img src="" id="img" alt="" width="300" height="300">
+<script>
+
+  let file = document.getElementById('myFile')
+  file.addEventListener('change',function(e){
+    let img = e.target.files[0]
+
+
+    let reader = new FileReader()
+   reader.readAsDataURL(img)
+   reader.addEventListener('load',function(e){
+     // console.log(e.target.result,'img');
+
+     var baseStartReg = /^data:(.*?);base64,/ig
+     var base64Str = e.target.result.replace(baseStartReg,'')
+     var str = window.atob(base64Str)//alert(123)
+     var u8Arr = new Uint8Array(str.length)
+     for(let i=0;i<str.length;i++){
+       u8Arr[i] = str.charCodeAt(i)
+     }
+     var b = new File([u8Arr],'a.png',{type:'image/png'})
+     console.log(b,'文件');
+
+     let reader = new FileReader()
+     reader.readAsDataURL(b)
+     reader.addEventListener('load',function(e){
+       // console.log(e.target.result,123);
+       document.getElementById('img').setAttribute('src',e.target.result)
+     })
+
+
+   })
+
+
+
+
+  })
+
+    //应用内可直接打开
+    //手动打开也可以
+    //window.atob //base64解码成字符串
+    //window.btoa //字符串转码成base64编码
+    /*let base64 = 'YWxlcnQoMTIzKQ=='
+    var str = window.atob(base64)//alert(123)
+    var bb = new Blob([str])
+
+
+    var b = new File([bb],'a.js',{type:'application/javascript'})
+    console.log(b,'文件');*/
+
+    /*let reader = new FileReader()
+    reader.readAsDataURL(b)
+    reader.addEventListener('load',function(e){
+      console.log(e.target.result,123);
+    })*/
+    //代码从这开始
+</script>
+<!--<script src="data:application/javascript;base64,YWxlcnQoMTIzKQ=="></script>-->
+</body>
+</html>

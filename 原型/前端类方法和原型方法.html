@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function Fn(name){
+      this.name = name
+      this.age = 18
+      // this.med = function(){
+      //   alert(2)
+      // }
+    }
+  Fn.num = 666
+
+  console.log(Fn.num,123);
+
+  Fn.prototype.med = function(){
+      alert(1)
+    }
+    // Fn.prototype.name = 'jack'
+  Fn.prototype.num = 3
+    let obj = new Fn('allen')
+    obj.med()
+
+  let obj2 = new Fn('allen')
+  obj.med()
+  console.log(obj);
+</script>
+</body>
+</html>

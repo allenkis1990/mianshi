@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>web2</h1>
+<h1 style="display: none" id="successText">登录成功</h1>
+<h1 id="noSuccessText">未登录</h1>
+<script src="./axios.min.js"></script>
+<script>
+  let timer = null
+  axios.defaults.withCredentials = true
+  axios.defaults.baseURL = 'https://www.allen19906666.com:8788'
+  axios.defaults.headers.post['Content-Type'] = 'application/json'
+
+
+  function hasLoginUi(){
+    document.getElementById('successText').style.display = 'block'
+    document.getElementById('noSuccessText').style.display = 'none'
+  }
+  function unLoginUi(){
+    document.getElementById('successText').style.display = 'none'
+    document.getElementById('noSuccessText').style.display = 'block'
+  }
+
+
+  function appendScript(url,id){
+    let loginScript = document.getElementById(id)
+    if(loginScript){
+      loginScript.remove()
+    }
+    let script = document.createElement('script')
+    script.src = url
+    script.id = id
+    document.body.appendChild(script)
+  }
+
+  function getIsLogin(){
+    axios({
+      method:'get',
+      url:'/isLogin'
+    }).then((res)=>{
+      let data = res.data
+      if(data.code == 200){
+        hasLoginUi()
+        timer && clearInterval(timer)
+      }else{
+        unLoginUi()
+      }
+      console.log(data.msg);
+    })
+  }
+
+
+  function ssoIsLogin(data){
+    if(data.code == 200){
+      hasLoginUi()
+      timer && clearInterval(timer)
+    }else{
+      unLoginUi()
+    }
+    console.log(data.msg);
+  }
+
+  function getLoginStatus(){
+    // getIsLogin()
+    appendScript('https://www.allen19906666.com:8788/isLogin','isLoginScript')
+  }
+  getLoginStatus()
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{margin:0;padding: 0;box-sizing: border-box}
+        h1{
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            background: deepskyblue;
+        }
+        .main{
+            margin: 0 auto;
+            width: 950px;
+            height: 100%;
+            position: relative;
+        }
+        .box{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .box-item{
+            width: 380px;
+            height: 420px;
+            border:1px solid red;
+        }
+        .main-block{
+            margin:10px auto 0;
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+        .main-append{
+            padding: 0 15px;
+            height: 290px;
+            margin-top: 15px;
+            overflow: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: start;
+        }
+        .append-item{
+            width: 160px;
+            height: 70px;
+            background: green;
+            margin-bottom: 15px;
+            text-align: center;
+            line-height: 70px;
+            color:#fff;
+            font-size: 20px;
+        }
+        .list{
+            height: 120px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+            background: yellowgreen;
+            padding: 0 15px;
+            overflow-x: auto;
+        }
+        .list-item{
+            width: 160px;
+            height: 70px;
+            background: green;
+            margin-right: 15px;
+            flex-shrink: 0;
+            cursor: move;
+            text-align: center;
+            line-height: 70px;
+            color:#fff;
+            font-size: 20px;
+        }
+        .list-item.drag{
+            border:1px dashed #ddd;
+        }
+        .moveDiv{
+            width: 160px;
+            height: 70px;
+            background: green;
+            position: fixed;
+            cursor: move;
+            text-align: center;
+            line-height: 70px;
+            color:#fff;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <h1>分类题</h1>
+    <div class="box">
+        <div class="box-item">
+            <div class="main-block"></div>
+            <div class="main-append">
+                <!--                <div class="append-item"></div>-->
+            </div>
+        </div>
+        <div class="box-item">
+            <div class="main-block"></div>
+            <div class="main-append"></div>
+        </div>
+    </div>
+    <div class="list">
+        <div class="list-item">1</div>
+        <div class="list-item">2</div>
+        <div class="list-item">3</div>
+        <div class="list-item">4</div>
+        <div class="list-item">5</div>
+        <div class="list-item">6</div>
+    </div>
+</div>
+<script src="./jquery-1.9.1.min.js"></script>
+<script>
+    let listItem = $('.list-item').eq(2)
+
+    $('.list-item').on('click',function(){
+      let curListItem = $(this)
+      console.log(curListItem.get(0) === listItem.get(0));
+    })
+</script>
+</body>
+</html>

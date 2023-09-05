@@ -51,16 +51,18 @@
         //这里和服务端的on('join')对应，自己取名
         socket.emit('join',room,nick)
         socket.on('joined',(dataRoom,dataNick)=>{
-            alert('欢迎'+dataNick+'进入房间'+dataRoom)
             if(dataNick===nick){
                 joinRoomDo(room)
+            }else{
+              console.log('欢迎'+dataNick+'进入房间'+dataRoom)
             }
         })
 
         socket.on('leaved',(dataRoom,dataNick)=>{
-            alert(dataNick+'离开房间'+dataRoom)
             if(dataNick===nick){
                 leaveRoomDo(room)
+            }else{
+              console.log(dataNick+'离开房间'+dataRoom)
             }
         })
 

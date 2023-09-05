@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  //基础用法
+    /*function Fn(name){
+      this.name = name
+      this.age = 18
+      // this.med = function(){
+      //   alert(2)
+      // }
+    }
+    Fn.prototype.med = function(){
+      alert(1)
+    }
+
+    let obj = new Fn('allen')
+      console.log(obj);
+      obj.med()*/
+
+  //类的继承
+  function Parent(){
+    this.name = 'parent'
+    this.age = 58
+  }
+  Parent.prototype.say = function(){
+    console.log('parent',111);
+  }
+
+
+  function Child(){
+    //构造函数继承
+    Parent.call(this)
+    this.name = 'child'
+    this.age = 28
+  }
+  //原型链继承
+  function Temp(){
+
+  }
+  Temp.prototype = Parent.prototype
+  Child.prototype = new Temp()
+  // Child.prototype = new Parent().__proto__
+  // Child.prototype.say = function(){
+  //   console.log('child',222);
+  // }
+  Child.prototype.med = function(){
+    console.log('1');
+  }
+
+
+  let c = new Child()
+  c.say()
+  // c.med()
+  console.log(c,'ccc');
+  let p = new Parent()
+  console.log(p);
+  p.say()
+
+
+</script>
+</body>
+</html>

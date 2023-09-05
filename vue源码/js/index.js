@@ -11,20 +11,20 @@
  * 7.代理，把vm.data上所有的属性都代理到vm的属性上
  */
 
-class FuckLiu{
+class LwhVue{
     constructor(options){
         this.vm = this;
         this.data = options.data;
         this.el = options.el;
-        this.computed = options.computed
+        // this.computed = options.computed
         if(this.el){
             //增加观察者
             new Observer(this.data);
 
             //把vm.data.a代理到vm.a上
-            this.proxy()
+            // this.proxy()
 
-            this.bindComputedToData()
+            // this.bindComputedToData()
 
             //解析模板
             new TemplateCompiler(this.el,this.vm);
@@ -58,3 +58,8 @@ class FuckLiu{
         }
     }
 }
+
+// let app = document.getElementById('app')
+// console.log(app.childNodes,'haha');
+// console.log(app.childNodes[2].textContent,'textContent');
+// console.log(app.childNodes[3].innerHTML,'innerHTML');

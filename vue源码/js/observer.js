@@ -6,7 +6,6 @@ class Observer{
     observe(data){
         //如果data不是对象就什么事都不干
         if (!data || !this.isRealObject(data)) {
-            debugger
             return false;
         }
 
@@ -50,6 +49,7 @@ class Dep{
         this.subs.push(sub);
     }
     notify(){
+        console.log(this.subs);
         this.subs.forEach((sub)=>{
             sub.update();
         })
