@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="file">
+<script src="/js/axios.min.js"></script>
+<script>
+  var file = document.getElementById('file')
+  var chunkSize = 2000
+  file.addEventListener('change',function(e){
+    console.log(e.target.files[0]);
+    var f = e.target.files[0]
+    var fileNameSplitArr = f.name.split('.')
+    var fileName = fileNameSplitArr.slice(0,fileNameSplitArr.length-1).join('')
+    var fileExt = f.type.split('/')[1]
+    console.log(fileName,fileExt);
+    var fileSize = f.size
+    var chunkNum = Math.ceil(fileSize/chunkSize)
+    console.log(chunkNum);
+    for(let i=0;i<chunkNum;i++){
+      var blob = f.slice(i*chunkSize,chunkSize*(i+1),f.type)
+      var nF = new File([blob], fileName+'Chunk'+i+fileExt,{type:f.type})
+      console.log(nF);
+      ajaxDo(nF,i,chunkNum,f.name)
+    }
+  })
+
+  function ajaxDo(file,curChunkNum,totalChunkNum,fileName){
+    var params = new FormData()
+    params.append('img',file)
+    params.append('fileName',fileName)
+    params.append('chunkNum',curChunkNum)
+    params.append('totalChunk',totalChunkNum)
+    axios({
+      method: 'post',
+      data:params,
+      url: '/chunkSaveImg'
+    }).then((res)=>{
+      console.log(res.data);
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="clock"></div>
+<form name="form" onsubmit="return false">
+    <input type="file" name="file" />
+    <button onclick="fn()">click</button>
+</form>
+
+<script src="/js/jquery-1.9.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+  console.log($);
+
+  function fn(){
+        var formData=new FormData();
+        var file=$('input[type=file]')[0].files[0];
+        console.log(file);
+        formData.append('img',file);
+        formData.append('name','lwh');
+        formData.append('age',18);
+        console.log(formData);
+        $.ajax({
+            url:'/postDo',
+            data:formData,
+            method:'POST',
+            success:function(){
+                alert('post!!!!');
+            },
+            processData: false,
+            contentType: false
+        });
+    }
+
+
+
+  $.ajax({
+    url:'/haha',
+    method:'GET',
+    success:function(){
+
+    }
+  });
+
+</script>
+</body>
+</html>

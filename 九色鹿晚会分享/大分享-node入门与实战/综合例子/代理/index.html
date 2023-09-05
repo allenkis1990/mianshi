@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="/js/axios.min.js"></script>
+<script>
+  axios({
+    method: 'get',
+    url: '/proxy/getDo'
+  }).then((res)=>{
+    console.log(res.data);
+  });
+  axios({
+    method: 'post',
+    url: '/proxy/postDo'
+  }).then((res)=>{
+    console.log(res.data);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title></title>
+</head>
+<body>
+<div class="content">
+
+</div>
+<script src="/static/jquery.min.js?_v=0.1.9"></script>
+<script src="/static/json2html/json2html.js?_v=0.1.9"></script>
+<script src="/static/json2html/jquery.json2html.js?_v=0.1.9"></script>
+<script src="/static/json2html/jquery.html2json.js?_v=0.1.9"></script>
+<script>
+  function bindXylinkEvent(){
+    let xyLinks = $('.xy-link')
+//        xyLinks.unbind('click')
+    xyLinks.bind('click',function(){
+      let $this = $(this)
+      let navDom = $this.get(0)
+      let className = navDom.className
+      let i1 = className.split(' ')[1]
+      let i2 = i1.split('xy-link')[1]
+      init(i2)
+    })
+  }
+  function domLoaded(node,cb){
+    let count = 0
+    let interval = setInterval(()=>{
+      let childNodes = node.childNodes
+      if(childNodes && childNodes.length){
+        clearInterval(interval)
+        cb()
+      }
+      if(count >= 100){
+        clearInterval(interval)
+        console.log('未找到富文本')
+        cb()
+      }
+      count ++
+    },50)
+  }
+  function getQuery(){
+    let search = window.location.search
+    search = search.replace(/^\?/ig,'')
+    let split = search.split('&')
+    split = split.map((item)=>{
+      return item.split('=')
+    })
+    let query = {}
+    split.forEach((item)=>{
+      query[item[0]] = item[1]
+    })
+    return query
+  }
+  let query = getQuery()
+  let mapper = {1:'ertong.json',2:'xuesheng.json',3:'yinsi.json',4:'fuwu.json',5:'yonghu.json',6:'yinsi-gw.json'}
+  let nameMapper = {1:'儿童个人信息保护规则',2:'中小学生校外培训服务合同',3:'隐私政策',4:'服务承诺',5:'用户投诉及争议解决机制',6:'隐私政策'}
+  init(query.type)
+  function init(type){
+    $('title').html(nameMapper[type])
+    let dateTime = new Date().getTime()
+    $.ajax({
+      method:'get',
+      url:`/static/json/${mapper[type]}?v=${dateTime}`,
+      success:function(res){
+        let {data} = res
+        let content = data
+        content = JSON.parse(content)
+        try {
+          content = $.json2html({}, content);
+        } catch (Ex) {
+          console.log('json2html转化出错：', Ex);
+        }
+        //去除单标签的反斜杠标签
+        let htmlStrNotNeedRegs = /<\/br>/ig
+        content = content.replace(htmlStrNotNeedRegs, '')
+        //转义一些错误解析
+        content = content.replace(/&amp;/ig, '&')
+        let $content = $('.content')
+        $content.html('')
+        $content.html(content);
+        domLoaded($content.get(0),()=>{
+          bindXylinkEvent()
+          let root = $('html')
+          root && root.scrollTop && root.scrollTop(0)
+        })
+      },
+      error:function(code){
+        console.log(code);
+      }
+    })
+  }
+</script>
+</body>
+</html>
