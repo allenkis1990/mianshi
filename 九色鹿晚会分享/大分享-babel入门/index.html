@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  delete window.Promise
+  delete Array.prototype.reduce
+  delete Array.prototype.forEach
+</script>
+<script src="./lib/polyfill.min.js"></script>
+<script type="module" src="./dist/index1.js"></script>
+</body>
+</html>
