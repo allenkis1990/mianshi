@@ -5,14 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-<img src="aa.jpg">
+<!--<img src="aa.jpg">-->
+<img src="https://i2.hdslb.com/bfs/garb/item/4f8eb6ccd0992a61ba072f1459ff9f1a462eaa6e.png@144w_144h_!web-avatar.avif">
 <script>
     //设置事件为捕获类型可以 捕获资源加载错误
     //捕获放最上面
     //捕获不了ajax
+
+    // window.onerror = function(message, source, lineno, colno, error) {
+    //   console.log("捕获到的错误信息是：", message, source, lineno, colno, error);
+    // };
+
+
     window.addEventListener('error',function(e){
-        e.preventDefault()
-        console.log(e);
+      console.log(arguments,123555);
+      // e.preventDefault()
+        console.log(e,123);
     },true)
 
 //    let xhr = new XMLHttpRequest()
@@ -20,6 +28,9 @@
 //    xhr.send(null)
 
     console.log(aaa)
+
+
+    console.log(111);
 </script>
 <!-- 资源不存在-->
 <script src="hahah.js"></script>
@@ -27,7 +38,7 @@
 <script>
     $.ajax({
         method:'get',
-        url:'/ssss',
+        url:'/uploadError',
         success:function(){
 
         }

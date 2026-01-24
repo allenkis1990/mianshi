@@ -9,7 +9,7 @@
     function errHandle(e){
         console.log(e,123);
         var IMG = new Image();
-        IMG.src = `http://aa.com/sendError?errorEsg=${e.message?e.message:'scriptErr'}`
+        IMG.src = `/sendError?errorEsg=${e.message?e.message:'scriptErr'}`
         //阻止浏览器控制台输出
         e.preventDefault()
     }
@@ -17,7 +17,7 @@
 
     console.log(a.name);
 </script>
-如果是跨域的js错误在script标签上加上crossorigin 然后响应头上加上Access-Control-Allow-Origin:'*'
-<script src="hahaaa.js" crossorigin></script>
+<!--如果是跨域的js错误在script标签上加上crossorigin 然后响应头上加上Access-Control-Allow-Origin:'*'-->
+<!--<script src="hahaaa.js"></script>-->
 </body>
 </html>

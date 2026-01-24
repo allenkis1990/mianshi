@@ -54,7 +54,7 @@ app.post('/login',function(req,res){
         if(ticketArr.indexOf(ticket) < 0){
           ticketArr.push(ticket)
         }
-        let location = `https://www.allen19906666.com:8787/ssoLogin?ticket=${ticket}`
+        let location = `https://www.allen19906666.com:8788/ssoLogin?ticket=${ticket}`
         res.send({code:200,msg:'登录成功',location})
       }else{
         res.send({code:500,msg:'登录失败'})
@@ -83,6 +83,7 @@ app.get('/isLogin',function(req,res){
 
 
 app.get('/ssoLogin',function(req,res){
+  console.log(123);
   let ticket = req.query.ticket
   res.cookie('ticket',ticket,{
     maxAge: 1000 * 60 * 60 * 2,

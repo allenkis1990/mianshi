@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            width: 200px;
+            height: 200px;
+            background: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<button id="test">click</button>
+<script>
+  /*  function reduce(list,fn){
+        let result = null
+        for(let i=0;i<arr.length;i++){
+          if(!result){
+            result = arr[i]
+          }else{
+            let next = arr[i]
+            let pre = result
+            result = fn(pre,next)
+          }
+        }
+        return result
+   }
+    let arr = [1,2,3]
+    function opFn(pre,next){
+      return pre * next
+    }
+    let count = arr.reduce(opFn)
+    console.log(count);
+
+    let count2 = reduce(arr,opFn)
+    console.log(count2,'c2');*/
+
+  document.getElementById('test').addEventListener('click',()=>{
+    if(!document.querySelector('.main')){
+      let dialog = document.createElement('div')
+      dialog.className = 'main'
+      dialog.innerHTML = `<input class="userName" placeholder="请输入用户名">`
+      document.body.appendChild(dialog)
+    }
+  })
+
+</script>
+</body>
+</html>

@@ -11,7 +11,7 @@
     var file = document.getElementById('file')
     file.addEventListener('change',function(e){
         var input = e.target
-        console.log(input.files[0]);
+        console.log(input.files[0],1111);
         fileToBase64(input.files[0],function(res){
             console.log(res.target.result);
 

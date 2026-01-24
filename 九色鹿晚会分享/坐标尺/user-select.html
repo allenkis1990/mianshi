@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            width: 480px;
+            height: 360px;
+            font-size: 30px;
+            color:#fff;
+            text-align: center;
+            line-height: 360px;
+            border:1px solid red;
+            margin:20px auto;
+            position: relative;
+        }
+        .a1{
+            width: 100%;
+            height: 100%;
+            background: green;
+        }
+        .a2{
+            width: 100%;
+            height: 100%;
+            background: red;
+            position: absolute;
+            left:0;
+            top: 0;
+            /*user-select: none;*/
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="a1">a1</div>
+        <div class="a2">a2</div>
+    </div>
+
+
+
+<script>
+    let a1 = document.querySelector('.a1')
+    a1.addEventListener('click',function(){
+      alert(111)
+    })
+</script>
+</body>
+</html>

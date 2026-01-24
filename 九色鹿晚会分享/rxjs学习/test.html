@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="rxjs.umd.min.js"></script>
+
+<script type="module">
+  let {operators,from,of,Observable} = rxjs
+  let {map,mergeMap,switchMap,delay} = operators
+
+  const observable = from([1]);
+
+  let ajaxGetData1 = function(){
+    return function(a){
+      //这里的a参数指的是输入，例：数组里的第一个1 但是需要subscribe取值
+      return new Observable(subscriber => {
+        a.subscribe({
+          next: (data) => {
+            //setTimeout模仿ajax操作
+            setTimeout(()=>{
+              subscriber.next(data)
+            },3000)
+          }
+        });
+      });
+    }
+  }
+  let ajaxGetData2 = function(){
+    return function(a){
+      //这里的a参数指的是输入，例：数组里的第一个1 但是需要subscribe取值
+      return new Observable(subscriber => {
+        a.subscribe({
+          next: (data) => {
+            //setTimeout模仿ajax操作
+            setTimeout(()=>{
+              subscriber.next(data)
+            },3000)
+          }
+        });
+      });
+    }
+  }
+  // 订阅这个 Observable
+  const subscription = observable.pipe(
+      // map((num)=>{
+      //   return num + 1
+      // }),
+      ajaxGetData1(),
+      ajaxGetData2(),
+      // ajaxGetData(3)
+  ).subscribe({
+    next: (data) => {
+      console.log(data,666);
+    },
+    error: (err) => console.error(err),
+    complete: () => console.log('Completed')
+  });
+
+  // console.log(map,123);
+  // console.log(rxjs);
+</script>
+</body>
+</html>

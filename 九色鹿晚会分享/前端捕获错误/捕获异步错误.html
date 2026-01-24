@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function fn(){
+      return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          // reject(66)
+          try {
+            console.log(a);
+          }catch (e) {
+            reject(e)
+          }
+        },2000)
+      })
+    }
+    fn().catch((e)=>{
+      console.log(e);
+    })
+</script>
+</body>
+</html>

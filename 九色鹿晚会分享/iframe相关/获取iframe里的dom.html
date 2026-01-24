@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<!--<iframe src="http://localhost:63342/mianshi/%E4%B9%9D%E8%89%B2%E9%B9%BF%E6%99%9A%E4%BC%9A%E5%88%86%E4%BA%AB/iframe%E7%9B%B8%E5%85%B3/data/test.html?_ijt=52i4othb0v76r9qv1kg3rpftrf&_ij_reload=RELOAD_ON_SAVE"
+        frameborder="0" width="500" height="500" id="iframe"></iframe>-->
+<iframe src="http://localhost:8989"
+        frameborder="0" width="500" height="500" id="iframe"></iframe>
+<!--<iframe src="https://www.baidu.com"
+        frameborder="0" width="500" height="500" id="iframe"></iframe>-->
+
+
+<script>
+    let timer = null
+    function intervalGetDom(){
+      timer = setInterval(()=>{
+        try {
+          let iframe = document.getElementById('iframe')
+          let iframeWin = iframe.contentWindow
+          let iframeDocument = iframeWin.document
+          let iframeEle = iframeDocument.querySelector('.iframe-ele')
+          if(iframeEle){
+            console.log(iframeEle.innerHTML,'找到iframeEle的值');
+            clearTimer()
+          }
+        }catch (e){
+          console.error(e)
+          clearTimer()
+        }
+      },500)
+    }
+
+    function clearTimer(){
+      if(timer){
+        clearInterval(timer)
+        timer = null
+      }
+    }
+
+    intervalGetDom()
+</script>
+</body>
+</html>

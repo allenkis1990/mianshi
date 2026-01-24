@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class JsBox{
+    oldWindow = {}
+    modifyWindow = {}
+    mounted(){
+      //记住当前window对象
+      for(let prop in window){
+        this.oldWindow[prop] = window[prop]
+      }
+      //如果不是第一次进入的话，需要还原上一次进入时候的状态
+      for(let prop in this.modifyWindow){
+        window[prop] = this.modifyWindow[prop]
+      }
+    }
+    unmounted(){
+      //还原最早的window对象
+      for(let prop in window){
+        if(this.oldWindow.hasOwnProperty(prop)){
+          if(window[prop] !== this.oldWindow[prop]){
+            this.modifyWindow[prop] = window[prop]
+            window[prop] = this.oldWindow[prop]
+          }
+        }else{
+          this.modifyWindow[prop] = window[prop]
+          delete window[prop]
+        }
+
+      }
+    }
+  }
+
+  let box = new JsBox()
+  window.nickName = 'lwh'
+  box.mounted()
+  window.nickName = 'jack'
+  // delete window.nickName
+  window.age = 18
+
+  box.unmounted()
+  console.log(`nickName:${window.nickName}`,`age:${window.age}`,'unmounted');
+
+  // box.mounted()
+  // console.log(`nickName:${window.nickName}`,`age:${window.age}`,'mounted');
+
+
+
+</script>
+</body>
+</html>

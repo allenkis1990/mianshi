@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;padding: 0;
+        }
+        #webrtc-box{
+            position: fixed;
+            border-radius: 10px;box-shadow: 0 0 10px #ccc;
+            top:40%;
+            left:calc(50% - 120px);
+            background: #fff;
+        }
+        .webrtc-header{
+            height: 35px;
+            padding: 6px;
+            line-height: 35px;
+            border-bottom: 1px dashed #eee;
+            color:#666;
+        }
+        .webrtc-content{
+            width: 240px;height: 180px;position: relative;
+        }
+        .webrtc-video{
+            width: 240px;height: 180px;
+        }
+        .webrtc-canvas{
+            position: absolute;
+            right:0;
+            bottom: 0;
+        }
+        .webrtc-dragging{
+            cursor: move;
+        }
+        .webrtc-opacity{
+            filter:opacity(0.7);
+        }
+        .webrtc-video-text{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left:0;top:0;
+            z-index:3;
+            color:#000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+        }
+        .webrtc-video-mask{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left:0;top:0;
+            z-index:2;
+            background:#fff;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+<button id="show">显示隐藏</button>
+<div style="display: none"
+     id="webrtc-box">
+    <div class="webrtc-header">弹窗</div>
+    <div class="webrtc-content">
+        <video class="webrtc-video"
+               autoplay></video>
+        <canvas class="webrtc-canvas"
+                width="60"
+                height="45"
+                style="display: none"></canvas>
+        <div class="webrtc-video-text" style="display: none">3</div>
+        <div class="webrtc-video-mask" style="display: none"></div>
+    </div>
+    <select class="webrtc-select"
+            style="display: block;width: 100%"></select>
+    <button class="webrtc-get-img">取图</button>
+</div>
+<script src="../jquery-1.9.1.min.js"></script>
+<script>
+  let showMark = false
+  let currentStream = null
+  let interval = null
+  let timeout = null
+  // select.addEventListener('change',(nv)=>{
+  //   var index = select.selectedIndex
+  //   val = select.options[index].value
+  //   console.log(val);
+  //   initVideo(val)
+  // })
+
+  // getImgBtn.addEventListener('click',(e)=>{
+  //   e.stopPropagation()
+  //   paizhao()
+  // })
+
+
+  // let filter = 'none'
+  function paizhao(){
+    let video = document.querySelector('.webrtc-video')
+    let can = document.querySelector('.webrtc-canvas')
+    let ctx = can.getContext('2d')
+    can.style.display = 'block'
+    // can.setAttribute('class',filter)
+    ctx.drawImage(video,0,0,60,45)
+    // console.log(can.toDataURL(),123);
+  }
+
+
+  function stopMediaTracks(stream,cb) {
+    stream.getTracks().forEach(function(track) {
+      track.stop();
+      cb && cb()
+    });
+  }
+
+
+  function initVideo(deviceId){
+    if(currentStream){
+      stopMediaTracks(currentStream,()=>{
+        init()
+      })
+    }else{
+      init()
+    }
+    function init(){
+      let con = { audio: false, video: { deviceId: { exact: deviceId } } }
+      navigator.mediaDevices.getUserMedia(con).then((stream)=>{
+        currentStream = stream
+        let video = document.querySelector('.webrtc-video')
+        video.srcObject = stream
+      })
+    }
+  }
+
+  function createWebrtcBox(){
+    let nodeHtml = `
+        <div class="webrtc-header">弹窗</div>
+        <div class="webrtc-content">
+            <video class="webrtc-video"
+                   autoplay></video>
+            <canvas class="webrtc-canvas"
+                    width="60"
+                    height="45"
+                    style="display: none"></canvas>
+        </div>
+        <select class="webrtc-select"
+                style="display: block;width: 100%"></select>
+        <button class="webrtc-get-img">取图</button>
+    `
+    let webrtcBox = document.createElement('div')
+    webrtcBox.id = 'webrtc-box'
+    webrtcBox.innerHTML = nodeHtml
+    webrtcBox.style.display = 'none'
+    document.body.appendChild(webrtcBox)
+  }
+
+
+  var mediadevice = function () {
+
+    var getDevices,
+        getUserMedia,
+        setVolume,
+        getHeadphones,
+        dispose;
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+
+    getDevices = function () {
+
+      return new Promise(function (callback, reject) {
+        if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+          navigator.mediaDevices.enumerateDevices().then(function (MediaDeviceInfo) {
+            var _devices = {
+              audio: [],
+              video: [],
+              headphones: []
+            };
+            var p1 = 1, p2 = 1, p3 = 1;
+            for (var mediaDeviceInfo in MediaDeviceInfo) {
+              var thisdevice = MediaDeviceInfo[mediaDeviceInfo],
+                  temp = {};
+
+              temp.deviceId = thisdevice.deviceId;
+              temp.groupId = thisdevice.groupId;
+              temp.label = thisdevice.label;
+
+              // if(temp.label=='默认'||temp.label=='通讯')
+              //     continue;
+              if (thisdevice.kind === 'videoinput') {
+                if (temp.label === '') {
+                  temp.label = '摄像头' + p2;
+                  p2++;
+                }
+                if (temp.label.indexOf('前') >= 0 || temp.label.indexOf('正') >= 0)
+                  _devices.video.splice(0, 0, temp);
+                else
+                  _devices.video.push(temp);
+              }
+
+
+              /*麦克风*/
+              if (thisdevice.kind === 'audioinput'
+                  && thisdevice.deviceId !== 'communications' && thisdevice.deviceId !== 'default') {
+                if (temp.label === '') {
+                  temp.label = '麦克风' + p1;
+                  p1++;
+                }
+
+                _devices.audio.push(temp)
+              }
+
+              /*耳机*/
+              if (thisdevice.kind === 'audiooutput'
+                  && thisdevice.deviceId !== 'communications' && thisdevice.deviceId !== 'default') {
+                if (temp.label === '') {
+                  temp.label = '扬声器' + p3;
+                  p3++;
+                }
+                _devices.headphones.push(temp);
+              }
+            }
+            if (callback && typeof callback === 'function') callback(_devices);
+          });
+        } else {
+          reject()
+        }
+      });
+    };
+
+    getUserMedia = function (option) {
+      var _constraints = option || {
+        audio: true,
+        video: true
+      };
+
+      return new Promise(function (callback, reject) {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia(_constraints).then(function (mediaStream) {
+            // window.console.debug(1, mediaStream);
+
+            //1占用2没权限3没设备4未知
+            if (_constraints.video) {
+              var videoTracks = mediaStream.getVideoTracks();
+              if (!videoTracks.length) {
+                //无摄像头
+
+                callback(3)
+                return;
+              }
+              // window.console.debug('videoTracks[0].readyState : ' + videoTracks[0].readyState);
+              var createTime = Date.now();
+              videoTracks[0].onended = function () {
+                var diff = Date.now() - createTime;
+                window.console.debug('videoTracks[0].readyState : ' + diff);
+                if (diff > 2000) {
+                  callback(mediaStream);
+                  return;
+                }
+
+                callback(1);
+                return;
+              };
+            }
+            if (callback && typeof callback === 'function') callback(mediaStream);
+            // window.console.debug(2, mediaStream);
+          }).catch(function (error) {
+            if (error) {
+              // window.console.error('getUserMedia error : ' + error.name);
+              var v;
+              switch (error.name) {
+                case 'NotAllowedError':
+                case 'PermissionDeniedError':
+                  v = 2
+                  break;
+                case 'TrackStartError':
+                  v = 1
+
+                  break;
+                case 'DevicesNotFoundError':
+                  v = 3;
+                  break;
+                case 'MediaStreamError':
+                  //codova
+                  if (error.message == 'getUserMedia() failed: video denied') {
+                    v = 2;
+                  }
+                  if (error.message == 'getUserMedia() failed: audio denied') {
+                    v = 2;
+                  }
+                  break;
+                default:
+                  v = 4;
+                  break;
+              }
+              callback(v);
+              return;
+            }
+
+            callback(4);
+            return;
+          });
+        } else {
+          reject()
+        }
+      });
+    };
+
+
+    /**
+     * 初始化 AudioContext 返回 mediaStreamSource && scriptProcessor
+     * @param stream
+     * @returns {Promise}
+     */
+    function initAudioContext(stream) {
+      return new Promise(function (callback) {
+        var mediaStreamSource, scriptProcessor, audioContext;
+        try {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        } catch (e) {
+          return window.console.warn('Web Audio API not supported.');
+        }
+
+        mediaStreamSource = audioContext.createMediaStreamSource(stream);
+        scriptProcessor = audioContext.createScriptProcessor(0, 1, 1);
+        mediaStreamSource.connect(scriptProcessor);
+        scriptProcessor.connect(audioContext.destination);
+
+
+        if (callback && typeof callback === 'function' && !!mediaStreamSource && !!scriptProcessor) callback({
+          mediaStreamSource: mediaStreamSource,
+          scriptProcessor: scriptProcessor,
+          audioContext: audioContext
+
+        });
+      });
+    }
+
+    /**
+     * 监听声音scriptProcessor
+     * @param scriptProcessor
+     * @param onprocess
+     */
+    function onAudioProcess(scriptProcessor, onprocess) {
+
+      if (scriptProcessor)
+        scriptProcessor.onaudioprocess = function (audioProcessingEvent) {
+
+          var inputBuffer = audioProcessingEvent.inputBuffer;
+          var outputBuffer = audioProcessingEvent.outputBuffer;
+
+          for (var channel = 0; channel < outputBuffer.numberOfChannels; channel++) {
+            var inputData = inputBuffer.getChannelData(channel);
+            var outputData = outputBuffer.getChannelData(channel);
+
+            for (var sample = 0; sample < inputBuffer.length; sample++) {
+              outputData[sample] = inputData[sample];
+            }
+          }
+          if (onprocess) {
+            var input = audioProcessingEvent.inputBuffer.getChannelData(0);
+            var len = input.length;
+            var sum = 0.0;
+            for (var i = 0; i < len; ++i) {
+              sum += input[i] * input[i];
+            }
+            var volumeValue = Math.sqrt(sum / len);
+            volumeValue = (Math.sin(volumeValue * 3.1415 / 2)) * 100 >> 0;
+
+            onprocess(volumeValue);
+          }
+
+
+        }
+    }
+
+    /**
+     * 声音显示
+     * @param stream
+     * @param dom
+     * @returns {Promise}
+     */
+    setVolume = function (stream, onprocess) {
+      return new Promise(function (callback) {
+        initAudioContext(stream).then(function () {
+
+          var mediaStreamSource = arguments[0].mediaStreamSource,
+              scriptProcessor = arguments[0].scriptProcessor,
+              audiocontext = arguments[0].audioContext;
+
+          onAudioProcess(scriptProcessor, onprocess);
+          var Acontext = {
+            mediaStreamSource: mediaStreamSource,
+            scriptProcessor: scriptProcessor,
+            audiocontext: audiocontext
+
+          }
+          callback(Acontext);
+
+        });
+      });
+    };
+
+    function initHeadphonesContext(stream) {
+      return new Promise(function (callback) {
+        var mediaStreamSource, scriptProcessor, audioContext;
+        try {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        } catch (e) {
+          return window.console.warn('Web Audio API not supported.');
+        }
+
+        mediaStreamSource = audioContext.createMediaStreamSource(stream);
+        // scriptProcessor = audioContext.createScriptProcessor(0, 1, 1);
+        // mediaStreamSource.connect(scriptProcessor);
+        // scriptProcessor.connect(audioContext.destination);
+
+        var biquadFilter = audioContext.createBiquadFilter();
+        biquadFilter.type = "lowshelf";
+        biquadFilter.frequency.value = 1000;
+        biquadFilter.gain.value = 25;
+
+
+        mediaStreamSource.connect(biquadFilter);
+        biquadFilter.connect(audioContext.destination);
+
+
+        if (callback && typeof callback === 'function' && !!mediaStreamSource && !!scriptProcessor) callback({
+          mediaStreamSource: mediaStreamSource,
+          scriptProcessor: scriptProcessor,
+          audioContext: audioContext
+
+        });
+      });
+    }
+
+    function onHeadProcess(scriptProcessor, onprocess) {
+
+      if (scriptProcessor)
+        scriptProcessor.onaudioprocess = function (audioProcessingEvent) {
+
+          if (onprocess) {
+            var input = audioProcessingEvent.inputBuffer.getChannelData(0);
+            var len = input.length;
+            var sum = 0.0;
+            for (var i = 0; i < len; ++i) {
+              sum += input[i] * input[i];
+            }
+            var volumeValue = Math.sqrt(sum / len);
+            volumeValue = (Math.sin(volumeValue * 3.1415 / 2)) * 100 >> 0;
+
+            onprocess(volumeValue);
+          }
+
+        }
+    }
+
+    getHeadphones = function (stream, onprocess) {
+
+      return new Promise(function (callback) {
+        initAudioContext(stream).then(function () {
+
+          var mediaStreamSource = arguments[0].mediaStreamSource,
+              scriptProcessor = arguments[0].scriptProcessor,
+              audiocontext = arguments[0].audioContext;
+
+          onHeadProcess(scriptProcessor, onprocess);
+          let Acontext = {
+            mediaStreamSource: mediaStreamSource,
+            scriptProcessor: scriptProcessor,
+            audiocontext: audiocontext
+
+          }
+          callback(Acontext);
+
+        });
+      });
+    }
+
+    dispose = function (stream, audiocontext) {
+
+
+      return new Promise(function (callback) {
+        if (stream) {
+          var trackList = stream.getTracks();
+          for (var index in trackList) {
+            trackList[index].stop();
+          }
+          stream = null;
+        }
+
+        if (audiocontext) {
+          if (audiocontext.mediaStreamSource) audiocontext.mediaStreamSource.disconnect();
+          if (audiocontext.scriptProcessor) {
+            audiocontext.scriptProcessor.disconnect();
+            audiocontext.scriptProcessor.onaudioprocess = null;
+          }
+          if (audiocontext.audiocontext) {
+            audiocontext.audiocontext.close();
+            audiocontext.audiocontext = null;
+          }
+          audiocontext = null;
+        }
+        callback();
+      });
+    };
+
+
+    return {
+      getDevices: getDevices,
+      getUserMedia: getUserMedia,
+      setVolume: setVolume,
+      getHeadphones: getHeadphones,
+      dispose: dispose
+
+    };
+  }();
+
+
+  // createWebrtcBox()
+  $(function(){
+    let webrtcBox = $('#webrtc-box')
+    let select = webrtcBox.find('.webrtc-select')
+    let getImgBtn = webrtcBox.find('.webrtc-get-img')
+    let showBtn = document.getElementById('show')
+    let video = webrtcBox.find('.webrtc-video')
+    let videoMask = webrtcBox.find('.webrtc-video-mask')
+    let videoText = webrtcBox.find('.webrtc-video-text')
+    let count = 0
+    function showVideoMask(){
+      // video.addClass('webrtc-opacity')
+      videoText.text(count)
+      videoText.show()
+      videoMask.show()
+    }
+    function hideVideoMask(){
+      // video.removeClass('webrtc-opacity')
+      videoText.fadeOut()
+      videoMask.fadeOut()
+    }
+
+
+
+    showBtn.addEventListener('click',(e)=>{
+      showMark = !showMark
+      if(showMark){
+        webrtcBox.show()
+        count = 3
+        interval = setInterval(()=>{
+          if(count === 0){
+            hideVideoMask()
+            clearInterval(interval)
+            return
+          }
+          clearTimeout(timeout)
+          timeout = setTimeout(()=>{
+            hideVideoMask()
+          },500)
+          showVideoMask()
+          count --
+        },1000)
+      }else{
+        webrtcBox.hide()
+      }
+    })
+
+
+    select.on('change',function(){
+      let $this = $(this)
+      var index = $this.get(0).selectedIndex
+      let val = $this.get(0).options[index].value
+      console.log(val);
+      initVideo(val)
+    })
+    getImgBtn.on('click',function(e){
+      e.stopPropagation()
+      paizhao()
+    })
+
+
+    $(webrtcBox).on('mousedown',function(e){
+      if(e.target.nodeName === 'SELECT' || e.target.nodeName === 'BUTTON'){
+        return
+      }
+      let clickX = e.offsetX
+      let clickY = e.offsetY
+      // webrtcBox
+      webrtcBox.addClass('webrtc-dragging')
+      $(document).on('mousemove',function(e2){
+        // console.log(e2,333);
+        let moveDiv = webrtcBox
+        let moveX = e2.clientX;
+        let moveY = e2.clientY;
+        // let curX = moveX - clickX
+        // let curY = moveY - clickY
+        let curX = moveX - moveDiv.width()/2
+        let curY = moveY - moveDiv.height()/2
+        if(curX<=0){
+          curX = 0
+        }
+        if(curY<=0){
+          curY = 0
+        }
+        if(curX + moveDiv.width() >= window.innerWidth){
+          curX = window.innerWidth - moveDiv.width()
+        }
+        if(curY + moveDiv.height() >= window.innerHeight){
+          curY = window.innerHeight - moveDiv.height()
+        }
+        moveDiv.css({
+          left:curX + 'px',
+          top:curY + 'px'
+        })
+      })
+    })
+
+
+    $(document).on('mouseup',function(){
+      webrtcBox.removeClass('webrtc-dragging')
+      $(document).off('mousemove')
+    })
+
+
+    mediadevice.getDevices().then((data)=>{
+      // console.log(data);
+      // console.log(data.video);
+      data.video.forEach((item)=>{
+        let option = document.createElement('option')
+        option.value = item.deviceId
+        option.innerText = item.label
+        select.get(0).appendChild(option)
+      })
+      initVideo(data.video[0].deviceId)
+    })
+
+  })
+
+
+</script>
+</body>
+</html>

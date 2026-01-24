@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="rxjs.umd.min.js"></script>
+
+<script type="module">
+  let {Subject,operators,from,of,delay,Observable} = rxjs
+  let {map,mergeMap,switchMap} = operators
+
+  const observable = from([1,2,3]);
+
+  //mergeMap 和 switchMap 都可以解决嵌套写subscribe的问题，mergeMap三个都输出，switchMap在异步的时候选择最新的输出
+  //switchMap使用场景：UI 上有一个输入框，我们在其中根据最终用户输入的内容，向其返回搜索结果。
+
+  const subscription = observable.pipe(
+      switchMap((num)=>{
+        return of(num + 1).pipe(delay(2000))
+      })
+  ).subscribe({
+    next: (data) => {
+      console.log(data,666);
+    },
+    error: (err) => console.error(err),
+    complete: () => console.log('Completed')
+  });
+</script>
+</body>
+</html>

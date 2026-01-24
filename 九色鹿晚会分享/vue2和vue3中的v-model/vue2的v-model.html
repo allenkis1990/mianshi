@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../vue.min.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        父亲：{{a1}}
+        <my-component v-model="a1"></my-component>
+    </div>
+
+
+
+    <script>
+        Vue.component('my-component',{
+            template:'<div><span>孩子：{{value2}}</span><button @click="fn">click</button></div>',
+            props:{
+                value2:'String'
+            },
+            model:{
+                prop:'value2',
+                event:'input2'
+            },
+            data:function(){
+                return {
+
+                }
+            },
+            methods:{
+                fn:function(type){
+                    this.$emit('input2',Math.random());
+                }
+            }
+
+        });
+
+        //局部注册组件
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                a1:''
+            },
+            components:{
+
+            },
+            methods:{
+
+            }
+        });
+    </script>
+</body>
+</html>

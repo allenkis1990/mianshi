@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../vue.min.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <div>父亲a1：{{a1}}</div>
+        <div>父亲a2：{{a2}}</div>
+        <my-component :a1.sync="a1" :a2.sync="a2"></my-component>
+    </div>
+
+
+
+    <script>
+        Vue.component('my-component',{
+            template:`<div>
+                        <div>孩子a1：{{a1}}<button @click="fn1">a1 click</button></div>
+                        <div>孩子a2：{{a2}}<button @click="fn2">a2 click</button></div>
+                      </div>`,
+            props:{
+                a1:'String',
+                a2:'String'
+            },
+            data:function(){
+                return {
+
+                }
+            },
+            methods:{
+                fn1:function(){
+                    this.$emit('update:a1','a1'+Math.random());
+                },
+                fn2:function(){
+                    this.$emit('update:a2','a2'+Math.random());
+                }
+            }
+
+        });
+
+        //局部注册组件
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                a1:'',
+                a2:''
+            },
+            components:{
+
+            },
+            methods:{
+
+            }
+        });
+    </script>
+</body>
+</html>

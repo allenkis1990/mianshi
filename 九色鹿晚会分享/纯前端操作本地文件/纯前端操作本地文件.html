@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<button id="btn">click</button>
+<div class="result"></div>
+</body>
+<script>
+
+  const btn = document.getElementById("btn");
+
+
+
+  //读取选取的文件 并且转成blob地址
+  /*btn.addEventListener("click", () => {
+    showOpenFilePicker().then(async (file) => {
+      console.log(file,33);
+      //获得JS文件对象
+      let f = await file[0].getFile()
+      var BB  =new Blob([f],{type:'application/javascript;charset=utf-8'})
+      console.log(window.URL.createObjectURL(BB));
+    });
+  });*/
+
+
+
+
+  /*btn.addEventListener("click", () => {
+    showDirectoryPicker().then(async (dir) => {
+      // console.log(dir,112);
+      const recursion = async (dir) => {
+        if (dir.entries) {
+          const dirs = dir.entries();
+          console.log(dirs,133);
+          // console.log(dir,await dir.entries().next(),123);
+          //这里的let item of dirs的item等于dir.entries().next()
+          for await (let item of dirs) {
+            // console.log(item,123);
+            item.forEach((file) => {
+              if (typeof file === "string") {
+                const p = document.createElement("p");
+                p.innerText = file;
+                p.style.marginLeft = "10px";
+                document.querySelector(".result").appendChild(p);
+              } else {
+                //递归找子文件夹
+                recursion(file);
+              }
+            });
+          }
+        }
+      };
+      recursion(dir);
+    });
+  });*/
+
+
+  //自定义一个文件并且往文件里写内容，并且保存下来
+  btn.addEventListener("click", async () => {
+    showSaveFilePicker({
+      types:[{
+        description:'haha',
+        accept:{'application/javascript':['.js']}
+      }],
+      suggestedName:'haha1.js'
+    }).then(async file=>{
+      let writable = await file.createWritable()
+      //往haha.js里写内容
+      await writable.write('6688')
+      await writable.close()
+    })
+  });
+
+</script>
+</html>

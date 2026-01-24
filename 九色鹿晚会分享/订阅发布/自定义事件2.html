@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<button id="btnOn">on</button>
+<button id="btnOff">off</button>
+<script>
+
+
+  let Maps = new Map()
+  let eventBus = {
+    on(eventName,target,cb){
+      let eventArr = Maps.get(eventName)
+      if(eventArr){
+        if(Array.isArray(eventArr)){
+          let item = {
+            target,
+            cb
+          }
+          eventArr.push(item)
+          Maps.set(eventName,eventArr)
+        }
+      }else{
+        let item = {
+          target,
+          cb
+        }
+        Maps.set(eventName,[item])
+      }
+    },
+    emit(eventName,data){
+      let eventArr = Maps.get(eventName)
+      if(eventArr){
+        eventArr.forEach((item)=>{
+          let {cb,target} = item
+          cb && cb.call(target,data)
+        })
+      }
+    },
+    off(eventName,target){
+      let eventArr = Maps.get(eventName)
+      if(!eventArr){
+        return
+      }
+      if(eventArr.length === 1){
+        Maps.delete(eventName)
+      }else{
+        eventArr = eventArr.filter((item)=>{
+          return item.target !== target
+        })
+        Maps.set(eventName,eventArr)
+      }
+    }
+  }
+
+  eventBus.on('myEvent','a1',function(data){
+    console.log(data,'a1');
+  })
+
+  eventBus.on('myEvent','a2',function(data){
+    console.log(data,'a2');
+  })
+
+
+
+
+  document.getElementById('btnOn').addEventListener('click',function(){
+    eventBus.emit('myEvent','hehehe!!')
+  })
+
+
+  document.getElementById('btnOff').addEventListener('click',function(){
+    eventBus.off('myEvent','a1')
+  })
+
+</script>
+</body>
+</html>

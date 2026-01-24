@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+</body>
+<script>
+
+
+    let a1 = Symbol('a1')
+    let a2 = Symbol('a1')
+    let obj = {
+      [a1]:'11',
+      [a2]:'22',
+      name:123
+    }
+    console.log(Object.getOwnPropertySymbols(obj));//只能遍历symbol
+    console.log(Reflect.ownKeys(obj));//所有都能遍历
+
+</script>
+</html>

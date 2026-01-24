@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  window.recorder.start({
+    // RefText: read_content,
+    RefText: read_content,
+    error: function (err) {
+      console.log(err,'err');
+      let message = err.msg;
+      if (typeof err.msg === "object") {
+        message = getDeepData(err.msg, "Error.Message", "未知错误");
+      }
+      resetConfig(idx);
+      $dialog.warning(message,'center');
+    },
+    success: function (res) {
+      if (!obj.alreadyStopRecord&&!obj.alreadyStartRecord) {
+        obj.alreadyStartRecord = true;
+        startRecordDo(ctx, res);
+        obj.timeOutRecording = false;
+        cb && cb(res);
+      }
+    },
+  });
+
+
+  window.recorder.stop({
+    success(res) {
+      obj.alreadyStartRecord = false;
+      let { Status, SuggestedScore, blob } = res;
+      if (Status === "Finished") {
+        obj.isRecording = false;
+        let callback = function (data, state, base64,ossRes) {
+          obj.asyncIdx = idx;
+          obj.submitTexting = false;
+          hideRecordLoading();
+          if(!data || !data.url || !data.dir || !data.name){
+            submitOssError(data,ossRes)
+          }
+          curPageBook.page_text_list[idx].audio_full_url = data.url;
+          curPageBook.page_text_list[idx].user_audio_url = ((data.dir && data.name) ? (data.dir + "/" + data.name) : '');
+          if(curPageBook.page_text_list[idx].user_audio_url){
+            curPageBook.page_text_list[idx].result = changeDataFormat(
+                res,
+                curPageBook.page_text_list[idx]
+            );
+          }
+          let expires = getSaveCookieTime();
+          setTextStyle(curPageBook.page_text_list[idx], obj.asyncIdx, true);
+          $utils.cookieUtils.setItem(
+              detailInfoCookieKey,
+              resData.chapter_detail.picture_book_page_list,
+              expires
+          );
+          // console.log(curPageBook.page_text_list[idx], 77777);
+          if (obj.currentOp) {
+            rotatePage(obj.currentOp === "next" ? 1 : -1);
+          }
+        };
+        //生成base64数据
+        $utils.getBlobBase64(
+            blob,
+            (base64) => {
+              obj.createRecording = false;
+              uploadOSSRecord("", callback, base64);
+              // submitTextAudio(
+              //   curPageBook.page_text_list[idx].text,
+              //   base64,
+              //   curPageBook.page_text_list[idx],
+              //   idx
+              // );
+              console.log(window.URL.createObjectURL(blob), "url");
+            },
+            function () {
+              obj.createRecording = false;
+            }
+        );
+        stopRecordDo(curPageBook, idx);
+        cb && cb();
+      }
+    },
+    error(err) {
+      obj.alreadyStartRecord = false;
+      obj.createRecording = false;
+      obj.isRecording = false;
+      let message = err.msg;
+      if (typeof err.msg === "object") {
+        message = getDeepData(err.msg, "Error.Message", "未知错误");
+      }
+      $dialog.warning(message,'center');
+      delayRotatePage();
+      hideRecordLoading();
+    },
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+</body>
+<script>
+
+    // let arr = ['jack','tom','allen']
+    // console.log(arr);
+
+
+    // let arr = new Map()
+    // arr.set('name','jack')
+    // arr.set('age',18)
+
+    // let arr = new Set([1,2,3])
+
+    // function* gen(){
+    //   yield 66
+    //   yield 666
+    //   yield 888
+    // }
+    // let arr = gen()
+
+
+    // function haha(){
+    //   console.log(arguments,'arg');
+    //   each(arguments)
+    // }
+    // haha(1,8,6)
+
+    let arr = {
+      name:'jack',
+      age:18,
+      job:'web',
+      fav:'phoneGame',
+      [Symbol.iterator](){
+        let self = this
+        return {
+          num:0,
+          next(){
+            let keysArr = Object.keys(self)
+            let keyItem = keysArr[this.num]
+            if(keyItem === undefined){
+              return {
+                value:undefined,
+                done:true
+              }
+            }else{
+              this.num ++
+              return {
+                // value: [keyItem,self[keyItem]],
+                value: {
+                  [keyItem]:self[keyItem]
+                },
+                done:false
+              }
+            }
+          }
+        }
+      }
+    }
+    // let a = [...arr]
+    // console.log(a);
+    for(let i of arr){
+      console.log(i,1111);
+    }
+
+    /*function each(arr){
+      let it = arr[Symbol.iterator]()
+      let next = it.next()
+      while(!next.done){
+        console.log(next.value);
+        next = it.next()
+      }
+    }
+    each(arr)*/
+   
+</script>
+</html>
