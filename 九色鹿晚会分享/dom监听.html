@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">btn</button>
+<script>
+  let count = 0
+  document.getElementById('btn').addEventListener('click',function(){
+    let div = document.createElement('div')
+    div.className = 'myDiv'
+    div.textContent = count
+    document.body.appendChild(div)
+    count ++
+  })
+  function cb(){
+    let divs = document.querySelectorAll('.myDiv')
+    if(divs.length){
+      console.log(divs.length);
+      if(divs.length === 6){
+        ob.disconnect()
+      }
+    }
+  }
+  let ob = new MutationObserver(cb);
+  ob.observe(document.body, {childList: true, subtree: true});
+
+  function p(){
+    return new Promise((resolve, reject)=>{
+      setTimeout(()=>{
+        reject()
+      },2000)
+    })
+  }
+  async function fn(){
+    console.log(11);
+    console.log(22);
+    try {
+      await p()
+      console.log(33);
+    }catch(e){
+
+    }
+  }
+  fn()
+</script>
+</body>
+</html>

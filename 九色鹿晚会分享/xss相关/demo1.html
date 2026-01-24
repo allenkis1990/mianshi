@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<button id="btn">click</button>
+<script>
+  let btn = document.getElementById('btn')
+  btn.addEventListener('click',function(){
+    // setTimeout("window.location.href='http://www.discuz.net/\u0027;alert(document.cookie)", 2000);
+    setTimeout("window.location.href='http://www.discuz.net/{url}'", 2000); //http://localhost:7001/?url=\u0027;alert(123);\u0027
+    // window.location.href = 'http://www.discuz.net/';alert(123);''
+    // window.location.href = 'http://www.discuz.net/'.replace('http://www.discuz.net/','javascript:alert(123)');''
+    // window.location.href='http://www.discuz.net/{url}'//http://localhost:7001/?url=\u0027.replace(\u0027http://www.discuz.net/\u0027,\u0027javascript:alert(123)\u0027);\u0027
+  })
+</script>
+</body>
+</html>

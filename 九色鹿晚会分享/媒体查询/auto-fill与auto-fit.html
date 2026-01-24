@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box1,
+        .box2 {
+            height: 200px;
+            display: grid;
+            grid-gap: 10px;
+        }
+        .box1 {
+            background: #ffeaa7;
+            /* 按照100px宽度创建尽量多的轨道，将(剩余空间 - 空轨道) 平均分配 */
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        }
+        .box1 > div {
+            background: #fdcb6e;
+        }
+        .box2 {
+            background: #fab1a0;
+            /* 按照100px宽度创建尽量多的轨道，将剩余空间 平均分配 */
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
+        .box2 > div {
+            background: #e17055;
+        }
+    </style>
+</head>
+<body>
+<div class="box1">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+<div class="box2">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+</body>
+</html>

@@ -21,24 +21,36 @@
 }*/
 
 
-module.exports = {
-  presets:[['@babel/preset-env',{useBuiltIns:'entry','corejs':2}]],
-  targets:["firefox 58"],
-  plugins:[]
-}
-
-
-
 // module.exports = {
-  // presets:[['@babel/preset-env',{useBuiltIns:'usage','corejs':2}]],
-  // targets:["firefox 58"],
-  // plugins:[['@babel/plugin-transform-runtime',{corejs:2}]]
+//   presets:[['@babel/preset-env',{useBuiltIns:'usage','corejs':2}]],
+//   targets:["firefox 58"],
+//   plugins:[]
 // }
 
 
+
+module.exports = {
+  // presets:[['@babel/preset-env',{useBuiltIns:'usage','corejs':2}]],
+  presets:['@babel/preset-env'],
+  // targets:["firefox 58"],
+  plugins:[
+    // "@babel/plugin-proposal-class-properties"
+    ["@babel/plugin-proposal-decorators" , { legacy: true}],
+    "babel-plugin-parameter-decorator",
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true,
+      }
+    ]
+  ]
+}
+
+
 // module.exports = {
-//   presets:[['@babel/preset-env',{}]],
-//   plugins:[]
+  // presets:[['@babel/preset-env',{}]],
+  // presets:['@babel/preset-env'],
+  // plugins:[]
 // }
 
 //伪代码相关
