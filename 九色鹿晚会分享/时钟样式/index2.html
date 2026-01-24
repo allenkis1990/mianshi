@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin:0;padding:0;box-sizing: border-box;
+        }
+        .main{
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border:1px solid black;
+            margin: 50px auto;
+            position: relative;
+        }
+        .clock-line-move{
+            height: 165px;
+            border:1px solid black;
+            position: absolute;
+            left:250px;
+            top: 85px;
+            transform: rotate(0deg);
+            transform-origin: left bottom;
+        }
+        .clock-line{
+            height: 250px;
+            /*border:1px solid black;*/
+            /*transform-origin: 0 100%;*/
+            transform-origin: left bottom;
+            position: absolute;
+            left:250px;
+            top: 0;
+        }
+        .num{
+            position: absolute;
+            top: 20px;
+            right: -19px;
+            font-size: 30px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .clock-line-1{
+            transform: rotate(30deg);
+        }
+        .clock-line-1 .num{
+            transform: rotate(-30deg);
+        }
+        .clock-line-2{
+            transform: rotate(60deg);
+        }
+        .clock-line-2 .num{
+            transform: rotate(-60deg);
+        }
+
+        .clock-line-3{
+            transform: rotate(90deg);
+        }
+        .clock-line-3 .num{
+            transform: rotate(-90deg);
+        }
+
+        .clock-line-4{
+            transform: rotate(120deg);
+        }
+        .clock-line-4 .num{
+            transform: rotate(-120deg);
+        }
+        .clock-line-5{
+            transform: rotate(150deg);
+        }
+        .clock-line-5 .num{
+            transform: rotate(-150deg);
+        }
+        .clock-line-6{
+            transform: rotate(180deg);
+        }
+        .clock-line-6 .num{
+            transform: rotate(-180deg);
+        }
+
+        .clock-line-7{
+            transform: rotate(210deg);
+        }
+        .clock-line-7 .num{
+            transform: rotate(-210deg);
+        }
+
+        .clock-line-8{
+            transform: rotate(240deg);
+        }
+        .clock-line-8 .num{
+            transform: rotate(-240deg);
+        }
+
+        .clock-line-9{
+            transform: rotate(270deg);
+        }
+        .clock-line-9 .num{
+            transform: rotate(-270deg);
+        }
+
+        .clock-line-10{
+            transform: rotate(300deg);
+        }
+        .clock-line-10 .num{
+            transform: rotate(-300deg);
+        }
+
+        .clock-line-11{
+            transform: rotate(330deg);
+        }
+        .clock-line-11 .num{
+            transform: rotate(-330deg);
+        }
+
+        .clock-line-12{
+            transform: rotate(360deg);
+        }
+        .clock-line-12 .num{
+            transform: rotate(-360deg);
+        }
+
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="clock-line-move"></div>
+    <div class="clock-line clock-line-1">
+        <div class="num">1</div>
+    </div>
+    <div class="clock-line clock-line-2">
+        <div class="num">2</div>
+    </div>
+    <div class="clock-line clock-line-3">
+        <div class="num">3</div>
+    </div>
+    <div class="clock-line clock-line-4">
+        <div class="num">4</div>
+    </div>
+    <div class="clock-line clock-line-5">
+        <div class="num">5</div>
+    </div>
+    <div class="clock-line clock-line-6">
+        <div class="num">6</div>
+    </div>
+    <div class="clock-line clock-line-7">
+        <div class="num">7</div>
+    </div>
+    <div class="clock-line clock-line-8">
+        <div class="num">8</div>
+    </div>
+    <div class="clock-line clock-line-9">
+        <div class="num">9</div>
+    </div>
+    <div class="clock-line clock-line-10">
+        <div class="num">10</div>
+    </div>
+    <div class="clock-line clock-line-11">
+        <div class="num">11</div>
+    </div>
+    <div class="clock-line clock-line-12">
+        <div class="num">12</div>
+    </div>
+</div>
+<!--<div style="height: 300px;width: 20px;background: red"></div>-->
+</body>
+
+<script>
+
+</script>
+</html>

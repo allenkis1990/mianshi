@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+</body>
+
+<script>
+    //创建函数方式
+    function createWorker(f) {
+      var blob = new Blob(['(' + f.toString() +')()']);
+      var url = window.URL.createObjectURL(blob);
+      var worker = new Worker(url);
+      return worker;
+    }
+    window.intervalTime = 1000
+    let worker = createWorker(function(){
+      let timer = null
+      let mark = false
+      function fn(targetTime){
+        let now = new Date().getTime()
+        let distanceTime = (targetTime - now)
+        if(distanceTime > 0){
+          // 计算总秒数
+          var totalSeconds = distanceTime / 1000;
+          // 计算小时
+          var hours = Math.floor(totalSeconds / 3600);
+          // 计算剩余的分钟
+          var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
+          // 计算剩余的秒数
+          var seconds = Math.floor(totalSeconds - (hours * 3600) - (minutes * 60));
+          console.log(hours, minutes, seconds);
+          let nearEndTime = 5 * 60
+          if(distanceTime / 1000 <= nearEndTime && !mark){
+            console.log(hours, minutes, seconds,'剩余5分钟');
+            postMessage('剩余5分钟');
+            mark = true
+          }
+        }else{
+          console.log('时间到');
+          if(timer){
+            clearInterval(timer)
+            timer = null
+          }
+        }
+      }
+      addEventListener('message', function (e) {
+        console.log(e.data,2);
+        let targetTime = e.data.data.targetTime
+        fn(targetTime)
+        timer = setInterval(()=>{
+          fn(targetTime)
+        },intervalTime)
+        postMessage('worker发送消息给父亲2222222222222');
+      }, false);
+    })
+
+
+    targetTime = new Date('2025-04-01 16:20:00').getTime()
+    worker.postMessage({
+      eventName:'init',
+      data:{
+        targetTime
+      }
+    })
+    worker.onmessage = function (e) {
+      console.log(e.data,123);
+    };
+
+
+
+</script>
+</html>

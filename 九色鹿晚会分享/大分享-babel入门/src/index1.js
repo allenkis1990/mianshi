@@ -6,8 +6,9 @@
 //presets是插件的集合
 //npx babel src/index1.js -o dist/index1.js --plugins=@babel/plugin-transform-arrow-functions
 //npx babel src/index1.js -o dist/index1.js --presets=@babel/preset-env
+// npx babel-node ./src/test.js
 //babel配置有很多种方式可以是.babelrc文件 可以是.babelrc.js 可以是babel.config.js 也可以加在package.json里的babel属性
-import '@babel/polyfill'
+// import '@babel/polyfill'
 
 // let a = require('../data/data1')
 // console.log(a());

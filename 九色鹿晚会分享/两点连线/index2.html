@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;padding:0;
+        }
+        .main{
+            width: 1000px;
+            height: 800px;
+            border:1px solid deepskyblue;
+            margin:20px auto;
+            position: relative;
+        }
+        canvas{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    123444
+    <br>
+    123444
+    <br>
+    123444
+    <br>
+    123444
+    <br>
+    123444
+    <br>
+    <canvas width="1000" height="800" id="canvas"></canvas>
+</div>
+<script>
+    var canvas = document.getElementById('canvas')
+    var ctx = canvas.getContext('2d')
+    let lineObj = {
+      line1:{
+        distanceX:0,
+        distanceY:0,
+        len:0,//连线长度
+        deg:0
+      },
+      line2:{
+        distanceX:0,
+        distanceY:0,
+        len:0,//连线长度
+        deg:0
+      },
+      line3:{
+        distanceX:0,
+        distanceY:0,
+        len:0,//连线长度
+        deg:0
+      }
+    }
+    let dotObj = {
+      dot1 : {
+        x:30,
+        y:50
+      },
+      dot2 : {
+        x:80,
+        y:55
+      },
+      dot3 : {
+        x:130,
+        y:200
+      },
+      dot4 : {
+        x:180,
+        y:320
+      }
+      // dot4 : {
+      //   x:180,
+      //   y:320
+      // }
+    }
+
+    function drawPoint(x,y){
+      ctx.beginPath()
+      ctx.fillStyle = 'red'
+      //开始坐标X  开始坐标Y   半径   开始度数  结束度数
+      // 1PI = 180度
+      ctx.arc(x,y,8,0,2*Math.PI)
+      ctx.stroke()
+      ctx.fill()
+    }
+    function drawLine(idx){
+      let x = dotObj[`dot${idx}`].x,y = dotObj[`dot${idx}`].y
+      let lineToX = dotObj[`dot${idx + 1}`].x
+      let lineToY = dotObj[`dot${idx + 1}`].y
+      //开始画
+      ctx.beginPath()
+      //开始画的坐标
+      ctx.moveTo(x,y)
+      //结束点的坐标
+      ctx.lineTo(lineToX,lineToY)
+      //给直线上色
+      ctx.strokeStyle = 'blue'
+      //直线粗
+      ctx.lineWidth = 1
+      //线画结束
+      ctx.stroke()
+    }
+
+
+    function setDotPosition(idx){
+      drawPoint(dotObj[`dot${idx}`].x,dotObj[`dot${idx}`].y)
+    }
+
+    function setLinePosition(idx){
+      drawLine(idx)
+    }
+
+    for(let i =0;i<4;i++){
+      let idx = i+1
+      //先画圆后画线 和 先画线后画圆 体现的效果不同在于 线可能会在圆上不美观
+      if(idx < 4){
+        setLinePosition(idx)
+      }
+      setDotPosition(idx)
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /*禁用选中复制解决方案*/
+        *{
+            -webkit-touch-callout:none; /*系统默认菜单被禁用*/
+            -webkit-user-select:none; /*webkit浏览器*/
+            -khtml-user-select:none; /*早期浏览器*/
+            -moz-user-select:none;/*火狐*/
+            -ms-user-select:none; /*IE10*/
+            user-select:none;
+        }
+        p{
+            /*width: 100px;*/
+            border:1px solid red;
+            font-size: 20px;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<h3>window.getSelection().getRangeAt方式</h3>
+<p>lwh is good</p>
+<p>haha <span>heihei</span> hehe gaga !!!</p>
+
+<h3>e.target方式</h3>
+<p>
+    <span>lwh</span>
+    <span>is</span>
+    <span>good</span>
+</p>
+<p>
+    <span>haha</span>
+    <span>heihei</span>
+    <span>hehe</span>
+    <span>gaga</span>
+    <span>!!!</span>
+</p>
+<script src="./jquery-1.9.1.min.js"></script>
+<script src="./mobile-detect.min.js"></script>
+<script>
+    let env = getDeviceEnv()
+    console.log(env)
+    let timer = null
+    let longClickFlag = false
+    let mousedown = env === 'mobile' ? 'touchstart':'mousedown'
+    let mouseup = env === 'mobile' ? 'touchend':'mouseup'
+
+
+
+    function getStartOrEndIndex(value,curIndex,type){
+      //type:1 start 2 end
+      let res = 0
+      while(value.substr(curIndex, 1).replace(/^\s+/ig,'').replace(/\s+$/ig,'')){
+        // console.log(value.substr(curIndex, 1).replace(/^\s+/ig, '').replace(/\s+$/ig, ''),8888);
+        res = curIndex
+        if(type == 1){
+          if(curIndex === 0){
+            break
+          }
+          curIndex--
+        }else{
+          if(curIndex === value.length -1){
+            break
+          }
+          curIndex++
+        }
+      }
+      return res
+    }
+
+    function clearTimer(){
+      // longClickFlag = false
+      if(timer){
+        clearInterval(timer)
+        timer = null
+      }
+    }
+
+    function getDeviceEnv(){
+      function isIpad() {
+        var ua = window.navigator.userAgent
+        var IsIPad = false
+        if (/ipad/i.test(ua)) {
+          IsIPad = true
+        }
+        // iPad from IOS13
+        var macApp = ua.match(/Macintosh/i) != null
+        if (macApp) {
+          // need to distinguish between Macbook and iPad
+          var canvas = document.createElement('canvas')
+          if (canvas != null) {
+            var context =
+                canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+            if (context) {
+              var info = context.getExtension('WEBGL_debug_renderer_info')
+              if (info) {
+                var renderer = context.getParameter(info.UNMASKED_RENDERER_WEBGL)
+                if (renderer.indexOf('Apple') != -1) IsIPad = true
+              }
+            }
+          }
+        }
+        let touch = !!(('ontouchstart' in window) || (window.DocumentTouch && document instanceof window.DocumentTouch))
+        return IsIPad && touch
+      }
+      let env = ''
+      let md= new MobileDetect(window.navigator.userAgent) //初始化mobile-detect
+      let os = md.os();//获取系统
+      if(os){
+        os = os.toLowerCase()
+      }
+      if(os === 'ios' || os === 'androidos' || isIpad()){
+        env = 'mobile'
+      }else{
+        env = 'pc'
+      }
+      return env
+    }
+
+    $('p').on('click',function(e){
+      if(longClickFlag){
+        longClickFlag = false
+        return
+      }
+      console.log('click');
+    })
+
+    $('p').on(mousedown,function(e){
+      clearTimer()
+      timer = setTimeout(()=>{
+        longClickFlag = true
+        // console.log('长按操作');
+        let target = e.target
+        // console.log(target,'t');
+        if(target.nodeName === 'SPAN'){
+          console.log(target.innerText)
+        }else{
+          let selection = window.getSelection()
+          console.log(selection.getRangeAt(0),'selection');
+          let value = selection.getRangeAt(0).startContainer.nodeValue
+          let startIndex = selection.getRangeAt(0).startOffset
+          console.log(startIndex,value,'startIndex-value');
+          let selectedFirst = value.substr(startIndex, 1)
+          let replacedVal = selectedFirst.replace(/^\s+/ig,'').replace(/\s+$/ig,'')
+          if(replacedVal){
+            let curIndex = startIndex
+            let start = getStartOrEndIndex(value,curIndex,1)
+            let end = getStartOrEndIndex(value,curIndex,2)
+            console.log(value.substr(start,end-start+1))
+            // console.log(start, end);
+            // console.log(selectedFirst,startIndex,value.length);
+            // console.log(selection.getRangeAt(0));
+          }
+        }
+      },1000)
+      console.log('mousedown');
+    })
+    $(document).on(mouseup,function(){
+      clearTimer()
+      // setTimeout(()=>{
+      //   clearTimer()
+      // })
+      console.log('mouseup');
+    })
+</script>
+</body>
+</html>

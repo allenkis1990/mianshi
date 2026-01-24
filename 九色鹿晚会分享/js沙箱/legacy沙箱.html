@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class JsBox{
+    currentChangedPropsObj = new Map()
+    addPropsObj = new Map()
+    changedOriPropsObj = new Map()
+    proxyObj = {}
+    constructor() {
+      let _this = this
+      this.proxyObj = new Proxy({},{
+        get(target,prop){
+          return window[prop]
+        },
+        set(target,prop,value){
+          if(!window.hasOwnProperty(prop)){
+            _this.addPropsObj.set(prop,value)
+          }
+          if(!_this.changedOriPropsObj.has(prop)){
+            let oriWindowValue = window[prop]
+            _this.changedOriPropsObj.set(prop,oriWindowValue)
+          }
+          _this.currentChangedPropsObj.set(prop,value)
+          window[prop] = value
+        },
+        deleteProperty(target,prop){
+          //属性被删除的时候要删除新增的
+          if(_this.addPropsObj.has(prop)){
+            _this.addPropsObj.delete(prop)
+          }
+          //跟set操作一样记录原始值
+          if(!_this.changedOriPropsObj.has(prop)){
+            let oriWindowValue = window[prop]
+            _this.changedOriPropsObj.set(prop,oriWindowValue)
+          }
+          //设置成undefined等mounted的时候delete
+          _this.currentChangedPropsObj.set(prop,undefined)
+          delete window[prop]
+        }
+      })
+    }
+    mounted(){
+      //如果不是第一次进入的话，需要还原上一次进入时候的状态
+      this.currentChangedPropsObj.forEach((value,prop)=>{
+        if(value!==undefined){
+          window[prop] = value
+        }else{
+          delete window[prop]
+        }
+      })
+    }
+    unmounted(){
+      //还原最早的window对象
+      //把新增的删除
+      this.addPropsObj.forEach((value,prop)=>{
+        delete window[prop]
+      })
+      //把修改过的还原
+      this.changedOriPropsObj.forEach((value,prop)=>{
+        window[prop] = value
+      })
+    }
+  }
+  window.nickName = 'lwh'
+
+  let box = new JsBox()
+  box.mounted()
+  box.proxyObj.nickName = 'jack'
+  box.proxyObj.age = 18
+  console.log(`nickName:${window.nickName}`,`age:${window.age}`);
+
+
+  box.unmounted()
+  console.log(`nickName:${window.nickName}`,`age:${window.age}`,'unmounted');
+
+  box.mounted()
+  delete box.proxyObj.nickName
+  console.log(`nickName:${window.nickName}`,`age:${window.age}`,'mounted');
+
+
+
+
+
+
+</script>
+</body>
+</html>

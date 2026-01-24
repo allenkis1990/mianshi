@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+</body>
+
+<script>
+    let targetTime = new Date('2025-03-19 16:15:00').getTime()
+    let animationFrameId = null
+    function fn(){
+      animationFrameId = requestAnimationFrame(function(){
+        let now = new Date().getTime()
+        let distanceTime = (targetTime - now)
+        if(distanceTime > 0){
+          // console.log(distanceTime % (1000 * 60));
+          // const hours =Math.floor(distanceTime / (1000*60*60));
+          // const minutes =Math.floor((distanceTime % (1000*60*60)) / (1000*60));
+          // const seconds =Math.floor((distanceTime % (1000*60)) / 1000);
+          // 计算总秒数
+          var totalSeconds = distanceTime / 1000;
+          // 计算小时
+          var hours = Math.floor(totalSeconds / 3600);
+          // 计算剩余的分钟
+          var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
+          // 计算剩余的秒数
+          var seconds = Math.floor(totalSeconds - (hours * 3600) - (minutes * 60));
+          console.log(hours, minutes, seconds);
+          if(distanceTime / 1000 < 10){
+            console.log(hours, minutes, seconds,'小于10');
+          }
+          fn()
+        }else{
+          cancelAnimationFrame(animationFrameId);
+          console.log('时间到');
+        }
+      })
+    }
+    fn()
+</script>
+</html>

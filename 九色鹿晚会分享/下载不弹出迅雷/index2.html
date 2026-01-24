@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="module">
+  //转成blob地址不会跳迅雷
+  function download(url, name, opts) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+
+    xhr.onload = function () {
+      saveAs(xhr.response, name, opts);
+    };
+
+    xhr.onerror = function () {
+      console.error('could not download file');
+    };
+
+    xhr.send();
+  }
+
+  function saveAs(blob){
+    let a = document.createElement('a')
+    a.rel = 'noopener'
+    a.href = URL.createObjectURL(blob);
+    console.log(a.href,111);
+    a.download = 'hehe'
+    a.target = '_blank'
+    a.click()
+    setTimeout(function () {
+      URL.revokeObjectURL(a.href);
+    }, 4E4); // 40s
+  }
+
+
+
+  setTimeout(()=>{
+    download('https://pre-jsl-e.thedeer.cn/download/temp/excel/学生特征-20240223134257.xlsx')
+  },2000)
+</script>
+</body>
+</html>
