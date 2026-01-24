@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  /**
+   * proxy沙箱
+   * @class
+   */
+  class JsBox{
+    proxyObj = {}
+    isRunning = false
+    constructor() {
+      let _this = this
+      this.proxyObj = new Proxy({},{
+        get(target,prop){
+          return target.hasOwnProperty(prop) ? target[prop] : window[prop]
+          // return target[prop] || window[prop]
+        },
+        set(target,prop,value){
+          if(_this.isRunning){
+            target[prop] = value
+          }
+        }
+      })
+    }
+    mounted(){
+      this.isRunning = true
+    }
+    unmounted(){
+      this.isRunning = false
+    }
+  }
+
+
+  let box = new JsBox();
+  box.mounted();
+  window.b = 'b';
+  (function(window){
+    window.console.log(123)
+    console.log(window.console);
+    window.a = '123'
+    console.log(window.a);
+    console.log(window.b,'bbbb');
+  })(box.proxyObj);
+
+  console.log(window.a,'window a');
+
+  box.unmounted();
+
+
+
+</script>
+</body>
+</html>

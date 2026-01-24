@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="rxjs.umd.min.js"></script>
+
+<script type="module">
+  let {Subject,operators} = rxjs
+  let {map,filter,take,debounceTime,throttleTime,last,first,switchMap} = operators
+
+  const observable = new Subject();
+
+
+  setTimeout(()=>{
+    observable.next(6)
+    observable.next(7)
+    observable.next(8)
+    observable.next(9)
+  },3000)
+
+
+  // 订阅这个 Observable
+  const subscription = observable.pipe(
+      //返回7 8 9 10
+      map((num)=>{
+        return num + 1
+      }),
+      //返回8 10
+      filter((num)=>{
+        return num % 2 === 0
+      }),
+      //就取num个
+      // take(1)
+      // 输出最新值（搜索框）
+      // debounceTime(1000)
+      // 输出第一个值（限制数据流的速率，例如在滚动事件中）
+      // throttleTime(1000)
+  ).subscribe({
+    next: (value) => console.log(value),
+    error: (err) => console.error(err),
+    complete: () => console.log('Completed')
+  });
+
+  // console.log(map,123);
+  // console.log(rxjs);
+</script>
+</body>
+</html>

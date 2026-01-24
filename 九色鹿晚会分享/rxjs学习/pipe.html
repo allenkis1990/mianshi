@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="rxjs.umd.min.js"></script>
+
+<script type="module">
+  let {Observable,operators} = rxjs
+  let {map} = operators
+
+  const observable = new Observable(subscriber => {
+    subscriber.next('allen');
+    subscriber.next('jack');
+    subscriber.next('tom');
+    subscriber.complete();
+  });
+
+
+
+
+  // 订阅这个 Observable
+  const subscription = observable.pipe(
+      map((num)=>{
+        return num + 1
+      })
+  ).subscribe({
+    next: (value) => console.log(value),
+    error: (err) => console.error(err),
+    complete: () => console.log('Completed')
+  });
+
+  console.log(map,123);
+  console.log(rxjs);
+</script>
+</body>
+</html>
