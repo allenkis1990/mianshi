@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<script>
+// 二、加分号的优点
+//
+// 明确性：使用分号可以明确地标记语句的结束，有助于减少潜在的解析错误。这对于阅读和维护代码的人来说是非常重要的。
+// 工具兼容性：某些代码压缩工具和静态分析工具在处理带有显式分号的代码时表现更好。这些工具在优化和检查代码时依赖于明确的语句边界。
+// 避免陷阱：使用分号可以避免由于自动分号插入（ASI）机制导致的难以察觉的错误。ASI 虽然在一定程度上减少了分号的必要性，但它也可能引入意想不到的行为。
+//
+// 三、省略分号的优点
+//
+//代码简洁：省略分号可以使代码看起来更简洁，尤其是在采用函数式编程和箭头函数广泛使用的代码库中。
+// 现代工具支持：现代 JavaScript 编译器和转换器（如Babel）能够正确处理没有分号的代码，并在必要时自动插入分号。这使得省略分号成为一种可行的选择。
+</script>
+
+
+
+<script>
+  //例1
+  // var x = 3
+  // var y = 4;
+  // [x, y] = [y, x]
+  // console.log(y)
+
+
+  //例2
+  // var fn1 = function () {
+  //   console.log(1)
+  // }
+  // (function () {
+  //   console.log(2)
+  // }())
+
+  //例3
+  function fn2() {
+    return
+    true
+  }
+  console.log(fn2())
+</script>
+
+</body>
+</html>

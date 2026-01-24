@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+<script>
+  // 假设你已经有了一个包含图片URLs的数组或File对象的数组
+  const images = [
+    {fileName:'小明',fullUrl: 'https://zykj-resource-repository-dev.oss-cn-hangzhou.aliyuncs.com/artwork/bfe356105aaa6d8c71af8b088fbce7caifwagzaz.jpg'},
+    {fileName:'小强',fullUrl: 'https://zykj-resource-repository-dev.oss-cn-hangzhou.aliyuncs.com/artwork/fa8404b836968beb47548322f14c94482eg7j291.jpg'},
+    {fileName:'小红',fullUrl: 'https://zykj-resource-repository-dev.oss-cn-hangzhou.aliyuncs.com/artwork/40903f4803958873d6abc3759b56a249gev8huau.mp4'}
+  ];
+
+
+  function getZip(){
+    const zip = new JSZip();
+    // 添加图片到ZIP文件
+    Promise.all(images.map(item => {
+      return fetch(item.fullUrl)
+          .then(response => response.blob()) // 获取blob数据
+          .then(blob => new File([blob], item.fullUrl.split('.').pop(), { type: blob.type })); // 转换为File对象
+    })).then(files => {
+      files.forEach((file, index) => {
+        zip.file(`${images[index].fileName}.${file.name.split('.').pop()}`, file); // 添加到ZIP中，并重命名文件以避免冲突
+      });
+      return zip.generateAsync({type:"blob"}); // 生成ZIP文件
+    }).then(content => {
+      // 使用content创建一个下载链接或者进行其他操作
+      const url = URL.createObjectURL(content);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'images.zip'; // 设置下载文件名
+      document.body.appendChild(a);
+      a.click(); // 模拟点击下载链接
+      document.body.removeChild(a); // 清理DOM
+      URL.revokeObjectURL(url); // 释放URL对象
+    }).catch(err => {
+      console.error('Error generating zip file:', err);
+    });
+  }
+
+
+  setTimeout(()=>{
+    getZip()
+  },3000)
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  //切换浏览器TAB或者最小化等操作会降低定时器的效率，导致倒计时慢于本地实际时间
+  //解决办法是监听document的visibilitychange事件，做倒计时的修正
+  let firstTime = new Date().getTime() / 1000
+  let count = 0
+  let timer = null
+  const handleVisibilityChange = () => {
+    console.log('Page is visible:', document.visibilityState);
+    if(document.visibilityState === 'visible'){
+      let curTime = new Date().getTime() / 1000
+      let distanceTime = parseInt(curTime - firstTime)
+      console.log(distanceTime,'真正的过去了几秒');
+      if(distanceTime > count){
+        console.warn('倒计时需要修正！！');
+        clearTimer()
+        count = distanceTime
+        init()
+      }
+    }
+  };
+  function fn(){
+    count ++;
+    console.log(count,'定时器过去了几秒');
+  }
+  function setTimer (){
+    timer = setInterval(fn,1000)
+  }
+  function clearTimer(){
+    timer && clearInterval(timer)
+    timer = null
+  }
+
+  function init(){
+    fn()
+    setTimer()
+  }
+  init()
+  // 添加事件监听器
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+</script>
+</body>
+</html>

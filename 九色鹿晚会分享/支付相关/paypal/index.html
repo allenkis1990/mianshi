@@ -1,0 +1,92 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+123
+<script src="./axios.min.js"></script>
+<script>
+  axios({
+    method: 'post',
+    url: '/createOrder',
+    data: {
+      a:1
+    }
+  }).then((res)=>{
+
+  });
+</script>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .btn-box{
+            width: 200px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="btn-box" id="btn-box"></div>
+<script src="./axios.min.js"></script>
+<script>
+  let script = document.createElement('script')
+  script.src = 'https://www.paypal.com/sdk/js?client-id=Ac22osxFpFaCEHbN_qRSrRAAexAoIYk8-qO6UUuwXucTNHFplckwAB9iyT-GyCf2kyAy6uVpNwYJVIpG'
+  script.addEventListener('load',()=>{
+    console.log(window.paypal);
+    window.paypal.Buttons({
+      style: {
+        // layout: 'vertical',
+        layout: 'horizontal',
+        color: 'blue',
+        shape: 'rect',
+        label: 'paypal'
+      },
+      async createOrder(){
+        let res = await axios({
+           method: 'post',
+           url: '/createOrder',
+           data: {}
+         });
+        let orderId = res.data.id
+        return orderId
+      },
+      async onApprove(data,actions){
+        let res = await axios({
+          method: 'post',
+          url: '/orderCapture',
+          data: {
+            orderId:data.orderID
+          }
+        });
+        let resData = res.data
+        if(resData && resData.purchase_units[0].payments.captures[0].status === 'COMPLETED'){
+          console.log('支付成功')
+        }
+        /*return actions.order.capture().then((res)=>{
+          console.log(res,'res');
+          if(res.status === 'COMPLETED'){
+            console.log('支付成功')
+          }
+        })*/
+      },
+      onCancel(){
+        console.log('取消付款')
+      },
+      onClick(){
+        console.log('点击付款按钮')
+      }
+    }).render('#btn-box');
+  })
+  document.body.appendChild(script)
+
+</script>
+</body>
+</html>

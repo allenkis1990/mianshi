@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;padding:0;
+        }
+        .main{
+            height: 100px;
+            width: 100px;
+            background: red;
+        }
+        @media screen and (min-width: 600px) and (max-width: 800px) {
+            .main{width: 200px;}
+        }
+        @media screen and (min-width: 800px) and (max-width: 1000px) {
+            .main{width: 400px;}
+        }
+        @media screen and (min-width: 1001px) {
+            .main{width: 800px;}
+        }
+    </style>
+</head>
+<body>
+<div class="main"></div>
+</body>
+</html>

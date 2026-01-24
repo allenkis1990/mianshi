@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;padding:0;
+        }
+        .main{
+            width: 1000px;
+            height: 800px;
+            border:1px solid deepskyblue;
+            margin:20px auto;
+            position: relative;
+        }
+        .dot{
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: deepskyblue;
+            z-index:2;
+        }
+        .line{
+            /*height: 1px;*/
+            border:1px solid red;
+            position: absolute;
+            /*默认旋转的原点是50% 50% 改成 0 0比较好理解*/
+            transform-origin: 0 0;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="dot dot1"></div>
+    <div class="dot dot2"></div>
+    <div class="dot dot3"></div>
+    <div class="dot dot4"></div>
+
+    <div class="line line1"></div>
+    <div class="line line2"></div>
+    <div class="line line3"></div>
+</div>
+<script>
+    let dotObj = {
+      dot1 : {
+        x:30,
+        y:50
+      },
+      dot2 : {
+        x:80,
+        y:55
+      },
+      dot3 : {
+        x:130,
+        y:200
+      },
+      dot4 : {
+        x:180,
+        y:320
+      }
+      // dot4 : {
+      //   x:180,
+      //   y:320
+      // }
+    }
+    function setDotPosition(idx){
+      let ele = document.querySelector(`.dot${idx}`)
+      ele.style.left = dotObj[`dot${idx}`].x + 'px'
+      ele.style.top = dotObj[`dot${idx}`].y + 'px'
+    }
+    function setLinePosition(idx){
+      let ele = document.querySelector(`.line${idx}`)
+      let dotOffsetLeft = 16 / 2
+      let dotOffsetTop = 16 / 2
+      ele.style.left = dotObj[`dot${idx}`].x + dotOffsetLeft + 'px'
+      ele.style.top = dotObj[`dot${idx}`].y + dotOffsetTop + 'px'
+    }
+    for(let i =0;i<4;i++){
+      let idx = i+1
+      setDotPosition(idx)
+      if(idx < 4){
+        setLinePosition(idx)
+      }
+    }
+
+    let lineObj = {
+      line1:{
+        distanceX:0,
+        distanceY:0,
+        len:0,//连线长度
+        deg:0
+      },
+      line2:{
+        distanceX:0,
+        distanceY:0,
+        len:0,//连线长度
+        deg:0
+      },
+      line3:{
+        distanceX:0,
+        distanceY:0,
+        len:0,//连线长度
+        deg:0
+      }
+    }
+
+    function setLineObj(lineName,start,end){
+      let startX = dotObj[start].x
+      let startY = dotObj[start].y
+      let endX = dotObj[end].x
+      let endY = dotObj[end].y
+      lineObj[lineName].distanceX = endX - startX
+      lineObj[lineName].distanceY = endY - startY
+      let distanceX = lineObj[lineName].distanceX
+      let distanceY = lineObj[lineName].distanceY
+
+      // 计算连线长度
+      lineObj[lineName].len = Math.round(Math.sqrt(distanceX * distanceX + distanceY * distanceY));
+      // 弧度值转换为角度值
+      let deg = 360 * Math.atan2(distanceY, distanceX) / (2 * Math.PI);
+      deg = deg <= -90 ? (360 + deg) : deg; // 负角转换为正角
+      deg = Math.round(deg)
+      lineObj[lineName].deg = deg
+
+      let ele = document.querySelector(`.${lineName}`)
+      ele.style.width = lineObj[lineName].len + 'px'
+      ele.style.transform = `rotate(${deg}deg)`
+    }
+
+    setLineObj('line1','dot1','dot2')
+    setLineObj('line2','dot2','dot3')
+    setLineObj('line3','dot3','dot4')
+    console.log(lineObj);
+
+
+</script>
+</body>
+</html>

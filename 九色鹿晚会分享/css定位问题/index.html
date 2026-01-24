@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;box-sizing: border-box}
+        body,html{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .main{
+            display: flex;
+            width: 1200px;
+            margin:20px auto;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .item{
+            width: 250px;
+            height: 200px;
+            border:1px solid deepskyblue;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .item.cur .mask{
+            display: block;
+        }
+        .text{
+            color:#fff;
+            font-size: 18px;
+            width: 100%;
+            justify-content: center;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+            background: deepskyblue;
+            cursor: pointer;
+            font-weight: bold;
+            z-index:2;
+        }
+        .mask{
+            width: 300vw;
+            height: 300vh;
+            position: fixed;
+            background: #000;
+            opacity: 0.5;
+            display: none;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="item">
+        <div class="text">点击
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="text">点击
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="text">点击
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="text">点击
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="text">点击
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="text">点击
+            <div class="mask"></div>
+        </div>
+    </div>
+    <!--<div class="mask" style="display: block"></div>-->
+    <div class="item">
+        <div class="text">点击
+            <div class="mask"></div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="text">点击
+            <div class="mask"></div>
+        </div>
+    </div>
+</div>
+<!--<div class="mask" style="display: block"></div>-->
+<script src="../../jquery-1.9.1.min.js"></script>
+<script>
+    $('.item').click(function(){
+      $(this).addClass('cur').siblings().removeClass('cur')
+    })
+</script>
+</body>
+</html>
