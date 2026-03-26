@@ -1,0 +1,49 @@
+{
+  "name": "share-chrome-extensions-by-lwh",
+  "version": "1.0.0",
+  "scripts": {
+    "devP": "cross-env NODE_ENV=dev webpack",
+    "preP": "cross-env NODE_ENV=pre webpack",
+    "prodP": "cross-env NODE_ENV=prod webpack",
+    "watchPreP": "cross-env NODE_ENV=pre webpack --watch",
+    "proxy": "webpack serve"
+  },
+  "keywords": [],
+  "author": "lwh",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "babel-loader": "^10.0.0",
+    "chrome-types": "^0.1.354",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.2",
+    "filemanager-webpack-plugin": "^8.0.0",
+    "html-webpack-plugin": "^5.6.4",
+    "javascript-obfuscator": "^4.1.1",
+    "mini-css-extract-plugin": "^2.9.4",
+    "mkdirp": "~0.5.0",
+    "sass": "^1.92.1",
+    "sass-loader": "^16.0.5",
+    "sockjs": "^0.3.24",
+    "style-loader": "^4.0.0",
+    "unplugin-auto-import": "^0.6.0",
+    "unplugin-vue-components": "^0.17.18",
+    "vue-loader": "^17.4.2",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2",
+    "webpack-obfuscator": "^3.5.1"
+  },
+  "dependencies": {
+    "axios": "^1.13.6",
+    "element-plus": "^2.11.3",
+    "vue": "^3.5.21",
+    "vue-router": "4.2.5",
+    "crypto-js": "^3.1.9-1"
+  }
+}
