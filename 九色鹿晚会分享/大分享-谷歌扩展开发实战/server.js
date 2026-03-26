@@ -1,7 +1,6 @@
 let express = require('express')
 let app = express()
-let cors = require('cors')
-
+//let cors = require('cors')
 // ========== 第一步：配置 CORS（动态匹配来源）==========
 /*
 app.use((req, res, next) => {
