@@ -24952,7 +24952,7 @@
     })();
 
 
-    // ui/popup.js
+    // ui/popup2.js
     ///import core
     ///import uicore
     (function() {
@@ -25656,7 +25656,7 @@
     ///import core
     ///import uicore
     ///import ui/colorpicker.js
-    ///import ui/popup.js
+    ///import ui/popup2.js
     ///import ui/splitbutton.js
     (function() {
         var utils = baidu.editor.utils,
@@ -25718,7 +25718,7 @@
     // ui/tablebutton.js
     ///import core
     ///import uicore
-    ///import ui/popup.js
+    ///import ui/popup2.js
     ///import ui/tablepicker.js
     ///import ui/splitbutton.js
     (function() {
@@ -25827,7 +25827,7 @@
     // ui/autotypesetbutton.js
     ///import core
     ///import uicore
-    ///import ui/popup.js
+    ///import ui/popup2.js
     ///import ui/autotypesetpicker.js
     ///import ui/splitbutton.js
     (function() {
@@ -26191,7 +26191,7 @@
     // ui/menu.js
     ///import core
     ///import uicore
-    ///import ui\popup.js
+    ///import ui\popup2.js
     ///import ui\stateful.js
     (function() {
         var utils = baidu.editor.utils,

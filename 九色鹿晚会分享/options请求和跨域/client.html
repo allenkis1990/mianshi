@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="./libs/axios.min.js"></script>
+<script>
+  axios({
+    method:'get',
+    url:'http://127.0.0.1:8888/haha',
+    headers:{
+      'lwh':'haha'
+    }
+  }).then((res)=>{
+    console.log(res.data);
+  })
+</script>
+</body>
+</html>

@@ -62,23 +62,62 @@
             width: 16px;
             height: 100%;
             background: url("./key-bg-left.png") center center no-repeat;
-            background-size: 100% 100%;
+            background-size: 16px 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index:2;
+            clip-path: polygon(
+                    0 0,                          /* 1. 左上角 */
+                    100% 0,                       /* 2. 右上角 */
+                    100% calc(100% - 8px),       /* 3. 右侧边缘，距离底部15px（缺口上沿） */
+                    calc(100% - 3px) calc(100% - 8px), /* 4. 缺口左上角（水平左移3px，垂直上移15px） */
+                    calc(100% - 3px) 100%,        /* 5. 缺口左下角（水平左移3px，底部） */
+                    0 100%                        /* 6. 左下角 */
+            );
         }
         .key-bg-middle{
             background: url("./key-bg-middle.png") center center no-repeat;
             background-size: 100% 100%;
-            flex: 1;
+            width: calc(100% - 26px);
             height: 100%;
+            position: relative;
+            z-index:1;
         }
         .key-bg-right{
             width: 16px;
             height: 100%;
             background: url("./key-bg-right.png") center center no-repeat;
-            background-size: 100% 100%;
+            background-size: 16px 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index:2;
+            clip-path: polygon(
+                    0 0,                          /* 1. 左上角 */
+                    100% 0,                       /* 2. 右上角 */
+                    100% 100%,                    /* 3. 右下角 */
+                    3px 100%,                     /* 4. 缺口右下角（水平右移3px，底部） */
+                    3px calc(100% - 8px),        /* 5. 缺口右上角（水平右移3px，垂直上移15px） */
+                    0 calc(100% - 8px)           /* 6. 左侧边缘，距离底部15px（缺口左上角） */
+            );
         }
-
-
-
+        .key-bg-left-mask{
+            position: absolute;
+            width: 3px;
+            height: 8px;
+            background: #f1ebeb;
+            right: 0;
+            bottom: 0;
+        }
+        .key-bg-right-mask{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 3px;
+            height: 8px;
+            background-color: #ff0000; /* 替换成你想要的颜色 */
+        }
     </style>
 </head>
 <body>
@@ -86,25 +125,13 @@
     <div class="keyboard-list">
         <div class="keyboard-item-list">
             <div class="keyboard-item">
-                <div class="key-bg-left"></div>
-                <div class="key-bg-middle"></div>
-                <div class="key-bg-right"></div>
-                <div class="key-text">
-                    A
+                <div class="key-bg-left">
+<!--                    <div class="key-bg-left-mask"></div>-->
                 </div>
-            </div>
-            <!--<div class="keyboard-item">
-                <div class="key-bg-left"></div>
                 <div class="key-bg-middle"></div>
-                <div class="key-bg-right"></div>
-                <div class="key-text">
-                    A
+                <div class="key-bg-right">
+<!--                    <div class="key-bg-right-mask"></div>-->
                 </div>
-            </div>
-            <div class="keyboard-item">
-                <div class="key-bg-left"></div>
-                <div class="key-bg-middle"></div>
-                <div class="key-bg-right"></div>
                 <div class="key-text">
                     A
                 </div>
@@ -148,7 +175,23 @@
                 <div class="key-text">
                     A
                 </div>
-            </div>-->
+            </div>
+            <div class="keyboard-item">
+                <div class="key-bg-left"></div>
+                <div class="key-bg-middle"></div>
+                <div class="key-bg-right"></div>
+                <div class="key-text">
+                    A
+                </div>
+            </div>
+            <div class="keyboard-item">
+                <div class="key-bg-left"></div>
+                <div class="key-bg-middle"></div>
+                <div class="key-bg-right"></div>
+                <div class="key-text">
+                    A
+                </div>
+            </div>
         </div>
     </div>
 </div>

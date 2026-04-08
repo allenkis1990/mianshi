@@ -25,6 +25,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.6",
     "execa": "^7.1.1",
     "ffmpeg": "0.0.4",
     "formidable": "^2.1.2",

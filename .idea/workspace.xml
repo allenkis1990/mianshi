@@ -1,105 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcccbcf0-0a37-4404-9901-86b4692821ad" name="Default" comment="以往代码上传3">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rxjs.umd.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/teacher4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/s1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/s2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testServer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testServer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testServer2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testServer2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/viteTest/vite-test/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/viteTest/vite-test/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/viteTest/vite-test/src/components/TheWelcome.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/viteTest/vite-test/src/components/WelcomeItem.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/viteTest/vite-test/vite.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webrtc/recorder.mp3.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webrtc/录音.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webrtc/获取麦克风_耳机_摄像头.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/css定位问题/relative.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/css定位问题/sticky.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/css定位问题/定位.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/iframe相关/data/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/iframe相关/打印.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/iframe相关/获取iframe里的dom.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Bold-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Bold-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Bold-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-BoldItalic-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-BoldItalic-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-BoldItalic-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Italic-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Italic-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Italic-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Light-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Light-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Light-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-LightItalic-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-LightItalic-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-LightItalic-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Regular-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Regular-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/fonts/OpenSans-Regular-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/scripts/prettify/prettify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/styles/prettify-jsdoc.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/styles/prettify-tomorrow.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/jsdoc/doc/utils.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/js沙箱/proxy沙箱.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/js沙箱/snapshot沙箱.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/requirejs-demo/lib/requirejs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/requirejs-demo/server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/rxjs学习/pipe.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/rxjs学习/pipe内部操作符举例.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/rxjs学习/rxjs.umd.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/rxjs学习/subject.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/rxjs学习/switchMap,mergeMap.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/rxjs学习/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/rxjs学习/实现pipe里传入的函数.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/vue2和vue3中的v-model/vue2的v-model.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/vue2和vue3中的v-model/vue2的绑定多个model.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/vue2和vue3中的v-model/vue3组件双向绑定.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/使用em遇到的问题/q1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/使用em遇到的问题/q2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/前端捕获错误/全局捕获同步错误和资源错误.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/前端捕获错误/捕获ajax错误.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/前端捕获错误/捕获同步错误.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/前端捕获错误/捕获异步错误.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/前端捕获错误/错误上报.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/坐标尺/repeating-linear-gradient.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/坐标尺/user-select.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-babel入门/dist/test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-babel入门/node_modules/@babel/runtime/helpers/esm/slicedToArrayLoose.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-babel入门/node_modules/@babel/runtime/helpers/slicedToArrayLoose.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-babel入门/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-babel入门/src/test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-babel入门/src/test2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/支付相关/paypal/纯前端实现.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/纯前端操作本地文件/symbol.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/纯前端操作本地文件/纯前端操作本地文件.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/纯前端操作本地文件/迭代器.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/纯前端操作本地文件/迭代器2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/订阅发布/手写eventBus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/订阅发布/自定义事件.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/订阅发布/自定义事件2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/前端处理文件方法集合/纯前端操作本地文件.html" afterDir="false" />
+    <list default="true" id="dcccbcf0-0a37-4404-9901-86b4692821ad" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/key-bg-left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/key-bg-left2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/key-bg-middle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/key-bg-middle2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/key-bg-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/key-bg-right2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test22.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test222.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/options请求和跨域/client.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/options请求和跨域/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/options请求和跨域/libs/axios.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/options请求和跨域/readme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/background.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/css/popup.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/images/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/js/popup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/popup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/入门/images/icon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/src/js/utils/http2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webrtc/视频中取图.html" beforeDir="false" afterPath="$PROJECT_DIR$/webrtc/视频中取图.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webrtc/音视频采集.html" beforeDir="false" afterPath="$PROJECT_DIR$/webrtc/音视频采集.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/cookie专题/demo4/ssoLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/cookie专题/demo4/ssoLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/cookie专题/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/cookie专题/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-babel入门/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-babel入门/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/前端处理文件方法集合/文件转base64.html" beforeDir="false" afterPath="$PROJECT_DIR$/前端处理文件方法集合/文件转base64.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/错误捕获/捕获资源错误1.html" beforeDir="false" afterPath="$PROJECT_DIR$/错误捕获/捕获资源错误1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/错误捕获/捕获资源错误2.html" beforeDir="false" afterPath="$PROJECT_DIR$/错误捕获/捕获资源错误2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/test2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-node入门与实战/综合例子/historyFallback/dist/static/ueditor/ueditor.all.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-node入门与实战/综合例子/historyFallback/dist/static/ueditor/ueditor.all.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/css/baidu.css" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/css/baidu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/css/sidepanel.css" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/css/sidepanel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/js/baidu.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/js/baidu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/js/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/js/popup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/popup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo2/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo2/background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/入门/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/入门/background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/入门/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/入门/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/src/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/src/background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/src/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/src/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/zip/插件.zip" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/zip/插件.zip" afterDir="false" />
     </list>
     <list id="2de0c22f-c5de-4150-b624-b409292796ea" name="exclude" comment="123">
       <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-babel入门/node_modules/.bin/babel" afterDir="false" />
@@ -5016,8 +4959,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -5165,7 +5108,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战" />
     <property name="list.type.of.created.stylesheet" value="textmate" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -5173,52 +5116,56 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_interpreter_path" value="$PROJECT_DIR$/../../nodejs/node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="ts.external.directory.path" value="E:\刘伟恒日常工具\工作日常工具\webstrom\WebStorm 2021.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\gitlabProjects\mianshi" />
-      <recent name="E:\gitlabProjects\mianshi" />
-      <recent name="E:\gitlabProjects\mianshi\九色鹿晚会分享\vue2和vue3中的v-model" />
-      <recent name="E:\gitlabProjects\mianshi\九色鹿晚会分享\iframe相关\data" />
-      <recent name="E:\gitlabProjects\mianshi\九色鹿晚会分享\iframe相关\server" />
+      <recent name="D:\gitlabProjects\mianshi\九色鹿晚会分享\大分享-谷歌扩展开发实战" />
+      <recent name="D:\gitlabProjects\mianshi\九色鹿晚会分享\大分享-谷歌扩展开发实战\入门\images" />
+      <recent name="D:\gitlabProjects\mianshi\九色鹿晚会分享\大分享-企业级浏览器插件开发\入门" />
+      <recent name="D:\gitlabProjects\mianshi\九色鹿晚会分享\大分享-企业级浏览器插件开发\入门\js" />
+      <recent name="D:\gitlabProjects\mianshi\九色鹿晚会分享\大分享-企业级浏览器插件开发" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\gitlabProjects\mianshi\webrtc\直播" />
+      <recent name="D:\gitlabProjects\mianshi\九色鹿晚会分享\大分享-谷歌扩展开发实战\进阶\src\js\utils" />
+      <recent name="D:\gitlabProjects\mianshi\九色鹿晚会分享\大分享-企业级浏览器插件开发" />
+      <recent name="D:\gitlabProjects\mianshi\九色鹿晚会分享\大分享-企业级浏览器插件开发\进阶\src\js\entrys" />
+      <recent name="D:\gitlabProjects\mianshi\九色鹿晚会分享\大分享-企业级浏览器插件开发\进阶\src\js\contentScripts" />
+      <recent name="D:\gitlabProjects\mianshi\九色鹿晚会分享\大分享-企业级浏览器插件开发\进阶\src\js" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.index.js">
+  <component name="RunManager" selected="Node.js.server.js (1)">
+    <configuration name="index.js (1)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/九色鹿晚会分享/options请求和跨域/index.js" working-dir="$PROJECT_DIR$/九色鹿晚会分享/options请求和跨域">
+      <method v="2" />
+    </configuration>
     <configuration name="index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/九色鹿晚会分享/iframe相关/server/index.js" working-dir="$PROJECT_DIR$/九色鹿晚会分享/iframe相关/server">
       <method v="2" />
     </configuration>
-    <configuration name="ssoLogin.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/九色鹿晚会分享/cookie专题/demo4/ssoLogin.js" working-dir="$PROJECT_DIR$/九色鹿晚会分享/cookie专题/demo4">
+    <configuration name="server.js (1)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/server.js" working-dir="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战">
       <method v="2" />
     </configuration>
-    <configuration name="testServer2.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/testServer2.js" working-dir="$PROJECT_DIR$">
-      <method v="2" />
-    </configuration>
-    <configuration name="testServer.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/testServer.js" working-dir="$PROJECT_DIR$">
+    <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/九色鹿晚会分享/大分享-企业级浏览器插件开发/server.js" working-dir="$PROJECT_DIR$/九色鹿晚会分享/大分享-企业级浏览器插件开发">
       <method v="2" />
     </configuration>
     <configuration name="test.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/test.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Node.js.ssoLogin.js" />
-      <item itemvalue="Node.js.testServer.js" />
-      <item itemvalue="Node.js.testServer2.js" />
       <item itemvalue="Node.js.test.js" />
       <item itemvalue="Node.js.index.js" />
+      <item itemvalue="Node.js.index.js (1)" />
+      <item itemvalue="Node.js.server.js" />
+      <item itemvalue="Node.js.server.js (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.index.js" />
+        <item itemvalue="Node.js.server.js (1)" />
+        <item itemvalue="Node.js.server.js" />
         <item itemvalue="Node.js.test.js" />
-        <item itemvalue="Node.js.testServer.js" />
-        <item itemvalue="Node.js.testServer2.js" />
-        <item itemvalue="Node.js.ssoLogin.js" />
+        <item itemvalue="Node.js.index.js (1)" />
+        <item itemvalue="Node.js.index.js" />
       </list>
     </recent_temporary>
   </component>
@@ -5547,7 +5494,26 @@
       <workItem from="1766737384253" duration="199000" />
       <workItem from="1766802409787" duration="1630000" />
       <workItem from="1767513809636" duration="13257000" />
-      <workItem from="1769244767558" duration="3117000" />
+      <workItem from="1769244767558" duration="3254000" />
+      <workItem from="1769668124530" duration="5307000" />
+      <workItem from="1769676057472" duration="218000" />
+      <workItem from="1772088469411" duration="2391000" />
+      <workItem from="1772108892538" duration="3877000" />
+      <workItem from="1772501608123" duration="16418000" />
+      <workItem from="1773193607788" duration="22053000" />
+      <workItem from="1773987818012" duration="12601000" />
+      <workItem from="1774063628421" duration="5940000" />
+      <workItem from="1774076464553" duration="419000" />
+      <workItem from="1774076899812" duration="105000" />
+      <workItem from="1774077021693" duration="2016000" />
+      <workItem from="1774079074257" duration="7421000" />
+      <workItem from="1774314978517" duration="36627000" />
+      <workItem from="1774487927637" duration="200000" />
+      <workItem from="1774488138570" duration="158000" />
+      <workItem from="1774488307558" duration="20233000" />
+      <workItem from="1774518899640" duration="20301000" />
+      <workItem from="1775006189245" duration="590000" />
+      <workItem from="1775266372309" duration="28148000" />
     </task>
     <task id="LOCAL-00001" summary="git命令">
       <created>1589457634278</created>
@@ -5710,7 +5676,35 @@
       <option name="project" value="LOCAL" />
       <updated>1769248633225</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="以往代码上传3">
+      <created>1769248921570</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1769248921570</updated>
+    </task>
+    <task id="LOCAL-00025" summary="以往代码上传33">
+      <created>1769249041911</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1769249041911</updated>
+    </task>
+    <task id="LOCAL-00026" summary="谷歌扩展开发分享">
+      <created>1774519170837</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1774519170838</updated>
+    </task>
+    <task id="LOCAL-00027" summary="谷歌扩展开发分享">
+      <created>1774520180685</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1774520180685</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -5755,7 +5749,9 @@
     <MESSAGE value="以往代码上传1" />
     <MESSAGE value="以往代码上传2" />
     <MESSAGE value="以往代码上传3" />
-    <option name="LAST_COMMIT_MESSAGE" value="以往代码上传3" />
+    <MESSAGE value="以往代码上传33" />
+    <MESSAGE value="谷歌扩展开发分享" />
+    <option name="LAST_COMMIT_MESSAGE" value="谷歌扩展开发分享" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

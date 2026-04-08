@@ -17,14 +17,7 @@
       "js": ["/js/contentScripts/baidu.js"],
       "matches": [ "https://*.baidu.com/*" ],
       "run_at": "document_end"
-   },
-      {
-         "all_frames": true,
-         "css": [ "/css/baidu.css" ],
-         "js": ["/js/contentScripts/baidu.js"],
-         "matches": [ "https://pre-jsl-ae.thedeer.cn/*" ],
-         "run_at": "document_end"
-      }],
+   }],
    "description": "lwh test",
    "host_permissions": [],
    "icons": {

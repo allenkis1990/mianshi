@@ -1,10 +1,10 @@
 {
    "action": {
       "default_icon": {
-         "128": "/images/icon.png",
-         "16": "/images/icon.png",
-         "32": "/images/icon.png",
-         "48": "/images/icon.png"
+         "128": "/images/icon2.png",
+         "16": "/images/icon2.png",
+         "32": "/images/icon2.png",
+         "48": "/images/icon2.png"
       },
       "default_popup": "popup.html",
       "default_title": "点击打开"

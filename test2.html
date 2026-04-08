@@ -5,95 +5,33 @@
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/7.0.0/fuse.min.js"></script>-->
+    <style>
+        .main{
+            width: 200px;
+            height: 200px;
+            background: red;
+            /*mask-image: linear-gradient(#000, #000),
+            linear-gradient(#000, #000);
+            mask-size: calc(100% - 30px) 100%,
+            100% calc(100% - 30px);
+            mask-position: left top, right top;
+            mask-repeat: no-repeat;
+            mask-composite: intersect;*/
+            clip-path: polygon(
+                    0 0,                          /* 1. 左上角 */
+                    100% 0,                       /* 2. 右上角 */
+                    100% calc(100% - 15px),       /* 3. 右侧边缘，距离底部15px（缺口上沿） */
+                    calc(100% - 3px) calc(100% - 15px), /* 4. 缺口左上角（水平左移3px，垂直上移15px） */
+                    calc(100% - 3px) 100%,        /* 5. 缺口左下角（水平左移3px，底部） */
+                    0 100%                        /* 6. 左下角 */
+            );
+        }
+    </style>
 </head>
 <body>
-
-<!--<script>
-  // 示例数据
-  const data = [
-    { title: "福建省台江区红星新村46座703" }
-  ];
-
-  // 初始化Fuse实例
-  const options = {
-    keys: ['title'], // 搜索字段
-    threshold: 0.5, // 匹配阈值（0.0-1.0）
-    distance: 100, // 匹配位置容忍度
-    includeScore: true // 结果包含匹配分数
-  };
-  const fuse = new Fuse(data, options);
-
-  // 搜索函数
-  function search(query) {
-    const result = fuse.search(query);
-    console.log(result.map(item => ({
-      title: item.item.title,
-      score: item.score
-    })));
-  }
-
-  // 测试搜索
-  search("台江区红星新村46座"); // 输出匹配结果
-</script>-->
+<div class="main"></div>
 <script>
 
-  /*let timer = null
-  let mark = false
-  function clearTimer(){
-    timer && cancelAnimationFrame(timer)
-    timer = null
-  }
-  function animate(time) {
-    // 动画逻辑（如更新位置）
-    console.log(time)
-    let s = parseInt(time / 1000)
-    if(!(s > 0 && s % 5 === 0)){
-      mark = false
-    }
-    if(s > 0 && s % 5 === 0 && !mark){
-      mark = true
-      console.log('success!!!!!',time)
-    }
-    timer = requestAnimationFrame(animate);
-  }
-  timer = requestAnimationFrame(animate);
-
-  setTimeout(()=>{
-    clearTimer()
-  },10000)*/
-
-  function requestInterval(callback, interval) {
-    let lastTime = new Date().getTime();
-    function loop() {
-      const now = new Date().getTime();
-      if (now - lastTime >= interval) {
-        callback();
-        lastTime = now;
-      }
-      callback.timer = requestAnimationFrame(loop);
-    }
-    callback.timer = requestAnimationFrame(loop);
-  }
-  let count = 0
-  // 使用示例
-  let fn = () => {
-    count ++
-    console.log('每秒执行一次');
-    if(count >= 3){
-      console.log('干！！');
-      count = 0
-    }
-  }
-  requestInterval(fn, 1000);
-
-  function clearTimer(){
-    fn.timer && cancelAnimationFrame(fn.timer)
-    fn.timer = null
-  }
-
-  setTimeout(()=>{
-    clearTimer()
-  },7000)
 </script>
 </body>
 

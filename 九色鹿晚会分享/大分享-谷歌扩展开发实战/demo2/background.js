@@ -18,7 +18,6 @@ chrome.contextMenus.create({
 // 监听菜单点击
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   console.log('📝 菜单被点击:', info.menuItemId);
-
   switch(info.menuItemId) {
     case "searchSelection":
       const query = encodeURIComponent(info.selectionText);

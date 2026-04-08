@@ -7,9 +7,11 @@ let app = express()
 let path = require('path')
 let fs = require('fs')
 
+app.use(express.static(path.resolve('./')))
+
 app.get('/a1',function(req,res){
   // res.setHeader("Content-Type", 'text/html');
-  res.sendFile(path.resolve('./test.html'),{
+  res.sendFile(path.resolve('./test22.html'),{
     headers: {
       'Content-Type': 'text/html'
     }

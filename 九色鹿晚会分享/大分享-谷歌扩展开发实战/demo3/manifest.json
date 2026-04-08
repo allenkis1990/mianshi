@@ -5,16 +5,21 @@
          "16": "/images/icon.png",
          "32": "/images/icon.png",
          "48": "/images/icon.png"
-      },
-      "default_popup": "popup.html",
-      "default_title": "点击打开"
+      }
    },
    "author": "lwh",
    "background": {
       "service_worker": "background.js"
    },
+   "content_scripts": [ {
+      "all_frames": true,
+      "css": [ "/css/baidu.css" ],
+      "js": ["/js/baidu.js"],
+      "matches": [ "https://*.baidu.com/*" ],
+      "run_at": "document_end"
+   }],
    "description": "lwh test",
-   "host_permissions": [],
+   "host_permissions": [ "http://localhost:8888/*","https://*.baidu.com/*"],
    "icons": {
       "128": "/images/icon.png",
       "16": "/images/icon.png",
@@ -22,7 +27,7 @@
       "48": "/images/icon.png"
    },
    "manifest_version": 3,
-   "name": "谷歌扩展DEMO1",
-   "permissions": [ "background", "storage","sidePanel", "tabs", "activeTab", "scripting","proxy"],
+   "name": "谷歌扩展DEMO3",
+   "permissions": [ "background", "storage","sidePanel", "tabs", "activeTab", "scripting","declarativeNetRequest"],
    "version": "1.0"
 }
