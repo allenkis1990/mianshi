@@ -44,6 +44,6 @@
     "element-plus": "^2.11.3",
     "vue": "^3.5.21",
     "vue-router": "4.2.5",
-    "crypto-js": "^3.1.9-1"
+    "crypto-js": "^4.2.0"
   }
 }
