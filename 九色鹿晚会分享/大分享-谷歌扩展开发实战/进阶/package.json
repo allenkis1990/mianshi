@@ -2,10 +2,9 @@
   "name": "share-chrome-extensions-by-lwh",
   "version": "1.0.0",
   "scripts": {
-    "devP": "cross-env NODE_ENV=dev webpack",
-    "preP": "cross-env NODE_ENV=pre webpack",
-    "prodP": "cross-env NODE_ENV=prod webpack",
-    "watchPreP": "cross-env NODE_ENV=pre webpack --watch",
+    "build:dev": "cross-env NODE_ENV=pre webpack",
+    "build": "cross-env NODE_ENV=prod webpack",
+    "dev": "cross-env NODE_ENV=pre webpack --watch",
     "proxy": "webpack serve"
   },
   "keywords": [],

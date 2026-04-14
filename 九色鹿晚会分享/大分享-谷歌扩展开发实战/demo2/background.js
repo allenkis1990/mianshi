@@ -6,6 +6,7 @@
 chrome.contextMenus.create({
   id: "searchSelection",
   title: "九色鹿翻译插件",
+  // contexts: ["selection",'page']
   contexts: ["selection"]
 }, () => {
   if (chrome.runtime.lastError) {
@@ -25,11 +26,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       chrome.tabs.create({
         url: `https://fanyi.baidu.com/mtpe-individual/transText?ext_channel=Aldtype01&from=auto&to=zh&query=${query}#/`
       });
+      // window.open(`https://fanyi.baidu.com/mtpe-individual/transText?ext_channel=Aldtype01&from=auto&to=zh&query=${query}#/`)
       break;
-
-      // case "copyLink":
-      //   navigator.clipboard.writeText(info.linkUrl);
-      //   console.log('✅ 链接已复制');
-      //   break;
   }
 });

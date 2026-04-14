@@ -2,45 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcccbcf0-0a37-4404-9901-86b4692821ad" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/key-bg-left.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/key-bg-left2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/key-bg-middle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/key-bg-middle2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/key-bg-right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/key-bg-right2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test22.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test222.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/options请求和跨域/client.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/options请求和跨域/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/options请求和跨域/libs/axios.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/options请求和跨域/readme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/background.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/css/popup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/images/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/js/popup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/popup.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/入门/images/icon2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/src/js/utils/http2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/test2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-node入门与实战/综合例子/historyFallback/dist/static/ueditor/ueditor.all.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-node入门与实战/综合例子/historyFallback/dist/static/ueditor/ueditor.all.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/background.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/css/baidu.css" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/css/baidu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/css/sidepanel.css" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/css/sidepanel.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/js/baidu.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo3/js/baidu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/js/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/js/popup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo1/popup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo2/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo2/background.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/入门/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/入门/background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo2/js/baidu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo2/js/popup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo2/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo2/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/demo2/popup.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/入门/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/入门/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/src/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/src/background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/src/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/src/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/zip/插件.zip" beforeDir="false" afterPath="$PROJECT_DIR$/九色鹿晚会分享/大分享-谷歌扩展开发实战/进阶/zip/插件.zip" afterDir="false" />
     </list>
@@ -5513,7 +5483,8 @@
       <workItem from="1774488307558" duration="20233000" />
       <workItem from="1774518899640" duration="20301000" />
       <workItem from="1775006189245" duration="590000" />
-      <workItem from="1775266372309" duration="28148000" />
+      <workItem from="1775266372309" duration="35312000" />
+      <workItem from="1776129139244" duration="13373000" />
     </task>
     <task id="LOCAL-00001" summary="git命令">
       <created>1589457634278</created>
@@ -5704,7 +5675,14 @@
       <option name="project" value="LOCAL" />
       <updated>1774520180685</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="谷歌扩展开发分享">
+      <created>1775641547557</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1775641547557</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

@@ -22,7 +22,7 @@
       "48": "/images/icon.png"
    },
    "manifest_version": 3,
-   "name": "谷歌扩展DEMO1",
+   "name": "翻墙插件",
    "permissions": [ "background", "storage","sidePanel", "tabs", "activeTab", "scripting","proxy"],
    "version": "1.0"
 }

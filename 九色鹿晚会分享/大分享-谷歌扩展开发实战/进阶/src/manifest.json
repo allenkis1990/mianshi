@@ -19,7 +19,7 @@
       "run_at": "document_end"
    }],
    "description": "lwh test",
-   "host_permissions": [],
+   "host_permissions": ["https://pre-api.thedeer.cn/*"],
    "icons": {
       "128": "/images/icon.png",
       "16": "/images/icon.png",
@@ -27,7 +27,7 @@
       "48": "/images/icon.png"
    },
    "manifest_version": 3,
-   "name": "插件进阶",
-   "permissions": [ "background", "storage","sidePanel", "tabs", "activeTab", "scripting","declarativeNetRequest"],
+   "name": "换肤插件",
+   "permissions": [ "background", "storage","sidePanel", "tabs", "activeTab", "scripting"],
    "version": "1.0"
 }
