@@ -23,7 +23,7 @@
     "socket.io": "^2.3.0"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^1.15.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.6",
     "execa": "^7.1.1",
